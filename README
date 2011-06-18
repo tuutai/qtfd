@@ -1,0 +1,5 @@
+qtfd is project that uses platform independent Qt language for file browsing.
+
+In practice there comes GUI that takes xml file as input defining the actual contents of the UI. Based on the xml file the user interface draws timeline and puts the files to the respective places in the timeline.
+
+The overall goal for this project is to have historical timeline with attachment documents. All document metadata is included to the xml file.
