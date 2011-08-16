@@ -23,7 +23,7 @@ void Timeline::paintEvent(QPaintEvent *)
         int year = 0;
         year = oldest;
 
-        int latest2 = this->latest + 1;
+        'int latest2 = this->latest + 1;
         int height = this->height();
         int width = this->width();
         int x = 20;
