@@ -31,10 +31,6 @@ public:
     QList <int> years;
 public slots:
     bool openfile(const QString filename);
-    void showStartWindow();
-    void showBook();
-    void showTimeLine();
-    void showChapterOne();
 private:
     void timeLine();
     void createTags();
@@ -48,18 +44,6 @@ private:
     FlowLayout *flowLayout;
     void addCategoryButtons();
     Categories *cats;
-    QPushButton *changeButton;
-    QPushButton *goToBook;
-    QPushButton *goToTimeLine;
-    QPushButton *chapterOne;
-    QPushButton *chapterTwo;
-    QPushButton *chapterThree;
-    QPushButton *chapterFour;
-    QPushButton *chapterFive;
-    QPushButton *chapterSix;
-    QPushButton *chapterSeven;
-    QPushButton *chapterEight;
-    QPushButton *chapterNine;
 private slots:
     void selectCategory(QTreeWidgetItem* item,int n);
 };

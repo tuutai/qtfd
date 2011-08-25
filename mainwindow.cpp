@@ -11,114 +11,16 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    this->setWindowTitle("Tässä on startWindow");
 
-       showStartWindow();
-       //this->centralWidget()->close();
-}
-
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
-
-void MainWindow::showStartWindow()
-{
-     this->setWindowTitle("Tässä on title");
-     this->window_width = 1000;
-     this->window_height = 435;
-     ui->setupUi(this);
-    // this->centralWidget()->close();
+    this->setWindowTitle("Tässä on title");
+    this->window_width = 1000;
+    this->window_height = 435;
+    ui->setupUi(this);
 
 
-     //QPalette paletti;
-     //paletti.setBrush(this->backgroundRole(), QBrush(QImage("images/background.jpg")));
-     //this->setPalette(paletti);
-
-     goToBook = new QPushButton("Siirry historiikkiin",this);
-     goToBook->setGeometry(QRect((this->width()/2-230), (this->height()/2-50), 200, 100));
-     goToBook->show();
-     QObject::connect(goToBook, SIGNAL(clicked()), this, SLOT(showBook()));
-
-     goToTimeLine = new QPushButton("Siirry aikajanaan",this);
-     goToTimeLine->setGeometry(QRect((this->width()/2+30), (this->height()/2-50), 200, 100));
-     goToTimeLine->show();
-     QObject::connect(goToTimeLine, SIGNAL(clicked()), this, SLOT(showTimeLine()));
-
-}
-
-void MainWindow::showBook()
-{
-    goToBook->close();
-    goToTimeLine->close();
-    this->centralWidget()->close();
-
-    chapterOne = new QPushButton("1. Lestadiolaisuuden tulo ja alkuvaiheet 1870-1911",this);
-    chapterOne->setGeometry(QRect(400, 100, 400, 35));
-    chapterOne->show();
-    QObject::connect(chapterOne, SIGNAL(clicked()), this, SLOT(showChapterOne()));
-
-    chapterTwo = new QPushButton("Historiikin 2. luku",this);
-    chapterTwo->setGeometry(QRect(400, 140, 150, 35));
-    chapterTwo->show();
-    QObject::connect(chapterTwo, SIGNAL(clicked()), this, SLOT(showBook()));
-
-    chapterThree = new QPushButton("Historiikin 3. luku",this);
-    chapterThree->setGeometry(QRect(400, 180, 150, 35));
-    chapterThree->show();
-    QObject::connect(chapterThree, SIGNAL(clicked()), this, SLOT(showBook()));
-
-    chapterFour = new QPushButton("Historiikin 4. luku",this);
-    chapterFour->setGeometry(QRect(400, 220, 150, 35));
-    chapterFour->show();
-    QObject::connect(chapterFour, SIGNAL(clicked()), this, SLOT(showBook()));
-
-    chapterFive = new QPushButton("Historiikin 5. luku",this);
-    chapterFive->setGeometry(QRect(400, 260, 150, 35));
-    chapterFive->show();
-    QObject::connect(chapterFive, SIGNAL(clicked()), this, SLOT(showBook()));
-
-    chapterSix = new QPushButton("Historiikin 6. luku",this);
-    chapterSix->setGeometry(QRect(400, 300, 150, 35));
-    chapterSix->show();
-    QObject::connect(chapterSix, SIGNAL(clicked()), this, SLOT(showBook()));
-
-    chapterSeven = new QPushButton("Historiikin 7. luku",this);
-    chapterSeven->setGeometry(QRect(400, 340, 150, 35));
-    chapterSeven->show();
-    QObject::connect(chapterSeven, SIGNAL(clicked()), this, SLOT(showBook()));
-
-    chapterEight = new QPushButton("Historiikin 8. luku",this);
-    chapterEight->setGeometry(QRect(400, 380, 150, 35));
-    chapterEight->show();
-    QObject::connect(chapterEight, SIGNAL(clicked()), this, SLOT(showBook()));
-
-    chapterNine = new QPushButton("Historiikin 9. luku",this);
-    chapterNine->setGeometry(QRect(400, 420, 150, 35));
-    chapterNine->show();
-    QObject::connect(chapterNine, SIGNAL(clicked()), this, SLOT(showBook()));
-
-    changeButton = new QPushButton("Takaisin etusivulle",this);
-    changeButton->setGeometry(QRect(840, 20, 150, 25));
-    changeButton->show();
-    QObject::connect(changeButton, SIGNAL(clicked()), this, SLOT(showStartWindow()));
-}
-
-void MainWindow::showChapterOne()
-{
-openfile("kirja/Luku_1.pdf");
-}
-
-void MainWindow::showTimeLine()
-{
-
-    timeLine();
-}
-
-void MainWindow::timeLine()
-{
-    goToBook->close();
-    goToTimeLine->close();
+    //QPalette paletti;
+    //paletti.setBrush(this->backgroundRole(), QBrush(QImage("images/background.jpg")));
+    //this->setPalette(paletti);
 
     Timeline *Swidget; // Sisaltaa imagelabelin seka painonapit
     QScrollArea *scrollArea = ui->scrollArea;
@@ -159,11 +61,15 @@ void MainWindow::timeLine()
 
     addCategoryButtons();
 
-    changeButton = new QPushButton("Takaisin etusivulle",this);
-    changeButton->setGeometry(QRect(840, 20, 150, 25));
-    changeButton->show();
-    QObject::connect(changeButton, SIGNAL(clicked()), this, SLOT(showStartWindow()));
+
 }
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
+
 
 void MainWindow::addButtons(QList <int> indexes)
 {
