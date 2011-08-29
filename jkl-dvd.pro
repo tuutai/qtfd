@@ -35,4 +35,6 @@ FORMS    += mainwindow.ui
 
 RESOURCES +=
 
+RC_FILE = jklry-dvd.rc
+
 DEFINES -= UNICODE
