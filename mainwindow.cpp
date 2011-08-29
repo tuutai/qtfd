@@ -12,10 +12,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
 
-    this->setWindowTitle("T‰ss‰ on title");
+    ui->setupUi(this);
+
+    //this->setWindowTitle("T‰ss‰ on title");
     this->window_width = 1000;
     this->window_height = 435;
-    ui->setupUi(this);
 
     //this->setAttribute(Qt::WA_NoSystemBackground);
     //this->setWindowFlags(Qt::FramelessWindowHint);
@@ -69,14 +70,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     addCategoryButtons();
 
-
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
-
 
 
 void MainWindow::addButtons(QList <int> indexes)
@@ -123,10 +122,10 @@ void MainWindow::addButtons(QList <int> indexes)
             buttonText.append("...");
         }
         else buttonText = f->topic;
-        qDebug()<<buttonText;
+        //qDebug()<<buttonText;
         p= new QPushButton(*icon, buttonText,this->widget);
         //p = new QDocumentButton(*icon, buttonText,this->widget);
-        qDebug()<<p->width();
+        //qDebug()<<p->width();
         bool ok;
         //p->documentYear =  f->year.toInt(&ok, 10);
         //p = new QPushButton(*icon, f->topic,this->widget);
@@ -149,15 +148,25 @@ void MainWindow::addButtons(QList <int> indexes)
        if (latest == 0 || f->year.toInt() > latest) { latest = f->year.toInt(); }
     }
 
+    //qDebug()<<"oldest % 5 = "<< oldest % 5;
+    //qDebug()<<"oldest % 10 = "<< oldest % 10;
+
+    // Aloitetaan aikajanan piirt‰minen ensimm‰ist‰ dokumenttia edelt‰v‰st‰ 0 tai 5 vuodesta
+    if (oldest % 5 != 0) {
+     oldest = oldest - (oldest % 5);
+    } else if (oldest % 10 != 0) {
+    oldest = oldest - (oldest % 10);
+    }
+
     int width = this->widget->width();
 
     //Piirret‰‰n v‰h‰n yli, ett‰ "tuoreimmat" napit mahtuvat n‰kyviin
     //Napit piirret‰‰n aina ko. vuodesta oikealle.
 
-    qDebug()<<"Aikajanan aito pituus"<<latest-oldest;
-    qDebug()<<"Aikajanan kasvatettu pituus"<<int((latest-oldest) * 1.2);
+    //qDebug()<<"Aikajanan aito pituus"<<latest-oldest;
+    //qDebug()<<"Aikajanan kasvatettu pituus"<<int((latest-oldest) * 1.2);
     latest = oldest + int((latest-oldest) * 1.2);
-    qDebug()<<"Uusi latest"<<latest;
+    //qDebug()<<"Uusi latest"<<latest;
 
     flowLayout->setLayotInformation(oldest, latest, width);
 

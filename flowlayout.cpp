@@ -126,11 +126,11 @@ void FlowLayout::setLayotInformation(int begin, int end, int width)
 int FlowLayout::doLayout(const QRect &rect, bool testOnly) const
 {
 
-    qDebug()<<endl;
-    qDebug()<<endl;
-    qDebug()<<"doLayout";
+    //qDebug()<<endl;
+    //qDebug()<<endl;
+    //qDebug()<<"doLayout";
 
-    int x = rect.x();
+    //int x = rect.x();
     int y = rect.y();
     int lineHeight = 0;
 
@@ -152,10 +152,10 @@ int FlowLayout::doLayout(const QRect &rect, bool testOnly) const
         if (xPosition < 0) xPosition=0;
         xPosition+=20;
 
-        qDebug()<<"this->width:"<<this->width;
-        qDebug()<<"(year - beginYear):"<<(year - beginYear);
-        qDebug()<<"xPosition:"<<xPosition;
-        qDebug()<<"(endYear + 1 - beginYear):"<<(endYear + 1 - beginYear);
+        //qDebug()<<"this->width:"<<this->width;
+        //qDebug()<<"(year - beginYear):"<<(year - beginYear);
+        //qDebug()<<"xPosition:"<<xPosition;
+        //qDebug()<<"(endYear + 1 - beginYear):"<<(endYear + 1 - beginYear);
 
         //if(lastYear == year)
             y = y + lineHeight;
