@@ -75,7 +75,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Historiikkiaineisto", 0, QApplication::UnicodeUTF8));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Jyväskylän Rauhanyhdistys 100 vuotta", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };
