@@ -52,7 +52,6 @@ MainWindow::MainWindow(QWidget *parent) :
     addButtons(intlist);
 
     this->timewidget->setGeometry(QRect(0, this->window_height-60, this->window_width,50));
-    this->timewidget->setWhatsThis("TIMEWIDGET");
 
     QLinearGradient g(QPoint(0,0),QPoint(this->window_width,this->window_height));
     g.setColorAt(0,Qt::white);

@@ -149,6 +149,7 @@ int FlowLayout::doLayout(const QRect &rect, bool testOnly) const
             //          "vuoden" pituus px   koko pit     / vuotta
             xPosition = (year - beginYear) * ((this->width - 60) / (endYear - beginYear));
 
+        if (xPosition < 0) xPosition=0;
         xPosition+=20;
 
         qDebug()<<"this->width:"<<this->width;
