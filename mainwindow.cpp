@@ -17,6 +17,10 @@ MainWindow::MainWindow(QWidget *parent) :
     this->window_height = 435;
     ui->setupUi(this);
 
+    //this->setAttribute(Qt::WA_NoSystemBackground);
+    //this->setWindowFlags(Qt::FramelessWindowHint);
+    //this->setAttribute(Qt::WA_OpaquePaintEvent);
+
     //QPalette paletti;
     //paletti.setBrush(this->backgroundRole(), QBrush(QImage("images/background.jpg")));
     //this->setPalette(paletti);
@@ -33,6 +37,9 @@ MainWindow::MainWindow(QWidget *parent) :
     this->signalMapper = new QSignalMapper();
     this->widget = Swidget;
     this->xmlRead->readXML("meta.xml");
+    this->timewidget = new QWidget(scrollArea);
+
+    this->timewidget->setStyleSheet("background:green;");
 
     qSort(this->xmlRead->files.begin(), this->xmlRead->files.end(), Files::fileLessThan);
 
@@ -43,6 +50,9 @@ MainWindow::MainWindow(QWidget *parent) :
     this->widget->setGeometry(QRect(10, 10, this->window_width,this->window_height));
     this->flowLayout = new FlowLayout(this->widget, 4, 4);
     addButtons(intlist);
+
+    this->timewidget->setGeometry(QRect(0, this->window_height-60, this->window_width,50));
+    this->timewidget->setWhatsThis("TIMEWIDGET");
 
     QLinearGradient g(QPoint(0,0),QPoint(this->window_width,this->window_height));
     g.setColorAt(0,Qt::white);

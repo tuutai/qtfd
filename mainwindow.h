@@ -44,6 +44,7 @@ private:
     FlowLayout *flowLayout;
     void addCategoryButtons();
     Categories *cats;
+    QWidget *timewidget;
 private slots:
     void selectCategory(QTreeWidgetItem* item,int n);
 };
