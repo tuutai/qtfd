@@ -43,6 +43,12 @@ void Categories::addCat(QString &parent,QString &catname, int fileidx)
 {
     category c, cat;
 
+    // Remove whitespaces, put category to lowercase
+    catname = catname.trimmed().toLower();
+    // Uppercase character first
+    if (catname.size() != 0)
+        catname = catname.at(0).toUpper() + catname.mid(1);
+
     // debug catch point
     if (fileidx == 3)
         int i = 0;
