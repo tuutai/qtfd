@@ -52,8 +52,8 @@ void Categories::addCat(QString &parent,QString &catname, int fileidx)
         catname = catname.at(0).toUpper() + catname.mid(1);
 
     // debug catch point
-    if (fileidx == 3)
-        int i = 0;
+    //if (fileidx == 3)
+    //    int i = 0;
 
     // First check if this is parent category
     if (parent.isEmpty())
