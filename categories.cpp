@@ -16,6 +16,8 @@ QList <QString> Categories::getCats()
     return stringlist;
 }
 
+//No niin.
+//joo.
 QList <QString> Categories::getSubCats(QString parent)
 {
     category cat;
