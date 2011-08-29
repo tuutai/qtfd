@@ -16,8 +16,8 @@ MainWindow::MainWindow(QWidget *parent) :
     this->window_width = 1000;
     this->window_height = 435;
     ui->setupUi(this);
-
-
+greghewr
+    // Testikommentti
     //QPalette paletti;
     //paletti.setBrush(this->backgroundRole(), QBrush(QImage("images/background.jpg")));
     //this->setPalette(paletti);
