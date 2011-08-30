@@ -138,7 +138,8 @@ void MainWindow::addButtons(QList <int> indexes)
         //p->setGeometry(QRect(190+x_offset, 30, 40, 40));
         buttonlist.append(p);
 
-        this->signalMapper->setMapping(p, f->name);
+        //this->signalMapper->setMapping(p, f->name);
+        this->signalMapper->setMapping(p, i);
         QObject::connect(p, SIGNAL(clicked()), this->signalMapper, SLOT (map()));
 
         x_offset += 50;
@@ -179,8 +180,10 @@ void MainWindow::addButtons(QList <int> indexes)
     this->widget->repaint();
     this->widget->setLayout(flowLayout);
 flowLayout->update();
-    QObject::connect(this->signalMapper, SIGNAL(mapped(const QString &)),
-                     this, SLOT(openfile(const QString &)));
+//    QObject::connect(this->signalMapper, SIGNAL(mapped(const QString &)),
+//                     this, SLOT(openfile(const QString &)));
+    QObject::connect(this->signalMapper, SIGNAL(mapped(const int &)),
+                     this, SLOT(showFileData(const int &)));
 }
 
 void MainWindow::createTags()
@@ -202,6 +205,55 @@ bool MainWindow::openfile(const QString filename){
     QString path = QDir::toNativeSeparators("files/");
     QString f = path.append(filename); //.toLocal8Bit().constData();
     return QDesktopServices::openUrl(QUrl(f));
+}
+
+bool MainWindow::showFileData(const int index){
+    // Here we show popup window that has file metadata information
+    QFrame* popup1 = new QFrame(this, Qt::Popup | Qt::Window );
+    popup1->resize(600,280);
+
+    Files *_f = this->xmlRead->files.at(index);
+
+    QLabel *topic = new QLabel(_f->topic, popup1);
+    topic->setGeometry(QRect(20,20,560,20));
+
+    // Collect all metadata to description text
+    QString *description = new QString();
+    description->append("Otsikko: "+_f->topic+"\n");
+    description->append("Kategoria: "+_f->cat.at(0).catname+"\n");
+    description->append("Alakategoria(t): ");
+    for (int w=0;w<_f->cat.at(0).subcats.size();w++)
+        description->append(_f->cat.at(0).subcats.at(w));
+    description->append("\n");
+    description->append("Päiväys: "+_f->date.toString("dd.MM.yyyy")+"\n");
+    description->append("Kuvaus: "+_f->description+"\n");
+    description->append("Kirjoittaja: "+_f->writer+"\n");
+    description->append("Kirjoitettu: "+_f->writedate.toString("dd.MM.yyyy")+"\n");
+
+    QLabel *information = new QLabel(*description, popup1);
+    information->setGeometry(QRect(20,50,289,200));
+    information->setWordWrap(1);
+
+    //QPixmap *image = new QPixmap("images/File.png");
+    QPixmap *image = new QPixmap("files/"+_f->name);
+    QLabel *imageLabel = new QLabel(popup1);
+    imageLabel->setPixmap(*image);
+    imageLabel->setGeometry(QRect(320, 40, 270, 200));
+
+    QPushButton *p= new QPushButton("Avaa",popup1);
+    p->setGeometry(QRect(200,250,90,30));
+    this->signalMapper->setMapping(p, _f->name);
+    connect(p, SIGNAL(clicked()), this->signalMapper, SLOT (map()));
+    connect(this->signalMapper, SIGNAL(mapped(const QString &)),
+                         this, SLOT(openfile(const QString &)));
+
+    QPushButton *pc= new QPushButton("Sulje",popup1);
+    pc->setGeometry(QRect(310,250,90,30));
+    connect(pc,SIGNAL(clicked()),popup1,SLOT(close()));
+
+    popup1->show();
+
+    return false;
 }
 
 void MainWindow::addCategoryButtons()

@@ -31,6 +31,7 @@ public:
     QList <int> years;
 public slots:
     bool openfile(const QString filename);
+    bool showFileData(const int index);
 private:
     void timeLine();
     void createTags();
