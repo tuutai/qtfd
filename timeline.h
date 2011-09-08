@@ -13,7 +13,7 @@ public:
 private:
     void paintEvent(QPaintEvent *);
     int oldest;
-    int latest;
+    int newest;
 
 };
 

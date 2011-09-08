@@ -26,21 +26,23 @@ MainWindow::MainWindow(QWidget *parent) :
     //paletti.setBrush(this->backgroundRole(), QBrush(QImage("images/background.jpg")));
     //this->setPalette(paletti);
 
-    Timeline *Swidget; // Sisaltaa imagelabelin seka painonapit
     QScrollArea *scrollArea = ui->scrollArea;
-    Swidget = new Timeline(scrollArea);
-
-    scrollArea->setWidget(Swidget);
+    QWidget *backgroundwidget; // Sisaltaa imagelabelin seka painonapit
+    backgroundwidget = new QWidget(scrollArea);
+    this->backgroundwidget = backgroundwidget;
+    scrollArea->setWidget(backgroundwidget);
 
     this->xmlRead = new XMLRead();
     this->search = new Search();
     this->cats = new Categories();
     this->signalMapper = new QSignalMapper();
-    this->widget = Swidget;
     this->xmlRead->readXML("meta.xml");
-    this->timewidget = new QWidget(scrollArea);
 
-    this->timewidget->setStyleSheet("background:green;");
+    Timeline *Swidget; // Sisaltaa aikajanan
+    Swidget = new Timeline(scrollArea);
+    this->widget = Swidget;
+
+    //this->backgroundwidget->setStyleSheet("background:green;");
 
     qSort(this->xmlRead->files.begin(), this->xmlRead->files.end(), Files::fileLessThan);
 
@@ -48,24 +50,24 @@ MainWindow::MainWindow(QWidget *parent) :
     //qDebug() << this->search->getTags();
     QList <int> intlist;
     intlist.append(-1);
-    this->widget->setGeometry(QRect(10, 10, this->window_width,this->window_height));
-    this->flowLayout = new FlowLayout(this->widget, 4, 4);
+    this->widget->setGeometry(QRect(0, this->window_height-50, this->window_width,50));
+    this->flowLayout = new FlowLayout(this->backgroundwidget, 4, 4);
     addButtons(intlist);
 
-    this->timewidget->setGeometry(QRect(0, this->window_height-60, this->window_width,50));
+    this->backgroundwidget->setGeometry(QRect(10, 10, this->window_width,this->window_height-60));
 
     QLinearGradient g(QPoint(0,0),QPoint(this->window_width,this->window_height));
     g.setColorAt(0,Qt::white);
     //g.setColorAt(0.5,Qt::yellow);
-    g.setColorAt(1,Qt::darkGray);
-    QPalette palette;
-    palette.setBrush(QPalette::Window, g);
-    Swidget->setPalette(palette);
+    g.setColorAt(1,Qt::darkGray);QRect(0, this->window_height-160, this->window_width,50);
+   // QPalette palette;
+   // palette.setBrush(QPalette::Window, g);
+   // Swidget->setPalette(palette);
 
     //this->searchbar = ui->lineEdit;
 
     SearchBox *searchEdit = new SearchBox(this->search, this);
-    searchEdit->setGeometry(QRect(10, 20, 170, 25));
+    searchEdit->setGeometry(QRect(10, 12, 170, 25));
     searchEdit->show();
 
     addCategoryButtons();
@@ -91,15 +93,15 @@ void MainWindow::addButtons(QList <int> indexes)
     buttonlist.clear();
 
     QLayoutItem *wItem;
-    while ((wItem = this->widget->layout()->takeAt(0)) != 0)
-          delete wItem->widget();
+    while ((wItem = this->backgroundwidget->layout()->takeAt(0)) != 0)
+         delete wItem->widget();
 
-    FlowLayout *f = reinterpret_cast<FlowLayout*>(this->widget->layout());
+    FlowLayout *f = reinterpret_cast<FlowLayout*>(this->backgroundwidget->layout());
 
     f->resetYearInfo();
 
     int x_offset = 0;
-    int latest = 0;
+    int newest = 0;
     int oldest = 0;
 
     for (int i = 0; i < _files.count(); i++)
@@ -123,7 +125,7 @@ void MainWindow::addButtons(QList <int> indexes)
         }
         else buttonText = f->topic;
         //qDebug()<<buttonText;
-        p= new QPushButton(*icon, buttonText,this->widget);
+        p= new QPushButton(*icon, buttonText,this->backgroundwidget);
         //p = new QDocumentButton(*icon, buttonText,this->widget);
         //qDebug()<<p->width();
         bool ok;
@@ -146,7 +148,7 @@ void MainWindow::addButtons(QList <int> indexes)
 
         // Take first and last year for timeline
        if (oldest == 0 || f->year.toInt() < oldest) { oldest = f->year.toInt(); }
-       if (latest == 0 || f->year.toInt() > latest) { latest = f->year.toInt(); }
+       if (newest == 0 || f->year.toInt() > newest) { newest = f->year.toInt(); }
     }
 
     //qDebug()<<"oldest % 5 = "<< oldest % 5;
@@ -164,21 +166,21 @@ void MainWindow::addButtons(QList <int> indexes)
     //Piirret‰‰n v‰h‰n yli, ett‰ "tuoreimmat" napit mahtuvat n‰kyviin
     //Napit piirret‰‰n aina ko. vuodesta oikealle.
 
-    //qDebug()<<"Aikajanan aito pituus"<<latest-oldest;
-    //qDebug()<<"Aikajanan kasvatettu pituus"<<int((latest-oldest) * 1.2);
-    latest = oldest + int((latest-oldest) * 1.2);
-    //qDebug()<<"Uusi latest"<<latest;
+    //qDebug()<<"Aikajanan aito pituus"<<newest-oldest;
+    //qDebug()<<"Aikajanan kasvatettu pituus"<<int((newest-oldest) * 1.2);
+    newest = oldest + int((newest-oldest) * 1.2);
+    //qDebug()<<"Uusi newest"<<newest;
 
-    flowLayout->setLayotInformation(oldest, latest, width);
+    flowLayout->setLayotInformation(oldest, newest, width);
 
     if (oldest != 0) { this->years.append(oldest); }
-    if (latest != 0) { this->years.append(latest); }
+    if (newest != 0) { this->years.append(newest); }
 
     Timeline *t =   reinterpret_cast<Timeline*> (this->widget);
-    t->updateYears(oldest, latest);
+    t->updateYears(oldest, newest);
 
     this->widget->repaint();
-    this->widget->setLayout(flowLayout);
+    this->backgroundwidget->setLayout(flowLayout);
 flowLayout->update();
 //    QObject::connect(this->signalMapper, SIGNAL(mapped(const QString &)),
 //                     this, SLOT(openfile(const QString &)));
@@ -263,7 +265,6 @@ void MainWindow::addCategoryButtons()
     q = searchWidget->headerItem();
     q->setText(0,"Kategoriat");
 
-    //searchWidget->setGeometry(QRect(10, 80, 121, 271));
     searchWidget->setGeometry(QRect(10, 40, 170, 435));
 
     // Initialize category structure
