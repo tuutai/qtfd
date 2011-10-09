@@ -39,8 +39,10 @@ MainWindow::MainWindow(QWidget *parent) :
     this->xmlRead->readXML("meta.xml");
 
     Timeline *Swidget; // Sisaltaa aikajanan
-    Swidget = new Timeline(scrollArea);
+    //Swidget = new Timeline(scrollArea);
+    Swidget = new Timeline(centralWidget());
     this->widget = Swidget;
+    this->widget->setGeometry(QRect(195, this->window_height-135, this->window_width-195,195));
 
     //this->backgroundwidget->setStyleSheet("background:green;");
 
@@ -50,11 +52,11 @@ MainWindow::MainWindow(QWidget *parent) :
     //qDebug() << this->search->getTags();
     QList <int> intlist;
     intlist.append(-1);
-    this->widget->setGeometry(QRect(0, this->window_height-50, this->window_width,50));
     this->flowLayout = new FlowLayout(this->backgroundwidget, 4, 4);
     addButtons(intlist);
 
-    this->backgroundwidget->setGeometry(QRect(10, 10, this->window_width,this->window_height-60));
+    //this->backgroundwidget->setGeometry(QRect(10, 10, this->window_width,this->window_height-60));
+    scrollArea->resize(this->window_width-195,this->window_height-30);
 
     QLinearGradient g(QPoint(0,0),QPoint(this->window_width,this->window_height));
     g.setColorAt(0,Qt::white);
@@ -71,7 +73,6 @@ MainWindow::MainWindow(QWidget *parent) :
     searchEdit->show();
 
     addCategoryButtons();
-
 }
 
 MainWindow::~MainWindow()
