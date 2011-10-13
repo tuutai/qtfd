@@ -25,7 +25,7 @@ void Timeline::paintEvent(QPaintEvent *)
 
         int newest2 = this->newest + 1;
         int height = this->height();
-        int width = this->width();
+        int width = this->width() -235; // otetaan pois leveydestä, että napit jäävät kokonaan näkyviin
         int x = 20;
         int y = height - 37;
         int longBar = 15;

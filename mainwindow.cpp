@@ -162,14 +162,14 @@ void MainWindow::addButtons(QList <int> indexes)
     oldest = oldest - (oldest % 10);
     }
 
-    int width = this->widget->width();
+    int width = this->widget->width()-235; // otetaan pois leveydest‰, ett‰ napit j‰‰v‰t kokonaan n‰kyviin
 
     //Piirret‰‰n v‰h‰n yli, ett‰ "tuoreimmat" napit mahtuvat n‰kyviin
     //Napit piirret‰‰n aina ko. vuodesta oikealle.
 
     //qDebug()<<"Aikajanan aito pituus"<<newest-oldest;
     //qDebug()<<"Aikajanan kasvatettu pituus"<<int((newest-oldest) * 1.2);
-    newest = oldest + int((newest-oldest) * 1.2);
+    //newest = oldest + int((newest-oldest) * 1.2);
     //qDebug()<<"Uusi newest"<<newest;
 
     flowLayout->setLayotInformation(oldest, newest, width);
