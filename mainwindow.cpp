@@ -14,9 +14,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->setupUi(this);
 
-    //this->setWindowTitle("Tässä on title");
-    this->window_width = 1000;
-    this->window_height = 435;
+    //this->setWindowTitle("Tässä voidaan asettaa title");
+    this->window_width = 1100;
+    this->window_height = 500;
+    this->resize(1084, 560);
 
     //this->setAttribute(Qt::WA_NoSystemBackground);
     //this->setWindowFlags(Qt::FramelessWindowHint);
@@ -26,28 +27,28 @@ MainWindow::MainWindow(QWidget *parent) :
     //paletti.setBrush(this->backgroundRole(), QBrush(QImage("images/background.jpg")));
     //this->setPalette(paletti);
 
+    // ScrollArea sisältää kaikki napit/dokumentit
     QScrollArea *scrollArea = ui->scrollArea;
-    QWidget *backgroundwidget; // Sisaltaa imagelabelin seka painonapit
+    QWidget *backgroundwidget;
     backgroundwidget = new QWidget(scrollArea);
     this->backgroundwidget = backgroundwidget;
     scrollArea->setWidget(backgroundwidget);
+    scrollArea->setGeometry(QRect(240, 40, this->window_width-265, this->window_height-30));
 
+    // Timeline sisältää piirretyn aikajanan
+    Timeline *Swidget;
+    Swidget = new Timeline(centralWidget());
+    this->widget = Swidget;
+    this->widget->setGeometry(QRect(240, this->window_height-135, this->window_width-240,195));
+
+    // Luetaan xml-tiedosto
     this->xmlRead = new XMLRead();
     this->search = new Search();
     this->cats = new Categories();
     this->signalMapper = new QSignalMapper();
     this->xmlRead->readXML("meta.xml");
 
-    Timeline *Swidget; // Sisaltaa aikajanan
-    //Swidget = new Timeline(scrollArea);
-    Swidget = new Timeline(centralWidget());
-    this->widget = Swidget;
-    this->widget->setGeometry(QRect(195, this->window_height-135, this->window_width-195,195));
-
-    //this->backgroundwidget->setStyleSheet("background:green;");
-
     qSort(this->xmlRead->files.begin(), this->xmlRead->files.end(), Files::fileLessThan);
-
     createTags();
     //qDebug() << this->search->getTags();
     QList <int> intlist;
@@ -55,8 +56,8 @@ MainWindow::MainWindow(QWidget *parent) :
     this->flowLayout = new FlowLayout(this->backgroundwidget, 4, 4);
     addButtons(intlist);
 
+    //this->backgroundwidget->setStyleSheet("background:green;");
     //this->backgroundwidget->setGeometry(QRect(10, 10, this->window_width,this->window_height-60));
-    scrollArea->resize(this->window_width-195,this->window_height-30);
 
     QLinearGradient g(QPoint(0,0),QPoint(this->window_width,this->window_height));
     g.setColorAt(0,Qt::white);
@@ -68,10 +69,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //this->searchbar = ui->lineEdit;
 
+    // Luodaan hakuboxi
     SearchBox *searchEdit = new SearchBox(this->search, this);
-    searchEdit->setGeometry(QRect(10, 12, 170, 25));
+    searchEdit->setGeometry(QRect(10, 12, 240, 25));
     searchEdit->show();
 
+    // Luodaan kategoriarakenne
     addCategoryButtons();
 }
 
@@ -266,7 +269,7 @@ void MainWindow::addCategoryButtons()
     q = searchWidget->headerItem();
     q->setText(0,"Kategoriat");
 
-    searchWidget->setGeometry(QRect(10, 40, 170, 435));
+    searchWidget->setGeometry(QRect(10, 40, 240, this->window_height-30));
 
     // Initialize category structure
 
