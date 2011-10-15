@@ -12,6 +12,7 @@
 #include "flowlayout.h"
 #include "categories.h"
 #include "timeline.h"
+#include "buttonarea.h"
 
 namespace Ui {
     class MainWindow;
@@ -45,7 +46,7 @@ private:
     FlowLayout *flowLayout;
     void addCategoryButtons();
     Categories *cats;
-    QWidget *backgroundwidget;
+    Buttonarea *backgroundwidget;
 private slots:
     void selectCategory(QTreeWidgetItem* item,int n);
 };

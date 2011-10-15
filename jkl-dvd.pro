@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     googlesuggest.cpp \
     searchbox.cpp \
     categories.cpp \
-    timeline.cpp
+    timeline.cpp \
+    buttonarea.cpp
 
 HEADERS  += mainwindow.h \
     xmlread.h \
@@ -29,7 +30,8 @@ HEADERS  += mainwindow.h \
     googlesuggest.h \
     searchbox.h \
     categories.h \
-    timeline.h
+    timeline.h \
+    buttonarea.h
 
 FORMS    += mainwindow.ui
 

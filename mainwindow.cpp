@@ -6,6 +6,7 @@
 #include "xmlread.h"
 #include "searchbox.h"
 #include "timeline.h"
+#include "buttonarea.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -29,8 +30,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // ScrollArea sisältää kaikki napit/dokumentit
     QScrollArea *scrollArea = ui->scrollArea;
-    QWidget *backgroundwidget;
-    backgroundwidget = new QWidget(scrollArea);
+    Buttonarea *backgroundwidget;
+    backgroundwidget = new Buttonarea(scrollArea);
     this->backgroundwidget = backgroundwidget;
     scrollArea->setWidget(backgroundwidget);
     scrollArea->setGeometry(QRect(240, 40, this->window_width-265, this->window_height-30));
@@ -39,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
     Timeline *Swidget;
     Swidget = new Timeline(centralWidget());
     this->widget = Swidget;
-    this->widget->setGeometry(QRect(240, this->window_height-135, this->window_width-240,195));
+    this->widget->setGeometry(QRect(240, this->window_height-135, this->window_width-265, 195));
 
     // Luetaan xml-tiedosto
     this->xmlRead = new XMLRead();
@@ -59,10 +60,10 @@ MainWindow::MainWindow(QWidget *parent) :
     //this->backgroundwidget->setStyleSheet("background:green;");
     //this->backgroundwidget->setGeometry(QRect(10, 10, this->window_width,this->window_height-60));
 
-    QLinearGradient g(QPoint(0,0),QPoint(this->window_width,this->window_height));
-    g.setColorAt(0,Qt::white);
+ //   QLinearGradient g(QPoint(0,0),QPoint(this->window_width,this->window_height));
+ //   g.setColorAt(0,Qt::white);
     //g.setColorAt(0.5,Qt::yellow);
-    g.setColorAt(1,Qt::darkGray);QRect(0, this->window_height-160, this->window_width,50);
+ //   g.setColorAt(1,Qt::darkGray);QRect(0, this->window_height-160, this->window_width,50);
    // QPalette palette;
    // palette.setBrush(QPalette::Window, g);
    // Swidget->setPalette(palette);
@@ -183,11 +184,15 @@ void MainWindow::addButtons(QList <int> indexes)
     Timeline *t =   reinterpret_cast<Timeline*> (this->widget);
     t->updateYears(oldest, newest);
 
+    Buttonarea *b =   reinterpret_cast<Buttonarea*> (this->backgroundwidget);
+    b->updateYears(oldest, newest);
+
     this->widget->repaint();
+    this->backgroundwidget->repaint();
     this->backgroundwidget->setLayout(flowLayout);
-flowLayout->update();
-//    QObject::connect(this->signalMapper, SIGNAL(mapped(const QString &)),
-//                     this, SLOT(openfile(const QString &)));
+    flowLayout->update();
+    //    QObject::connect(this->signalMapper, SIGNAL(mapped(const QString &)),
+    //                     this, SLOT(openfile(const QString &)));
     QObject::connect(this->signalMapper, SIGNAL(mapped(const int &)),
                      this, SLOT(showFileData(const int &)));
 }
@@ -217,6 +222,7 @@ bool MainWindow::showFileData(const int index){
     // Here we show popup window that has file metadata information
     QFrame* popup1 = new QFrame(this, Qt::Popup | Qt::Window );
     popup1->resize(600,280);
+    popup1->setGeometry(QRect(this->window_width/2-300, this->window_height/2 -140,600,280));
 
     Files *_f = this->xmlRead->files.at(index);
 
