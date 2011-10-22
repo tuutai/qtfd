@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui xml
+QT       += core gui xml webkit
 
 TARGET = jkl-dvd
 TEMPLATE = app
@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     searchbox.cpp \
     categories.cpp \
     timeline.cpp \
-    buttonarea.cpp
+    buttonarea.cpp \
+    timelineview.cpp
 
 HEADERS  += mainwindow.h \
     xmlread.h \
@@ -31,9 +32,11 @@ HEADERS  += mainwindow.h \
     searchbox.h \
     categories.h \
     timeline.h \
-    buttonarea.h
+    buttonarea.h \
+    timelineview.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    timelineview.ui
 
 RESOURCES +=
 

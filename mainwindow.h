@@ -49,6 +49,7 @@ private:
     Buttonarea *backgroundwidget;
 private slots:
     void selectCategory(QTreeWidgetItem* item,int n);
+    void on_pushButton_clicked();
 };
 
 #endif // MAINWINDOW_H

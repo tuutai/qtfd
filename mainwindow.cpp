@@ -7,6 +7,7 @@
 #include "searchbox.h"
 #include "timeline.h"
 #include "buttonarea.h"
+#include "timelineview.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -56,6 +57,11 @@ MainWindow::MainWindow(QWidget *parent) :
     intlist.append(-1);
     this->flowLayout = new FlowLayout(this->backgroundwidget, 4, 4);
     addButtons(intlist);
+
+//    QString urlString = QDir::toNativeSeparators("C:/Users/Administrator/qtfd/html/local_example.html");
+//QUrl url(urlString);
+
+ //   this->ui->webView->setUrl(url);
 
     //this->backgroundwidget->setStyleSheet("background:green;");
     //this->backgroundwidget->setGeometry(QRect(10, 10, this->window_width,this->window_height-60));
@@ -330,4 +336,10 @@ void MainWindow::selectCategory(QTreeWidgetItem* item,int n)
     if (p) // parent found
         parentname = p->text(n);
         this->addButtons(this->cats->getIndexes(parentname,catname));
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    TimeLineView *view = new TimeLineView(this);
+    view->showNormal();
 }
