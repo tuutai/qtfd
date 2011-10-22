@@ -4,25 +4,72 @@ var timeline_data = {  // save as a global variable
 'wikiSection': "Simile Cubism Timeline",
 
 'events' : [
-        {'start': '1924',
-        'title': 'Barfusserkirche',
+        {'start': '1989',
+        'title': 'Tilaisuus',
         'description': 'by Lyonel Feininger, American/German Painter, 1871-1956',
         'image': 'http://images.allposters.com/images/AWI/NR096_b.jpg',
         'link': 'http://www.allposters.com/-sp/Barfusserkirche-1924-Posters_i1116895_.htm'
         },
+        { 'start': '1988-06-10',
+            'title': 'Tilaisuus 2.0',
+            'description': 'by Lyonel Feininger, American/German Painter, 1871-1956',
+            'image': 'http://images.allposters.com/images/AWI/NR096_b.jpg',
+            'link': 'http://www.allposters.com/-sp/Barfusserkirche-1924-Posters_i1116895_.htm'
+        },
+        { 'start': '1988-09-01',
+            'title': 'Isot seurat',
+            'description': 'by Lyonel Feininger, American/German Painter, 1871-1956',
+            'image': 'http://images.allposters.com/images/AWI/NR096_b.jpg',
+            'link': 'http://www.allposters.com/-sp/Barfusserkirche-1924-Posters_i1116895_.htm'
+        },
+        { 'start': '1988',
+            'title': 'Isot seurat 2.0',
+            'description': 'by Lyonel Feininger, American/German Painter, 1871-1956',
+            'image': 'http://images.allposters.com/images/AWI/NR096_b.jpg',
+            'link': 'http://www.allposters.com/-sp/Barfusserkirche-1924-Posters_i1116895_.htm'
+        },
+        { 'start': '1987',
+            'title': 'Tilaisuus taas',
+            'description': 'by Lyonel Feininger, American/German Painter, 1871-1956',
+            'image': 'http://images.allposters.com/images/AWI/NR096_b.jpg',
+            'link': 'http://www.allposters.com/-sp/Barfusserkirche-1924-Posters_i1116895_.htm'
+        },
+        { 'start': '1985',
+            'title': 'Tilaisuus eka kerran',
+            'description': 'by Lyonel Feininger, American/German Painter, 1871-1956',
+            'image': 'http://images.allposters.com/images/AWI/NR096_b.jpg',
+            'link': 'http://www.allposters.com/-sp/Barfusserkirche-1924-Posters_i1116895_.htm'
+        },
+        { 'start': '1993',
+            'title': 'Tilaisuus toka kerran',
+            'description': 'by Lyonel Feininger, American/German Painter, 1871-1956',
+            'image': 'http://images.allposters.com/images/AWI/NR096_b.jpg',
+            'link': 'http://www.allposters.com/-sp/Barfusserkirche-1924-Posters_i1116895_.htm'
+        },
+        { 'start': '1993-03-02',
+            'title': 'Tilaisuus joku kerran',
+            'description': 'by Lyonel Feininger, American/German Painter, 1871-1956',
+            'image': 'http://images.allposters.com/images/AWI/NR096_b.jpg',
+            'link': 'http://www.allposters.com/-sp/Barfusserkirche-1924-Posters_i1116895_.htm'
+        },
+        { 'start': '1996-08-01',
+            'title': 'Tilaisuus taas kerran',
+            'description': 'by Lyonel Feininger, American/German Painter, 1871-1956',
+            'image': 'http://images.allposters.com/images/AWI/NR096_b.jpg',
+            'link': 'http://www.allposters.com/-sp/Barfusserkirche-1924-Posters_i1116895_.htm'
+        },
 
 
-        {'start': '2013',
-        'end': '2029',
-        'title': 'Three Figures',
+        {'start': '1999',
+        'end': '2002',
+        'title': 'Kolmen vuoden suunnitelma',
         'description': 'by Kasimir Malevich, Ukrainian Painter, 1878-1935',
         'image': 'http://images.allposters.com/images/BRGPOD/75857_b.jpg',
         'link': 'http://www.allposters.com/-sp/Three-Figures-1913-28-Posters_i1349989_.htm'
         },
 
 
-        {'start': '2081',
-        'end': '2153',
+        {'start': '2001',
         'title': 'Landschaft bei Montreuil',
         'description': 'by Albert Gleizes, French Painter, 1881-1953',
         'image': 'http://images.allposters.com/images/mer/1336_b.jpg',
@@ -33,7 +80,7 @@ var timeline_data = {  // save as a global variable
         'textColor' : 'green'},
 
 
-        {'start': '2020',
+        {'start': '2000',
         'title': 'Femme au Miroir',
         'description': 'by Fernand Leger, French Painter, 1881-1955',
         'image': 'http://images.allposters.com/images/AWI/GMR117_b.jpg',
@@ -49,9 +96,9 @@ var timeline_data = {  // save as a global variable
         },
 
 
-        {'start': '2082',
-        'end': '2164',
-        'title': 'Jour',
+        {'start': '2000',
+        'end': '2005',
+        'title': 'Viiden vuoden setti',
         'description': 'by Georges Braque, French Painter, 1882-1963',
         'image': 'http://images.allposters.com/images/SHD/S1041_b.jpg',
         'link': 'http://www.allposters.com/-sp/Jour-Posters_i126663_.htm',
@@ -59,50 +106,12 @@ var timeline_data = {  // save as a global variable
         },
 
 
-        {'start': '1916',
+        {'start': '1970',
         'title': 'Still Life with a White Dish',
         'description': 'by Gino Severini, Italian Painter, 1883-1966',
         'image': 'http://images.allposters.com/images/MCG/FS1254_b.jpg',
         'link': 'http://www.allposters.com/-sp/Still-Life-with-a-White-Dish-1916-Posters_i366823_.htm'
-        },
-
-
-        {'start': '2085',
-        'end': '2141',
-        'title': 'Rhythm, Joie de Vivre',
-        'description': 'by Robert Delaunay, French Painter, 1885-1941',
-        'image': 'http://imagecache2.allposters.com/images/pic/adc/10053983a_b~Rhythm-Joie-de-Vivre-Posters.jpg',
-        'link': 'http://www.allposters.com/-sp/Rhythm-Joie-de-Vivre-Posters_i1250641_.htm'
-        },
-
-
-        {'start': '2085',
-        'end': '2125',
-        'title': 'Castor Et Pollux',
-        'description': 'by Roger de la Fresnaye, French Painter, 1885-1925',
-        'image': 'http://images.allposters.com/images/CORPOD/IX001463_b.jpg',
-        'link': 'http://www.allposters.com/-sp/Castor-Et-Pollux-Posters_i831718_.htm',
-        'tapeImage': 'blue_stripes.png',
-        'tapeRepeat': 'repeat-x',
-        'caption': "This is the event's caption attribute.",
-        'classname': 'hot_event' 
-        },
-
-
-        {'start': '1912',
-        'title': 'Portrait of Pablo Picasso',
-        'description': 'by Juan Gris, Spanish Painter/Sculptor, 1887-1927',
-        'image': 'http://images.allposters.com/images/BRGPOD/156514_b.jpg',
-        'link': 'http://www.allposters.com/-sp/Portrait-of-Pablo-Picasso-1881-1973-1912-Posters_i1344154_.htm'
-        },
-
-
-        {'start': '2091',
-        'end': '2115',
-        'title': 'Portrait of Horace Brodsky',
-        'description': 'by Henri Gaudier-Brzeska, French Sculptor, 1891-1915',
-        'image': 'http://imagecache2.allposters.com/images/BRGPOD/102770_b.jpg',
-        'link': 'http://www.allposters.com/-sp/Portrait-of-Horace-Brodsky-Posters_i1584413_.htm'
         }
+
 ]
 }
