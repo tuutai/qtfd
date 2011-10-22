@@ -40,13 +40,24 @@
                 Timeline.createBandInfo({
                     width:          45, // set to a minimum, autoWidth will then adjust
                     intervalUnit:   Timeline.DateTime.YEAR, 
-                    intervalPixels: 200,
+                    intervalPixels: 100,
                     eventSource:    eventSource1,
                     date:           d,
                     theme:          theme1,
                     layout:         'original'  // original, overview, detailed
+                }),
+                Timeline.createBandInfo({
+                    overview:       true,
+                    eventSource:    eventSource1,
+                    date:           d,
+                    width:          "70%",
+                    intervalUnit:   Timeline.DateTime.DECADE,
+                    theme:          theme1,
+                    intervalPixels: 100
                 })
             ];
+            bandInfos[1].syncWith = 0;
+            bandInfos[1].highlight = true;
                                                             
             // create the Timeline
             tl = Timeline.create(tl_el, bandInfos, Timeline.HORIZONTAL);

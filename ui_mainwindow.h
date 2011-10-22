@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Sat Oct 22 09:55:51 2011
-**      by: Qt User Interface Compiler version 4.7.2
+** Created: Sat Oct 22 13:38:38 2011
+**      by: Qt User Interface Compiler version 4.7.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -16,7 +16,6 @@
 #include <QtGui/QButtonGroup>
 #include <QtGui/QHeaderView>
 #include <QtGui/QMainWindow>
-#include <QtGui/QPushButton>
 #include <QtGui/QScrollArea>
 #include <QtGui/QWidget>
 
@@ -29,7 +28,6 @@ public:
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
     QWidget *widget;
-    QPushButton *pushButton;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -69,9 +67,6 @@ public:
         widget->setBaseSize(QSize(0, 0));
         widget->setAutoFillBackground(false);
         scrollArea->setWidget(scrollAreaWidgetContents);
-        pushButton = new QPushButton(centralWidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(220, 270, 75, 23));
         MainWindow->setCentralWidget(centralWidget);
 
         retranslateUi(MainWindow);
@@ -82,7 +77,6 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Jyv\303\244skyl\303\244n Rauhanyhdistys 100v", 0, QApplication::UnicodeUTF8));
-        pushButton->setText(QApplication::translate("MainWindow", "PushButton", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

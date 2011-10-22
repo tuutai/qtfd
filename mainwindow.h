@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QLineEdit>
 #include <QTreeWidget>
+#include <QWebView>
 #include "files.h"
 #include "xmlread.h"
 #include "search.h"
@@ -32,6 +33,7 @@ public:
     QList <int> years;
 public slots:
     bool openfile(const QString filename);
+    bool openUrl(const QUrl url);
     bool showFileData(const int index);
 private:
     void timeLine();
@@ -48,9 +50,9 @@ private:
     Categories *cats;
     Buttonarea *backgroundwidget;
     void update_data(QList <int> indexes);
+    QWebView *webView;
 private slots:
     void selectCategory(QTreeWidgetItem* item,int n);
-    void on_pushButton_clicked();
 };
 
 #endif // MAINWINDOW_H
