@@ -24,7 +24,7 @@
    </property>
    <property name="url">
     <url>
-     <string>file:///C:/Users/Administrator/qtfd/html/timelineview.html</string>
+     <string>file://html/timelineview.html</string>
     </url>
    </property>
   </widget>
