@@ -47,6 +47,7 @@ private:
     void addCategoryButtons();
     Categories *cats;
     Buttonarea *backgroundwidget;
+    void update_data(QList <int> indexes);
 private slots:
     void selectCategory(QTreeWidgetItem* item,int n);
     void on_pushButton_clicked();

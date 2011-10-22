@@ -13,6 +13,7 @@ class TimeLineView : public QDialog
 
 public:
     explicit TimeLineView(QWidget *parent = 0);
+    void timeline_reload();
     ~TimeLineView();
 
 private:
