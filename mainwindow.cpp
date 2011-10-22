@@ -103,12 +103,17 @@ void MainWindow::update_data(QList <int> indexes){
         Files *f = _files.at(i);
         if (comma) out << ",\n";
         QString path = QDir::toNativeSeparators("../files/");
+        QString f_name = path.append(f->name);
 
         out << "\t{'start': '"<<f->date.toString("yyyy-MM-dd")<<"',\n"
                "\t'title': '"<<f->topic<<"',\n"
-               "\t'description': '"<<f->description<<"',\n"
-               "\t'image': 'http://images.allposters.com/images/AWI/NR096_b.jpg',\n"
-               "\t'link': '"<<path.append(f->name)<<"'\n"
+               "\t'description': '"<<f->description<<"',\n";
+/*
+        if (f->name.endsWith(".jpg"))
+            out << "\t'image': '"<<f_name<<"',\n";
+//               "\t'image': 'http://images.allposters.com/images/AWI/NR096_b.jpg',\n"
+*/
+        out << "\t'link': '"<<f_name<<"'\n"
                "\t}";
         comma = true;
     }
