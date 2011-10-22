@@ -52,7 +52,9 @@
  *================================================== 
  */
 
-(function() {
+var Timeline_ajax_url = "timeline_ajax/simile-ajax-api.js";
+//var Timeline_urlPrefix = "";
+(function () {
     var useLocalResources = false;
     if (document.location.search.length > 0) {
         var params = document.location.search.substr(1).split("&");
