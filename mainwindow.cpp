@@ -104,7 +104,7 @@ void MainWindow::update_data(QList <int> indexes){
         if (comma) out << ",\n";
         QString path = QDir::toNativeSeparators("../files/");
         QString f_name = path.append(f->name);
-
+        //qDebug() << f->date <<" --- " <<f->date.toString("yyyy-MM-dd");
         out << "\t{'start': '"<<f->date.toString("yyyy-MM-dd")<<"',\n"
                "\t'title': '"<<f->topic<<"',\n"
                "\t'description': '"<<f->description<<"',\n";

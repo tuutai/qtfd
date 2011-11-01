@@ -53,10 +53,10 @@ void XMLRead::readFileMeta(QDomNode _file)
         else if (nodename == "date" )
         {
             //qDebug() << nodename << " = " << childs.at(iDx).toElement().text();
-            QDate date = QDate::fromString(childs.at(iDx).toElement().text(),"dd.MM.yyyy");
+            QDate date = QDate::fromString(childs.at(iDx).toElement().text(),"d.M.yyyy");
             f->date = date;
             f->year = date.toString("yyyy");
-//            qDebug() << f->date;
+            //qDebug() << f->date;
         }
         else if (nodename == "categories" )
         {
