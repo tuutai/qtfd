@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Mon Feb 13 23:17:11 2012
+** Created: Mon Feb 13 23:46:36 2012
 **      by: Qt User Interface Compiler version 4.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -14,6 +14,7 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
+#include <QtGui/QCommandLinkButton>
 #include <QtGui/QGridLayout>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLineEdit>
@@ -37,6 +38,7 @@ public:
     QProgressBar *progressBar;
     QLineEdit *searchLineEdit;
     QTreeWidget *searchWidget;
+    QCommandLinkButton *commandLinkButton;
     QWebView *webView;
 
     void setupUi(QMainWindow *MainWindow)
@@ -70,12 +72,12 @@ public:
         scrollAreaLeft->setObjectName(QString::fromUtf8("scrollAreaLeft"));
         sizePolicy.setHeightForWidth(scrollAreaLeft->sizePolicy().hasHeightForWidth());
         scrollAreaLeft->setSizePolicy(sizePolicy);
-        scrollAreaLeft->setMinimumSize(QSize(230, 0));
-        scrollAreaLeft->setMaximumSize(QSize(230, 16777215));
+        scrollAreaLeft->setMinimumSize(QSize(240, 0));
+        scrollAreaLeft->setMaximumSize(QSize(240, 16777215));
         scrollAreaLeft->setWidgetResizable(true);
         leftContents = new QWidget();
         leftContents->setObjectName(QString::fromUtf8("leftContents"));
-        leftContents->setGeometry(QRect(0, 0, 228, 598));
+        leftContents->setGeometry(QRect(0, 0, 238, 598));
         progressBar = new QProgressBar(leftContents);
         progressBar->setObjectName(QString::fromUtf8("progressBar"));
         progressBar->setGeometry(QRect(0, 570, 230, 23));
@@ -85,13 +87,16 @@ public:
         progressBar->setTextVisible(false);
         searchLineEdit = new QLineEdit(leftContents);
         searchLineEdit->setObjectName(QString::fromUtf8("searchLineEdit"));
-        searchLineEdit->setGeometry(QRect(0, 0, 241, 31));
+        searchLineEdit->setGeometry(QRect(0, 0, 171, 41));
         searchWidget = new QTreeWidget(leftContents);
         QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
         __qtreewidgetitem->setText(0, QString::fromUtf8("1"));
         searchWidget->setHeaderItem(__qtreewidgetitem);
         searchWidget->setObjectName(QString::fromUtf8("searchWidget"));
-        searchWidget->setGeometry(QRect(0, 40, 241, 521));
+        searchWidget->setGeometry(QRect(0, 50, 241, 511));
+        commandLinkButton = new QCommandLinkButton(leftContents);
+        commandLinkButton->setObjectName(QString::fromUtf8("commandLinkButton"));
+        commandLinkButton->setGeometry(QRect(170, 0, 71, 41));
         scrollAreaLeft->setWidget(leftContents);
 
         gridLayout->addWidget(scrollAreaLeft, 0, 0, 1, 1);
@@ -114,6 +119,8 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Jyv\303\244skyl\303\244n Rauhanyhdistys 100v", 0, QApplication::UnicodeUTF8));
+        searchLineEdit->setText(QApplication::translate("MainWindow", "Kirjoita hakusana", 0, QApplication::UnicodeUTF8));
+        commandLinkButton->setText(QApplication::translate("MainWindow", "HAE", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

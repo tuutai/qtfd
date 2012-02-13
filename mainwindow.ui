@@ -64,13 +64,13 @@
        </property>
        <property name="minimumSize">
         <size>
-         <width>230</width>
+         <width>240</width>
          <height>0</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>230</width>
+         <width>240</width>
          <height>16777215</height>
         </size>
        </property>
@@ -82,7 +82,7 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>228</width>
+          <width>238</width>
           <height>598</height>
          </rect>
         </property>
@@ -119,18 +119,21 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>241</width>
-           <height>31</height>
+           <width>171</width>
+           <height>41</height>
           </rect>
+         </property>
+         <property name="text">
+          <string>Kirjoita hakusana</string>
          </property>
         </widget>
         <widget class="QTreeWidget" name="searchWidget">
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>40</y>
+           <y>50</y>
            <width>241</width>
-           <height>521</height>
+           <height>511</height>
           </rect>
          </property>
          <column>
@@ -138,6 +141,19 @@
            <string notr="true">1</string>
           </property>
          </column>
+        </widget>
+        <widget class="QCommandLinkButton" name="commandLinkButton">
+         <property name="geometry">
+          <rect>
+           <x>170</x>
+           <y>0</y>
+           <width>71</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>HAE</string>
+         </property>
         </widget>
        </widget>
       </widget>

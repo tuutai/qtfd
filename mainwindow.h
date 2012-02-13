@@ -62,6 +62,7 @@ private slots:
     void selectCategory(QTreeWidgetItem* item,int n);
     void webViewProgress(int progress);
     void doSearch();
+    void on_commandLinkButton_clicked();
 };
 
 #endif // MAINWINDOW_H

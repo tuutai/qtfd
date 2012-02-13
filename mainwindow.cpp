@@ -426,3 +426,8 @@ void MainWindow::resizeEvent(QResizeEvent *e)
 
 }
 
+
+void MainWindow::on_commandLinkButton_clicked()
+{
+    doSearch();
+}
