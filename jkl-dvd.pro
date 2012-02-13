@@ -20,8 +20,7 @@ SOURCES += main.cpp\
     searchbox.cpp \
     categories.cpp \
     timeline.cpp \
-    buttonarea.cpp \
-    timelineview.cpp
+    buttonarea.cpp
 
 HEADERS  += mainwindow.h \
     xmlread.h \
@@ -32,11 +31,9 @@ HEADERS  += mainwindow.h \
     searchbox.h \
     categories.h \
     timeline.h \
-    buttonarea.h \
-    timelineview.h
+    buttonarea.h
 
-FORMS    += mainwindow.ui \
-    timelineview.ui
+FORMS    += mainwindow.ui
 
 RESOURCES +=
 

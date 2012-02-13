@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Sat Oct 22 13:38:38 2011
-**      by: Qt User Interface Compiler version 4.7.0
+** Created: Mon Feb 13 20:13:47 2012
+**      by: Qt User Interface Compiler version 4.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -16,6 +16,7 @@
 #include <QtGui/QButtonGroup>
 #include <QtGui/QHeaderView>
 #include <QtGui/QMainWindow>
+#include <QtGui/QProgressBar>
 #include <QtGui/QScrollArea>
 #include <QtGui/QWidget>
 
@@ -28,6 +29,7 @@ public:
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
     QWidget *widget;
+    QProgressBar *progressBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -67,6 +69,10 @@ public:
         widget->setBaseSize(QSize(0, 0));
         widget->setAutoFillBackground(false);
         scrollArea->setWidget(scrollAreaWidgetContents);
+        progressBar = new QProgressBar(centralWidget);
+        progressBar->setObjectName(QString::fromUtf8("progressBar"));
+        progressBar->setGeometry(QRect(80, 450, 311, 23));
+        progressBar->setValue(24);
         MainWindow->setCentralWidget(centralWidget);
 
         retranslateUi(MainWindow);

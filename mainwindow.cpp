@@ -25,32 +25,16 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // ScrollArea sisältää kaikki napit/dokumentit
     QScrollArea *scrollArea = ui->scrollArea;
-/*
-    Buttonarea *backgroundwidget;
-    backgroundwidget = new Buttonarea(scrollArea);
-    this->backgroundwidget = backgroundwidget;
-    scrollArea->setWidget(backgroundwidget);
-*/
+
     scrollArea->setGeometry(QRect(240, 40, this->window_width-265, this->window_height-30));
     // Timeline sisältää piirretyn aikajanan
-    //TimeLineView *view = new TimeLineView(centralWidget());
     this->webView = new QWebView(ui->scrollArea);
-    //view->showNormal();
     this->webView->setGeometry(QRect(0, -1, 801, 551));
-    //this->webView->setGeometry(QRect(240, this->window_height-135, this->window_width-265, 195));
     QString f = QDir::toNativeSeparators("html/timelineview.html");
-    //QWebPage::setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
     this->webView->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
     this->webView->load(QUrl(f));
-    //webView->setUrl(QUrl("file://html/timelineview.html"));
     connect(this->webView,SIGNAL(linkClicked (const QUrl &)),this,SLOT(openUrl(const QUrl &)));
-
-    /*
-    Timeline *Swidget;
-    Swidget = new Timeline(centralWidget());
-    this->widget = Swidget;
-    this->widget->setGeometry(QRect(240, this->window_height-135, this->window_width-265, 195));
-*/
+    connect(this->webView,SIGNAL(loadProgress(int)), this, SLOT(webViewProgress(int)));
 
     // Luetaan xml-tiedosto
     this->xmlRead = new XMLRead();
@@ -61,14 +45,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     qSort(this->xmlRead->files.begin(), this->xmlRead->files.end(), Files::fileLessThan);
     createTags();
-    //qDebug() << this->search->getTags();
     QList <int> intlist;
     intlist.append(-1);
-    //this->flowLayout = new FlowLayout(this->backgroundwidget, 4, 4);
     addButtons(intlist);
-
-    //TimeLineView *view = new TimeLineView(this);
-    //view->showNormal();
 
     // Luodaan hakuboxi
     SearchBox *searchEdit = new SearchBox(this->search, this);
@@ -85,10 +64,13 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::update_data(QList <int> indexes){
+    qDebug()<<"update_data alku";
+    this->setCursor(Qt::WaitCursor);
     QFile datafile(QDir::toNativeSeparators("html/data.js"));
     datafile.open(QIODevice::WriteOnly | QIODevice::Text);
     QTextStream out(&datafile);
     // Tulostetaan header
+
     out << "var timeline_data = {\n'dateTimeFormat': 'iso8601',\n"
 //        "'wikiURL': \"http://simile.mit.edu/shelf/\",\n"
 //        "'wikiSection': \"Simile Cubism Timeline\",\n\n"
@@ -96,11 +78,17 @@ void MainWindow::update_data(QList <int> indexes){
     // tulostetaan linkit
     QList<Files *> _files = this->xmlRead->files;
     bool comma = false;
+    QString alkuStr = "";
+    QString loppuStr = "";
     for (int i = 0; i < _files.count(); i++)
     {
         if (!indexes.contains(i) && !indexes.contains(-1)) continue;
         //qDebug() << _files.at(i)->date;
         Files *f = _files.at(i);
+        if(alkuStr == "")
+            alkuStr = f->date.toString("yyyy");
+        loppuStr = f->date.addYears(5).toString("yyyy");
+
         if (comma) out << ",\n";
         QString path = QDir::toNativeSeparators("../files/");
         QString f_name = path.append(f->name);
@@ -119,8 +107,14 @@ void MainWindow::update_data(QList <int> indexes){
     }
     // tulostetaan footer
     out << "\n\n]\n}\n";
+    out << "var TIMELINE_START = new Date(Date.UTC(" + alkuStr  + ", 0, 1));\n"
+          + "var TIMELINE_STOP = new Date(Date.UTC(" + loppuStr + ", 0, 1));\n";
+
     datafile.close();
     this->webView->reload();
+    this->setCursor(Qt::ArrowCursor);
+    qDebug()<<"update_data loppu";
+
     return;
 }
 
@@ -375,6 +369,11 @@ void MainWindow::selectCategory(QTreeWidgetItem* item,int n)
     QString catname = item->text(n);
     if (p) // parent found
         parentname = p->text(n);
-        this->addButtons(this->cats->getIndexes(parentname,catname));
+    this->addButtons(this->cats->getIndexes(parentname,catname));
+}
+
+void MainWindow::webViewProgress(int progress)
+{this->ui->progressBar->setValue(progress);
+    //this->setWindowTitle(QString::number(progress));
 }
 
