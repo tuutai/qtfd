@@ -10,6 +10,8 @@
 #include "searchbox.h"
 #include "timeline.h"
 #include "buttonarea.h"
+#include "googlesuggest.h"
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -18,23 +20,24 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->setupUi(this);
 
+
     //this->setWindowTitle("Tässä voidaan asettaa title");
-    this->window_width = 1100;
-    this->window_height = 500;
-    this->resize(1084, 560);
+    //this->window_width = 1100;
+    //this->window_height = 500;
+    //this->resize(1084, 560);
 
     // ScrollArea sisältää kaikki napit/dokumentit
-    QScrollArea *scrollArea = ui->scrollArea;
+    //QScrollArea *scrollArea = ui->scrollArea;
 
-    scrollArea->setGeometry(QRect(240, 40, this->window_width-265, this->window_height-30));
+    //scrollArea->setGeometry(QRect(240, 40, this->window_width-265, this->window_height-30));
     // Timeline sisältää piirretyn aikajanan
-    this->webView = new QWebView(ui->scrollArea);
-    this->webView->setGeometry(QRect(0, -1, 801, 551));
+    //this->webView = new QWebView(ui->scrollArea_2);
+    //this->webView->setGeometry(QRect(0, -1, 801, 551));
     QString f = QDir::toNativeSeparators("html/timelineview.html");
-    this->webView->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
-    this->webView->load(QUrl(f));
-    connect(this->webView,SIGNAL(linkClicked (const QUrl &)),this,SLOT(openUrl(const QUrl &)));
-    connect(this->webView,SIGNAL(loadProgress(int)), this, SLOT(webViewProgress(int)));
+    this->ui->webView->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
+    this->ui->webView->load(QUrl(f));
+    connect(this->ui->webView,SIGNAL(linkClicked (const QUrl &)),this,SLOT(openUrl(const QUrl &)));
+    connect(this->ui->webView,SIGNAL(loadProgress(int)), this, SLOT(webViewProgress(int)));
 
     // Luetaan xml-tiedosto
     this->xmlRead = new XMLRead();
@@ -49,10 +52,16 @@ MainWindow::MainWindow(QWidget *parent) :
     intlist.append(-1);
     addButtons(intlist);
 
+    completer = new GSuggestCompletion(this->search, this->ui->searchLineEdit);
+
+    connect(this->ui->searchLineEdit, SIGNAL(returnPressed()),this, SLOT(doSearch()));
+
     // Luodaan hakuboxi
-    SearchBox *searchEdit = new SearchBox(this->search, this);
-    searchEdit->setGeometry(QRect(10, 12, 240, 25));
-    searchEdit->show();
+    //SearchBox *searchEdit = new SearchBox(this->search, this);
+    //this->ui->scrollAreaLeft->setWidget(s);
+    //this->ui->scrollAreaWidgetContents = searchEdit;
+    //searchEdit->setGeometry(QRect(10, 12, 240, 25));
+    //searchEdit->show();
 
     // Luodaan kategoriarakenne
     addCategoryButtons();
@@ -111,7 +120,7 @@ void MainWindow::update_data(QList <int> indexes){
           + "var TIMELINE_STOP = new Date(Date.UTC(" + loppuStr + ", 0, 1));\n";
 
     datafile.close();
-    this->webView->reload();
+    this->ui->webView->reload();
     this->setCursor(Qt::ArrowCursor);
     qDebug()<<"update_data loppu";
 
@@ -259,63 +268,63 @@ bool MainWindow::openUrl(const QUrl url){
 }
 
 bool MainWindow::showFileData(const int index){
-    // Here we show popup window that has file metadata information
-    QFrame* popup1 = new QFrame(this, Qt::Popup | Qt::Window );
-    popup1->resize(600,280);
-    popup1->setGeometry(QRect(this->window_width/2-300, this->window_height/2 -140,600,280));
+//    // Here we show popup window that has file metadata information
+//    QFrame* popup1 = new QFrame(this, Qt::Popup | Qt::Window );
+//    popup1->resize(600,280);
+//    popup1->setGeometry(QRect(this->window_width/2-300, this->window_height/2 -140,600,280));
 
-    Files *_f = this->xmlRead->files.at(index);
+//    Files *_f = this->xmlRead->files.at(index);
 
-    QLabel *topic = new QLabel(_f->topic, popup1);
-    topic->setGeometry(QRect(20,20,560,20));
+//    QLabel *topic = new QLabel(_f->topic, popup1);
+//    topic->setGeometry(QRect(20,20,560,20));
 
-    // Collect all metadata to description text
-    QString *description = new QString();
-    description->append("Otsikko: "+_f->topic+"\n");
-    description->append("Kategoria: "+_f->cat.at(0).catname+"\n");
-    description->append("Alakategoria(t): ");
-    for (int w=0;w<_f->cat.at(0).subcats.size();w++)
-        description->append(_f->cat.at(0).subcats.at(w));
-    description->append("\n");
-    description->append("Päiväys: "+_f->date.toString("dd.MM.yyyy")+"\n");
-    description->append("Kuvaus: "+_f->description+"\n");
-    description->append("Kirjoittaja: "+_f->writer+"\n");
-    description->append("Kirjoitettu: "+_f->writedate.toString("dd.MM.yyyy")+"\n");
+//    // Collect all metadata to description text
+//    QString *description = new QString();
+//    description->append("Otsikko: "+_f->topic+"\n");
+//    description->append("Kategoria: "+_f->cat.at(0).catname+"\n");
+//    description->append("Alakategoria(t): ");
+//    for (int w=0;w<_f->cat.at(0).subcats.size();w++)
+//        description->append(_f->cat.at(0).subcats.at(w));
+//    description->append("\n");
+//    description->append("Päiväys: "+_f->date.toString("dd.MM.yyyy")+"\n");
+//    description->append("Kuvaus: "+_f->description+"\n");
+//    description->append("Kirjoittaja: "+_f->writer+"\n");
+//    description->append("Kirjoitettu: "+_f->writedate.toString("dd.MM.yyyy")+"\n");
 
-    QLabel *information = new QLabel(*description, popup1);
-    information->setGeometry(QRect(20,50,289,200));
-    information->setWordWrap(1);
+//    QLabel *information = new QLabel(*description, popup1);
+//    information->setGeometry(QRect(20,50,289,200));
+//    information->setWordWrap(1);
 
-    //QPixmap *image = new QPixmap("images/File.png");
-    QPixmap *image = new QPixmap("files/"+_f->name);
-    QLabel *imageLabel = new QLabel(popup1);
-    imageLabel->setPixmap(*image);
-    imageLabel->setGeometry(QRect(320, 40, 270, 200));
+//    //QPixmap *image = new QPixmap("images/File.png");
+//    QPixmap *image = new QPixmap("files/"+_f->name);
+//    QLabel *imageLabel = new QLabel(popup1);
+//    imageLabel->setPixmap(*image);
+//    imageLabel->setGeometry(QRect(320, 40, 270, 200));
 
-    QPushButton *p= new QPushButton("Avaa",popup1);
-    p->setGeometry(QRect(200,250,90,30));
-    this->signalMapper->setMapping(p, _f->name);
-    connect(p, SIGNAL(clicked()), this->signalMapper, SLOT (map()));
-    connect(this->signalMapper, SIGNAL(mapped(const QString &)),
-                         this, SLOT(openfile(const QString &)));
+//    QPushButton *p= new QPushButton("Avaa",popup1);
+//    p->setGeometry(QRect(200,250,90,30));
+//    this->signalMapper->setMapping(p, _f->name);
+//    connect(p, SIGNAL(clicked()), this->signalMapper, SLOT (map()));
+//    connect(this->signalMapper, SIGNAL(mapped(const QString &)),
+//                         this, SLOT(openfile(const QString &)));
 
-    QPushButton *pc= new QPushButton("Sulje",popup1);
-    pc->setGeometry(QRect(310,250,90,30));
-    connect(pc,SIGNAL(clicked()),popup1,SLOT(close()));
+//    QPushButton *pc= new QPushButton("Sulje",popup1);
+//    pc->setGeometry(QRect(310,250,90,30));
+//    connect(pc,SIGNAL(clicked()),popup1,SLOT(close()));
 
-    popup1->show();
+//    popup1->show();
 
-    return false;
+//    return false;
 }
 
 void MainWindow::addCategoryButtons()
 {
     QTreeWidgetItem *q, *qi;
-    searchWidget = new QTreeWidget(ui->centralWidget);
-    q = searchWidget->headerItem();
+    //searchWidget = new QTreeWidget(ui->centralWidget);
+    q = this->ui->searchWidget->headerItem();
     q->setText(0,"Kategoriat");
 
-    searchWidget->setGeometry(QRect(10, 40, 240, this->window_height-30));
+    //this->ui->searchWidget->setGeometry(QRect(10, 40, 240, this->window_height-30));
 
     // Initialize category structure
 
@@ -345,7 +354,7 @@ void MainWindow::addCategoryButtons()
     for (int d=0;d<categorynames.length();d++)
     {
         catname = categorynames.at(d);
-        qi = new QTreeWidgetItem(searchWidget);
+        qi = new QTreeWidgetItem(this->ui->searchWidget);
         qi->setText(0,catname);
 
         // make subcategory items
@@ -357,9 +366,9 @@ void MainWindow::addCategoryButtons()
             q->setText(0,subcatname);
         }
     }
-    connect(searchWidget, SIGNAL(itemClicked(QTreeWidgetItem*,int)),
+    connect(this->ui->searchWidget, SIGNAL(itemClicked(QTreeWidgetItem*,int)),
             SLOT(selectCategory(QTreeWidgetItem*,int)));
-    searchWidget->show();
+    //this->ui->searchWidget->show();
 }
 
 void MainWindow::selectCategory(QTreeWidgetItem* item,int n)
@@ -373,7 +382,43 @@ void MainWindow::selectCategory(QTreeWidgetItem* item,int n)
 }
 
 void MainWindow::webViewProgress(int progress)
-{this->ui->progressBar->setValue(progress);
+{
+    this->ui->progressBar->setValue(progress);
+
+        this->ui->progressBar->setVisible(progress != 100);
+
     //this->setWindowTitle(QString::number(progress));
+}
+
+void MainWindow::doSearch()
+{
+    this->setWindowTitle(QString::number(this->ui->layoutWidget->width()));
+        completer->preventSuggest();
+        // update buttons in the main view
+        QList <int> indexes = this->search->getIndexes(this->ui->searchLineEdit->text());
+        //MainWindow *m = reinterpret_cast<MainWindow*> (this->parent());
+        //qDebug() << "doSearch";
+        this->addButtons(indexes);
+        //QString url = QString(GSEARCH_URL).arg(text());
+        //QDesktopServices::openUrl(QUrl(url));
+
+
+}
+
+void MainWindow::resizeEvent(QResizeEvent *e)
+{
+    if((qApp->mouseButtons() & Qt::LeftButton))
+    {
+        qDebug()<<"Tultiin resizeen hiiri alhaalla";
+
+        return;
+}
+    qDebug()<<"Tultiin resizeen";
+    if( e->oldSize() == e->size())
+        return;
+    qDebug()<<"Tultiin resizeen - muuttui:"<<e->size().width()<<","<<e->size().height();
+    this->ui->layoutWidget->resize(this->ui->centralWidget->size());
+    qDebug()<<"Tultiin resizeen - pois";
+
 }
 

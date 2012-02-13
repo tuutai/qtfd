@@ -50,7 +50,6 @@ SearchBox::SearchBox(Search *s, QWidget *parent): QLineEdit(parent)
     this->search = s;
     completer = new GSuggestCompletion(s,this);
 
-    connect(this, SIGNAL(returnPressed()),this, SLOT(doSearch()));
 
     //setWindowTitle("Search with Google");
 

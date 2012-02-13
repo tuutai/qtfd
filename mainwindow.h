@@ -15,6 +15,8 @@
 #include "timeline.h"
 #include "buttonarea.h"
 
+class GSuggestCompletion;
+
 namespace Ui {
     class MainWindow;
 }
@@ -35,25 +37,31 @@ public slots:
     bool openfile(const QString filename);
     bool openUrl(const QUrl url);
     bool showFileData(const int index);
+
+protected:
+    void resizeEvent ( QResizeEvent * e);
 private:
     void timeLine();
     void createTags();
     QSignalMapper* signalMapper;
     Ui::MainWindow *ui;
     Timeline *widget;
-    QTreeWidget *searchWidget; // Sisaltaa vasemman reunan kategorianapit
-    int window_width;
-    int window_height;
+    //QTreeWidget *searchWidget; // Sisaltaa vasemman reunan kategorianapit
+    //int window_width;
+    //int window_height;
     QLineEdit *searchbar;
     FlowLayout *flowLayout;
     void addCategoryButtons();
     Categories *cats;
     Buttonarea *backgroundwidget;
     void update_data(QList <int> indexes);
-    QWebView *webView;
+    //QWebView *webView;
+    GSuggestCompletion *completer;
+
 private slots:
     void selectCategory(QTreeWidgetItem* item,int n);
     void webViewProgress(int progress);
+    void doSearch();
 };
 
 #endif // MAINWINDOW_H

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Mon Feb 13 20:13:47 2012
+** Created: Mon Feb 13 22:31:31 2012
 **      by: Qt User Interface Compiler version 4.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -14,11 +14,16 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
+#include <QtGui/QFrame>
+#include <QtGui/QGridLayout>
 #include <QtGui/QHeaderView>
+#include <QtGui/QLineEdit>
 #include <QtGui/QMainWindow>
 #include <QtGui/QProgressBar>
 #include <QtGui/QScrollArea>
+#include <QtGui/QTreeWidget>
 #include <QtGui/QWidget>
+#include <QtWebKit/QWebView>
 
 QT_BEGIN_NAMESPACE
 
@@ -26,18 +31,23 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralWidget;
-    QScrollArea *scrollArea;
-    QWidget *scrollAreaWidgetContents;
-    QWidget *widget;
+    QWidget *layoutWidget;
+    QGridLayout *gridLayout;
+    QScrollArea *scrollAreaLeft;
+    QWidget *leftContents;
     QProgressBar *progressBar;
+    QLineEdit *searchLineEdit;
+    QTreeWidget *searchWidget;
+    QFrame *line;
+    QWebView *webView;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->setWindowModality(Qt::NonModal);
-        MainWindow->resize(1200, 650);
-        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        MainWindow->resize(1064, 629);
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
@@ -46,33 +56,61 @@ public:
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         sizePolicy.setHeightForWidth(centralWidget->sizePolicy().hasHeightForWidth());
         centralWidget->setSizePolicy(sizePolicy);
-        scrollArea = new QScrollArea(centralWidget);
-        scrollArea->setObjectName(QString::fromUtf8("scrollArea"));
-        scrollArea->setGeometry(QRect(260, 40, 800, 435));
-        scrollArea->setFrameShape(QFrame::NoFrame);
-        scrollArea->setFrameShadow(QFrame::Plain);
-        scrollArea->setLineWidth(1);
-        scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-        scrollArea->setWidgetResizable(true);
-        scrollAreaWidgetContents = new QWidget();
-        scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 800, 435));
-        widget = new QWidget(scrollAreaWidgetContents);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(10, 10, 800, 201));
-        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Preferred);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(widget->sizePolicy().hasHeightForWidth());
-        widget->setSizePolicy(sizePolicy1);
-        widget->setMinimumSize(QSize(800, 180));
-        widget->setBaseSize(QSize(0, 0));
-        widget->setAutoFillBackground(false);
-        scrollArea->setWidget(scrollAreaWidgetContents);
-        progressBar = new QProgressBar(centralWidget);
+        centralWidget->setAutoFillBackground(false);
+        layoutWidget = new QWidget(centralWidget);
+        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
+        layoutWidget->setGeometry(QRect(0, 0, 851, 612));
+        sizePolicy.setHeightForWidth(layoutWidget->sizePolicy().hasHeightForWidth());
+        layoutWidget->setSizePolicy(sizePolicy);
+        gridLayout = new QGridLayout(layoutWidget);
+        gridLayout->setSpacing(6);
+        gridLayout->setContentsMargins(6, 6, 6, 6);
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        gridLayout->setSizeConstraint(QLayout::SetNoConstraint);
+        gridLayout->setContentsMargins(0, 0, 0, 0);
+        scrollAreaLeft = new QScrollArea(layoutWidget);
+        scrollAreaLeft->setObjectName(QString::fromUtf8("scrollAreaLeft"));
+        sizePolicy.setHeightForWidth(scrollAreaLeft->sizePolicy().hasHeightForWidth());
+        scrollAreaLeft->setSizePolicy(sizePolicy);
+        scrollAreaLeft->setMinimumSize(QSize(230, 0));
+        scrollAreaLeft->setMaximumSize(QSize(230, 16777215));
+        scrollAreaLeft->setWidgetResizable(true);
+        leftContents = new QWidget();
+        leftContents->setObjectName(QString::fromUtf8("leftContents"));
+        leftContents->setGeometry(QRect(0, 0, 228, 598));
+        progressBar = new QProgressBar(leftContents);
         progressBar->setObjectName(QString::fromUtf8("progressBar"));
-        progressBar->setGeometry(QRect(80, 450, 311, 23));
+        progressBar->setGeometry(QRect(0, 570, 230, 23));
+        progressBar->setMinimumSize(QSize(230, 0));
+        progressBar->setMaximumSize(QSize(230, 16777215));
         progressBar->setValue(24);
+        progressBar->setTextVisible(false);
+        searchLineEdit = new QLineEdit(leftContents);
+        searchLineEdit->setObjectName(QString::fromUtf8("searchLineEdit"));
+        searchLineEdit->setGeometry(QRect(0, 0, 241, 31));
+        searchWidget = new QTreeWidget(leftContents);
+        QTreeWidgetItem *__qtreewidgetitem = new QTreeWidgetItem();
+        __qtreewidgetitem->setText(0, QString::fromUtf8("1"));
+        searchWidget->setHeaderItem(__qtreewidgetitem);
+        searchWidget->setObjectName(QString::fromUtf8("searchWidget"));
+        searchWidget->setGeometry(QRect(0, 40, 241, 521));
+        line = new QFrame(leftContents);
+        line->setObjectName(QString::fromUtf8("line"));
+        line->setGeometry(QRect(0, 30, 240, 16));
+        line->setFrameShape(QFrame::HLine);
+        line->setFrameShadow(QFrame::Sunken);
+        scrollAreaLeft->setWidget(leftContents);
+
+        gridLayout->addWidget(scrollAreaLeft, 0, 0, 1, 1);
+
+        webView = new QWebView(layoutWidget);
+        webView->setObjectName(QString::fromUtf8("webView"));
+        sizePolicy.setHeightForWidth(webView->sizePolicy().hasHeightForWidth());
+        webView->setSizePolicy(sizePolicy);
+        webView->setUrl(QUrl("http://www.google.fi/"));
+
+        gridLayout->addWidget(webView, 0, 1, 1, 1);
+
         MainWindow->setCentralWidget(centralWidget);
 
         retranslateUi(MainWindow);
