@@ -1,5 +1,8 @@
 #!/bin/bash
 filename=$1
+sourcedir="$rootdir"
+targetdir="$targetdir"
+
 
 if [ ! -f $filename ]
 then
@@ -62,3 +65,4 @@ done
 echo "                </searchtags>"
 echo "         </file>"
 
+/bin/cp -n $sourcedir/$nimi $targetdir$nimi >&2

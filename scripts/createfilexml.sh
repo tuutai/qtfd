@@ -3,7 +3,10 @@ files="testimeta.txt"
 outfile="file.xml"
 utf8file="meta.xml"
 #rootdir="Qt/jkl-dvd/jkl-dvd-build-desktop/Demoon/"
-rootdir="/home/tuutai/gitrepo/qtfd-build/Tallessa20111031yhdistetty"
+export rootdir="/home/tuutai/gitrepo/qtfd-build/Tallessa20111031yhdistetty"
+export targetdir="../../qtfd-build/files/"
+
+mkdir -p $targetdir
 
 echo "<xml>" > $outfile
 echo "        <files>" >> $outfile
