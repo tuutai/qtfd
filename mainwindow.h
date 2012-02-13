@@ -53,6 +53,7 @@ private:
     QWebView *webView;
 private slots:
     void selectCategory(QTreeWidgetItem* item,int n);
+    void webViewProgress(int progress);
 };
 
 #endif // MAINWINDOW_H
