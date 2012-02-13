@@ -482,11 +482,11 @@ Timeline._Impl.prototype._initialize = function() {
     /*
      *  inserting copyright and link to simile
      */
-    var elmtCopyright = SimileAjax.Graphics.createTranslucentImage(Timeline.urlPrefix + (this.isHorizontal() ? "images/copyright-vertical.png" : "images/copyright.png"));
-    elmtCopyright.className = "timeline-copyright";
-    elmtCopyright.title = "Timeline copyright SIMILE - www.code.google.com/p/simile-widgets/";
-    SimileAjax.DOM.registerEvent(elmtCopyright, "click", function() { window.location = "http://code.google.com/p/simile-widgets/"; });
-    containerDiv.appendChild(elmtCopyright);
+    //var elmtCopyright = SimileAjax.Graphics.createTranslucentImage(Timeline.urlPrefix + (this.isHorizontal() ? "images/copyright-vertical.png" : "images/copyright.png"));
+    //elmtCopyright.className = "timeline-copyright";
+    //elmtCopyright.title = "Timeline copyright SIMILE - www.code.google.com/p/simile-widgets/";
+    //SimileAjax.DOM.registerEvent(elmtCopyright, "click", function() { window.location = "http://code.google.com/p/simile-widgets/"; });
+    //containerDiv.appendChild(elmtCopyright);
     
     /*
      *  creating bands
