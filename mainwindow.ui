@@ -151,6 +151,14 @@
            <height>41</height>
           </rect>
          </property>
+         <property name="font">
+          <font>
+           <family>MS Shell Dlg 2</family>
+           <weight>75</weight>
+           <bold>true</bold>
+           <kerning>true</kerning>
+          </font>
+         </property>
          <property name="text">
           <string>HAE</string>
          </property>

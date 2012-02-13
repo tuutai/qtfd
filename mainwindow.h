@@ -41,6 +41,7 @@ public slots:
 protected:
     void resizeEvent ( QResizeEvent * e);
 private:
+    bool tempFlag;
     void timeLine();
     void createTags();
     QSignalMapper* signalMapper;
@@ -63,6 +64,8 @@ private slots:
     void webViewProgress(int progress);
     void doSearch();
     void on_commandLinkButton_clicked();
+    void searchCursorPositionChanged(int i,int i2);
+    void on_searchLineEdit_lostFocus();
 };
 
 #endif // MAINWINDOW_H

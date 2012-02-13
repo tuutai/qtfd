@@ -15,7 +15,8 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    tempFlag(false)
 {
 
     ui->setupUi(this);
@@ -51,6 +52,9 @@ MainWindow::MainWindow(QWidget *parent) :
     QList <int> intlist;
     intlist.append(-1);
     addButtons(intlist);
+
+    this->ui->searchLineEdit->setCursorPosition(0);
+    connect(this->ui->searchLineEdit,SIGNAL(cursorPositionChanged(int,int)), this, SLOT(searchCursorPositionChanged(int,int)));
 
     completer = new GSuggestCompletion(this->search, this->ui->searchLineEdit);
 
@@ -386,6 +390,11 @@ void MainWindow::selectCategory(QTreeWidgetItem* item,int n)
     if (p) // parent found
         parentname = p->text(n);
     this->addButtons(this->cats->getIndexes(parentname,catname));
+    tempFlag = true;
+    this->ui->searchLineEdit->setText("Kirjoita hakusana");
+    this->ui->searchLineEdit->setCursorPosition(0);
+tempFlag = false;
+
 }
 
 void MainWindow::webViewProgress(int progress)
@@ -429,5 +438,26 @@ void MainWindow::resizeEvent(QResizeEvent *e)
 
 void MainWindow::on_commandLinkButton_clicked()
 {
+   searchCursorPositionChanged(0,0);
     doSearch();
+}
+
+void MainWindow::searchCursorPositionChanged(int i, int i2)
+{
+    if(tempFlag)
+        return;
+    if(this->ui->searchLineEdit->text() == "Kirjoita hakusana")
+        this->ui->searchLineEdit->setText("");
+}
+
+void MainWindow::on_searchLineEdit_lostFocus()
+{
+    if(this->ui->searchLineEdit->text() == "")
+    {
+        tempFlag = true;
+        this->ui->searchLineEdit->setText("Kirjoita hakusana");
+        this->ui->searchLineEdit->setCursorPosition(0);
+tempFlag = false;
+    }
+
 }
