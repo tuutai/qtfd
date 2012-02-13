@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Mon Feb 13 22:31:31 2012
+** Created: Mon Feb 13 23:17:11 2012
 **      by: Qt User Interface Compiler version 4.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -14,7 +14,6 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
-#include <QtGui/QFrame>
 #include <QtGui/QGridLayout>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLineEdit>
@@ -38,7 +37,6 @@ public:
     QProgressBar *progressBar;
     QLineEdit *searchLineEdit;
     QTreeWidget *searchWidget;
-    QFrame *line;
     QWebView *webView;
 
     void setupUi(QMainWindow *MainWindow)
@@ -94,11 +92,6 @@ public:
         searchWidget->setHeaderItem(__qtreewidgetitem);
         searchWidget->setObjectName(QString::fromUtf8("searchWidget"));
         searchWidget->setGeometry(QRect(0, 40, 241, 521));
-        line = new QFrame(leftContents);
-        line->setObjectName(QString::fromUtf8("line"));
-        line->setGeometry(QRect(0, 30, 240, 16));
-        line->setFrameShape(QFrame::HLine);
-        line->setFrameShadow(QFrame::Sunken);
         scrollAreaLeft->setWidget(leftContents);
 
         gridLayout->addWidget(scrollAreaLeft, 0, 0, 1, 1);

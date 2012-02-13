@@ -89,8 +89,15 @@ void MainWindow::update_data(QList <int> indexes){
     bool comma = false;
     QString alkuStr = "";
     QString loppuStr = "";
+
+int mod = indexes.count() / 50;
+if(mod == 0 )
+    mod = 1;
+
     for (int i = 0; i < _files.count(); i++)
     {
+        if(i != 0 && i%mod != 0) continue;
+
         if (!indexes.contains(i) && !indexes.contains(-1)) continue;
         //qDebug() << _files.at(i)->date;
         Files *f = _files.at(i);
@@ -101,7 +108,7 @@ void MainWindow::update_data(QList <int> indexes){
         if (comma) out << ",\n";
         QString path = QDir::toNativeSeparators("../files/");
         QString f_name = path.append(f->name);
-        //qDebug() << f->date <<" --- " <<f->date.toString("yyyy-MM-dd");
+        qDebug() << f->date <<" --- " <<f->date.toString("yyyy-MM-dd");
         out << "\t{'start': '"<<f->date.toString("yyyy-MM-dd")<<"',\n"
                "\t'title': '"<<f->topic<<"',\n"
                "\t'description': '"<<f->description<<"',\n";
@@ -392,7 +399,6 @@ void MainWindow::webViewProgress(int progress)
 
 void MainWindow::doSearch()
 {
-    this->setWindowTitle(QString::number(this->ui->layoutWidget->width()));
         completer->preventSuggest();
         // update buttons in the main view
         QList <int> indexes = this->search->getIndexes(this->ui->searchLineEdit->text());
@@ -401,8 +407,6 @@ void MainWindow::doSearch()
         this->addButtons(indexes);
         //QString url = QString(GSEARCH_URL).arg(text());
         //QDesktopServices::openUrl(QUrl(url));
-
-
 }
 
 void MainWindow::resizeEvent(QResizeEvent *e)
