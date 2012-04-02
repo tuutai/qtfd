@@ -24,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
 
+
     //this->setWindowTitle("Tässä voidaan asettaa title");
     //this->window_width = 1100;
     //this->window_height = 500;
@@ -538,10 +539,6 @@ void MainWindow::on_searchWidget_clicked(QModelIndex index)
 
 }
 
-void MainWindow::on_label_linkActivated(QString link)
-{
-
-}
 
 void MainWindow::on_pushButton_clicked()
 {

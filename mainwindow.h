@@ -70,7 +70,6 @@ private slots:
     void searchCursorPositionChanged(int i,int i2);
     void on_searchLineEdit_lostFocus();
     void on_searchWidget_clicked(QModelIndex index);
-    void on_label_linkActivated(QString link);
     void on_pushButton_clicked();
     void on_checkBoxVideo_clicked();
     void on_checkBoxArtikkeli_clicked();
