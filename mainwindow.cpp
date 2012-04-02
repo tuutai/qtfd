@@ -17,7 +17,8 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    tempFlag(false)
+    tempFlag(false),
+    dataCount(0)
 {
 
     ui->setupUi(this);
@@ -124,30 +125,30 @@ void MainWindow::update_data(QList <int> indexes, SearchCriteria crit){
 
     if (indexes.at(0) == -1)
         mod = _files.count() / 50;
-
+    dataCount = 0;
     for (int i = 0; i < _files.count(); i++)
     {
         Files *f = _files.at(i);
         if (f->name.endsWith(".jpg"))
         {
-if(!crit.showKuva)
-    continue;
+            if(!crit.showKuva)
+                continue;
         }
 
         else if (f->name.endsWith(".mpg"))
         {
-if(!crit.showVideo)
-    continue;
+            if(!crit.showVideo)
+                continue;
         }
         else if (f->name.endsWith(".pdf"))
         {
-if(!crit.showArtikkeli)
-    continue;
+            if(!crit.showArtikkeli)
+                continue;
         }
         else if (f->name.endsWith(".mp3"))
         {
-if(!crit.showAani)
-    continue;
+            if(!crit.showAani)
+                continue;
         }
         if(i != 0 && i%mod != 0) continue;
 
@@ -177,6 +178,8 @@ if(!crit.showAani)
         out << "\t'link': '"<<f_name<<"'\n"
                "\t}";
         comma = true;
+        dataCount ++;
+
     }
     // tulostetaan footer
     out << "\n\n]\n}\n";
@@ -451,10 +454,10 @@ void MainWindow::selectCategory(QTreeWidgetItem* item,int n)
     this->ui->searchLineEdit->setCursorPosition(0);
     tempFlag = false;
 
-    if(list.length() > 50)
-        this->ui->infoLabel->setText("KATEGORIA " + catname.toUpper() + ", NÄYTETÄÄN 50 KERRALLAAN");
+    if(this->dataCount > 50)
+        this->ui->infoLabel->setText("KATEGORIA " + catname.toUpper() + ", NÄYTETÄÄN 50 KERRALLAAN"+ GetCriteriaText());
     else
-        this->ui->infoLabel->setText("KATEGORIA " + catname.toUpper() + ", " + QString::number(list.length()) +" HAKUTULOSTA");
+        this->ui->infoLabel->setText("KATEGORIA " + catname.toUpper() + ", " + QString::number(this->dataCount) +" HAKUTULOSTA"+ GetCriteriaText());
 
 
 }
@@ -479,7 +482,7 @@ void MainWindow::doSearch()
         this->addButtons(indexes);
         //QString url = QString(GSEARCH_URL).arg(text());
         //QDesktopServices::openUrl(QUrl(url));
-        this->ui->infoLabel->setText("HAKUSANA " + this->ui->searchLineEdit->text().toUpper() + ", " + QString::number(indexes.length()) + " HAKUTULOSTA");
+        this->ui->infoLabel->setText("HAKUSANA " + this->ui->searchLineEdit->text().toUpper() + ", " + QString::number(this->dataCount) + " HAKUTULOSTA"+ GetCriteriaText());
 
 }
 
@@ -558,6 +561,7 @@ void MainWindow::on_pushButton_clicked()
         //Hide
         this->ui->searchWidget->setGeometry(this->ui->searchWidget->x(), 60, this->ui->searchWidget->width(), this->ui->searchWidget->height());
     }
+    on_checkBoxVideo_clicked();
 }
 
 SearchCriteria MainWindow::GetSearchCriteria()
@@ -568,4 +572,74 @@ SearchCriteria MainWindow::GetSearchCriteria()
     crit.showKuva = this->ui->checkBoxKuva->isChecked();
     crit.showArtikkeli = this->ui->checkBoxArtikkeli->isChecked();
     return crit;
+}
+
+void MainWindow::on_checkBoxVideo_clicked()
+{
+    if(this->ui->searchLineEdit->text() != "" && this->ui->searchLineEdit->text() != "Kirjoita hakusana")
+        doSearch();
+    else if(this->ui->searchWidget->selectedItems().count() > 0)
+        selectCategory(this->ui->searchWidget->selectedItems().first(),0 );
+    else
+    {
+        QList <int> intlist;
+        intlist.append(-1);
+        addButtons(intlist);
+    }
+
+}
+
+void MainWindow::on_checkBoxArtikkeli_clicked()
+{
+    on_checkBoxVideo_clicked();
+}
+
+void MainWindow::on_checkBoxKuva_clicked()
+{
+    on_checkBoxVideo_clicked();
+}
+
+void MainWindow::on_checkBoxAani_clicked()
+{
+    on_checkBoxVideo_clicked();
+}
+
+QString MainWindow::GetCriteriaText()
+{
+    QString retVal = " (";
+    bool comma = false;
+    SearchCriteria crit = this->GetSearchCriteria();
+    if(crit.showAani)
+    {
+        retVal = retVal + "Ääni";
+        comma = true;
+    }
+    if(crit.showArtikkeli)
+    {
+        if(comma)
+            retVal = retVal + ", ";
+        retVal = retVal + "Artikkeli";
+        comma = true;
+    }
+    if(crit.showKuva)
+    {
+        if(comma)
+            retVal = retVal + ", ";
+        retVal = retVal + "Kuva";
+        comma = true;
+    }
+    if(crit.showVideo)
+    {
+        if(comma)
+            retVal = retVal + ", ";
+        retVal = retVal + "Video";
+        comma = true;
+    }
+    retVal = retVal+")";
+
+            if(!comma)
+                return "";
+return retVal;
+
+
 }

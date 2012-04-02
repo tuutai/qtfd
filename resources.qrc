@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/ikonit">
+        <file>html/images/dark-blue-circle.png</file>
+        <file>html/images/dark-green-circle.png</file>
+        <file>html/images/dull-red-circle.png</file>
+        <file>html/images/gray-circle.png</file>
+    </qresource>
+</RCC>

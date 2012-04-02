@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Mon Apr 2 21:17:00 2012
+** Created: Mon Apr 2 22:35:32 2012
 **      by: Qt User Interface Compiler version 4.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -17,12 +17,12 @@
 #include <QtGui/QCheckBox>
 #include <QtGui/QCommandLinkButton>
 #include <QtGui/QGridLayout>
+#include <QtGui/QGroupBox>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
 #include <QtGui/QLineEdit>
 #include <QtGui/QMainWindow>
 #include <QtGui/QProgressBar>
-#include <QtGui/QPushButton>
 #include <QtGui/QScrollArea>
 #include <QtGui/QTreeWidget>
 #include <QtGui/QWidget>
@@ -42,11 +42,11 @@ public:
     QLineEdit *searchLineEdit;
     QTreeWidget *searchWidget;
     QCommandLinkButton *commandLinkButton;
+    QGroupBox *groupBox;
     QCheckBox *checkBoxVideo;
+    QCheckBox *checkBoxAani;
     QCheckBox *checkBoxKuva;
     QCheckBox *checkBoxArtikkeli;
-    QCheckBox *checkBoxAani;
-    QPushButton *pushButton;
     QWebView *webView;
     QLabel *infoLabel;
 
@@ -68,7 +68,7 @@ public:
         centralWidget->setAutoFillBackground(false);
         layoutWidget = new QWidget(centralWidget);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
-        layoutWidget->setGeometry(QRect(0, 41, 851, 571));
+        layoutWidget->setGeometry(QRect(0, 30, 851, 591));
         sizePolicy.setHeightForWidth(layoutWidget->sizePolicy().hasHeightForWidth());
         layoutWidget->setSizePolicy(sizePolicy);
         gridLayout = new QGridLayout(layoutWidget);
@@ -86,10 +86,10 @@ public:
         scrollAreaLeft->setWidgetResizable(true);
         leftContents = new QWidget();
         leftContents->setObjectName(QString::fromUtf8("leftContents"));
-        leftContents->setGeometry(QRect(0, 0, 238, 557));
+        leftContents->setGeometry(QRect(0, 0, 238, 577));
         progressBar = new QProgressBar(leftContents);
         progressBar->setObjectName(QString::fromUtf8("progressBar"));
-        progressBar->setGeometry(QRect(0, 570, 230, 23));
+        progressBar->setGeometry(QRect(0, 520, 230, 23));
         progressBar->setMinimumSize(QSize(230, 0));
         progressBar->setMaximumSize(QSize(230, 16777215));
         progressBar->setValue(24);
@@ -107,7 +107,7 @@ public:
         __qtreewidgetitem->setText(0, QString::fromUtf8("1"));
         searchWidget->setHeaderItem(__qtreewidgetitem);
         searchWidget->setObjectName(QString::fromUtf8("searchWidget"));
-        searchWidget->setGeometry(QRect(0, 60, 241, 501));
+        searchWidget->setGeometry(QRect(0, 130, 241, 391));
         commandLinkButton = new QCommandLinkButton(leftContents);
         commandLinkButton->setObjectName(QString::fromUtf8("commandLinkButton"));
         commandLinkButton->setGeometry(QRect(170, 0, 71, 41));
@@ -117,40 +117,43 @@ public:
         font1.setWeight(75);
         font1.setKerning(true);
         commandLinkButton->setFont(font1);
-        checkBoxVideo = new QCheckBox(leftContents);
+        groupBox = new QGroupBox(leftContents);
+        groupBox->setObjectName(QString::fromUtf8("groupBox"));
+        groupBox->setGeometry(QRect(0, 50, 231, 71));
+        groupBox->setFont(font);
+        checkBoxVideo = new QCheckBox(groupBox);
         checkBoxVideo->setObjectName(QString::fromUtf8("checkBoxVideo"));
-        checkBoxVideo->setGeometry(QRect(10, 60, 70, 17));
+        checkBoxVideo->setGeometry(QRect(10, 20, 101, 17));
         checkBoxVideo->setFont(font);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/ikonit/html/images/dark-blue-circle.png"), QSize(), QIcon::Normal, QIcon::Off);
+        checkBoxVideo->setIcon(icon);
         checkBoxVideo->setChecked(true);
-        checkBoxKuva = new QCheckBox(leftContents);
-        checkBoxKuva->setObjectName(QString::fromUtf8("checkBoxKuva"));
-        checkBoxKuva->setGeometry(QRect(10, 80, 70, 17));
-        checkBoxKuva->setFont(font);
-        checkBoxKuva->setChecked(true);
-        checkBoxArtikkeli = new QCheckBox(leftContents);
-        checkBoxArtikkeli->setObjectName(QString::fromUtf8("checkBoxArtikkeli"));
-        checkBoxArtikkeli->setGeometry(QRect(90, 60, 70, 17));
-        checkBoxArtikkeli->setFont(font);
-        checkBoxArtikkeli->setChecked(true);
-        checkBoxAani = new QCheckBox(leftContents);
+        checkBoxAani = new QCheckBox(groupBox);
         checkBoxAani->setObjectName(QString::fromUtf8("checkBoxAani"));
-        checkBoxAani->setGeometry(QRect(90, 80, 70, 17));
+        checkBoxAani->setGeometry(QRect(120, 40, 141, 17));
         checkBoxAani->setFont(font);
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/ikonit/html/images/gray-circle.png"), QSize(), QIcon::Normal, QIcon::Off);
+        checkBoxAani->setIcon(icon1);
         checkBoxAani->setChecked(true);
-        pushButton = new QPushButton(leftContents);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(0, 40, 241, 20));
-        pushButton->setFont(font);
+        checkBoxKuva = new QCheckBox(groupBox);
+        checkBoxKuva->setObjectName(QString::fromUtf8("checkBoxKuva"));
+        checkBoxKuva->setGeometry(QRect(10, 40, 101, 17));
+        checkBoxKuva->setFont(font);
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/ikonit/html/images/dark-green-circle.png"), QSize(), QIcon::Normal, QIcon::Off);
+        checkBoxKuva->setIcon(icon2);
+        checkBoxKuva->setChecked(true);
+        checkBoxArtikkeli = new QCheckBox(groupBox);
+        checkBoxArtikkeli->setObjectName(QString::fromUtf8("checkBoxArtikkeli"));
+        checkBoxArtikkeli->setGeometry(QRect(120, 20, 131, 17));
+        checkBoxArtikkeli->setFont(font);
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/ikonit/html/images/dull-red-circle.png"), QSize(), QIcon::Normal, QIcon::Off);
+        checkBoxArtikkeli->setIcon(icon3);
+        checkBoxArtikkeli->setChecked(true);
         scrollAreaLeft->setWidget(leftContents);
-        progressBar->raise();
-        searchLineEdit->raise();
-        commandLinkButton->raise();
-        checkBoxVideo->raise();
-        checkBoxKuva->raise();
-        checkBoxArtikkeli->raise();
-        checkBoxAani->raise();
-        pushButton->raise();
-        searchWidget->raise();
 
         gridLayout->addWidget(scrollAreaLeft, 0, 0, 1, 1);
 
@@ -178,11 +181,11 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Jyv\303\244skyl\303\244n Rauhanyhdistys 100v", 0, QApplication::UnicodeUTF8));
         searchLineEdit->setText(QApplication::translate("MainWindow", "Kirjoita hakusana", 0, QApplication::UnicodeUTF8));
         commandLinkButton->setText(QApplication::translate("MainWindow", "HAE", 0, QApplication::UnicodeUTF8));
+        groupBox->setTitle(QApplication::translate("MainWindow", "Lis\303\244rajaukset", 0, QApplication::UnicodeUTF8));
         checkBoxVideo->setText(QApplication::translate("MainWindow", "Video", 0, QApplication::UnicodeUTF8));
+        checkBoxAani->setText(QApplication::translate("MainWindow", "\303\204\303\244ni", 0, QApplication::UnicodeUTF8));
         checkBoxKuva->setText(QApplication::translate("MainWindow", "Kuva", 0, QApplication::UnicodeUTF8));
         checkBoxArtikkeli->setText(QApplication::translate("MainWindow", "Artikkeli", 0, QApplication::UnicodeUTF8));
-        checkBoxAani->setText(QApplication::translate("MainWindow", "\303\204\303\244ni", 0, QApplication::UnicodeUTF8));
-        pushButton->setText(QApplication::translate("MainWindow", "Tarkenna", 0, QApplication::UnicodeUTF8));
         infoLabel->setText(QApplication::translate("MainWindow", "KAIKKI DOKUMENTIT - N\303\204YTET\303\204\303\204N 50 KERRALLAAN", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
