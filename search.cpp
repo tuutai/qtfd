@@ -78,3 +78,13 @@ QList <int> Search::getIndexes(QString str)
     this->find(str);
     return this->searchIndexes;
 }
+
+QList<int> TagRefs::GetFilteredFileList(SearchCriteria crit)
+{
+    QList<int> retList;
+    for(int i = 0;i<this->filelist.length();i++)
+    {
+    if(this->filelist(i))
+    }
+}
+

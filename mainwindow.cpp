@@ -11,6 +11,7 @@
 #include "timeline.h"
 #include "buttonarea.h"
 #include "googlesuggest.h"
+#include "QTimer"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -76,7 +77,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::update_data(QList <int> indexes){
+void MainWindow::update_data(QList <int> indexes, SearchCriteria crit){
     qDebug()<<"update_data alku";
     this->setCursor(Qt::WaitCursor);
     QFile datafile(QDir::toNativeSeparators("html/data.js"));
@@ -104,13 +105,13 @@ if(mod == 0 )
 
         if (!indexes.contains(i) && !indexes.contains(-1)) continue;
         //qDebug() << _files.at(i)->date;
-        Files *f = _files.at(i);
+
         if(alkuStr == "")
             alkuStr = f->date.toString("yyyy");
         loppuStr = f->date.addYears(5).toString("yyyy");
 
         if (comma) out << ",\n";
-        QString path = QDir::toNativeSeparators("../files/");
+        QString path = "../files/";
         QString f_name = path.append(f->name);
         qDebug() << f->date <<" --- " <<f->date.toString("yyyy-MM-dd");
         out << "\t{'start': '"<<f->date.toString("yyyy-MM-dd")<<"',\n"
@@ -143,6 +144,8 @@ void MainWindow::addButtons(QList <int> indexes)
 {
     this->update_data(indexes);
     return;
+
+
     QList<Files *> _files = this->xmlRead->files;
     //if (this->widget->layout()) delete this->widget->layout();
     //if (this->flowLayout->isEmpty())
@@ -389,11 +392,18 @@ void MainWindow::selectCategory(QTreeWidgetItem* item,int n)
     QString catname = item->text(n);
     if (p) // parent found
         parentname = p->text(n);
-    this->addButtons(this->cats->getIndexes(parentname,catname));
+    QList <int> list = this->cats->getIndexes(parentname,catname);
+    this->addButtons(list, this->GetSearchCriteria());
     tempFlag = true;
     this->ui->searchLineEdit->setText("Kirjoita hakusana");
     this->ui->searchLineEdit->setCursorPosition(0);
-tempFlag = false;
+    tempFlag = false;
+
+    if(list.length() > 50)
+        this->ui->infoLabel->setText("KATEGORIA " + catname.toUpper() + ", NÄYTETÄÄN 50 KERRALLAAN");
+    else
+        this->ui->infoLabel->setText("KATEGORIA " + catname.toUpper() + ", " + QString::number(list.length()) +" HAKUTULOSTA");
+
 
 }
 
@@ -401,7 +411,8 @@ void MainWindow::webViewProgress(int progress)
 {
     this->ui->progressBar->setValue(progress);
 
-        this->ui->progressBar->setVisible(progress != 100);
+    //if(progress != 100)
+    this->ui->progressBar->setVisible(progress != 100);
 
     //this->setWindowTitle(QString::number(progress));
 }
@@ -416,6 +427,8 @@ void MainWindow::doSearch()
         this->addButtons(indexes);
         //QString url = QString(GSEARCH_URL).arg(text());
         //QDesktopServices::openUrl(QUrl(url));
+        this->ui->infoLabel->setText("HAKUSANA " + this->ui->searchLineEdit->text().toUpper() + ", " + QString::number(indexes.length()) + " HAKUTULOSTA");
+
 }
 
 void MainWindow::resizeEvent(QResizeEvent *e)
@@ -457,7 +470,50 @@ void MainWindow::on_searchLineEdit_lostFocus()
         tempFlag = true;
         this->ui->searchLineEdit->setText("Kirjoita hakusana");
         this->ui->searchLineEdit->setCursorPosition(0);
-tempFlag = false;
+        tempFlag = false;
     }
 
+}
+
+void MainWindow::on_searchWidget_clicked(QModelIndex index)
+{
+
+}
+
+void MainWindow::on_label_linkActivated(QString link)
+{
+
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    this->ui->checkBoxAani->setChecked(true);
+    this->ui->checkBoxVideo->setChecked(true);
+    this->ui->checkBoxArtikkeli->setChecked(true);
+    this->ui->checkBoxKuva->setChecked(true);
+    this->ui->checkBoxAani->setVisible(this->ui->searchWidget->y()<=100);
+    this->ui->checkBoxVideo->setVisible(this->ui->searchWidget->y()<=100);
+    this->ui->checkBoxArtikkeli->setVisible(this->ui->searchWidget->y()<=100);
+    this->ui->checkBoxKuva->setVisible(this->ui->searchWidget->y()<=100);
+
+    if(this->ui->searchWidget->y()<100)
+    {
+        //Show
+        this->ui->searchWidget->setGeometry(this->ui->searchWidget->x(), 100, this->ui->searchWidget->width(), this->ui->searchWidget->height());
+    }
+    else
+    {
+        //Hide
+        this->ui->searchWidget->setGeometry(this->ui->searchWidget->x(), 60, this->ui->searchWidget->width(), this->ui->searchWidget->height());
+    }
+}
+
+SearchCriteria MainWindow::GetSearchCriteria()
+{
+    SearchCriteria crit;
+    crit.showAani = this->ui->checkBoxAani->isChecked();
+    crit.showVideo = this->ui->checkBoxVideo->isChecked();
+    crit.showKuva = this->ui->checkBoxKuva->isChecked();
+    crit.showArtikkeli = this->ui->checkBoxArtikkeli->isChecked();
+    return crit;
 }

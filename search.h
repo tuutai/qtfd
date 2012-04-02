@@ -3,12 +3,22 @@
 
 #include <QtCore>
 
+struct SearchCriteria
+{
+    bool showVideo;
+    bool showAani;
+    bool showArtikkeli;
+    bool showKuva;
+};
+
 struct TagRefs
 {
     QString tagname; // tag name
     QList <int> filelist; // files matching to this tag
+    QList <int> GetFilteredFileList(SearchCriteria crit);
     // this number refers to file index position in main files list
 };
+
 
 class Search
 {

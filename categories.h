@@ -12,7 +12,7 @@ class Categories
 {
 public:
     Categories();
-    QList <int> getIndexes(QString parentname,QString catname);
+    QList <int> getIndexes(QString parentname,QString catname,SearchCriteria crit);
     QList <QString> getCats();
     QList <QString> getSubCats(QString parent);
     void addCat(QString &parent,QString &catname, int fileidx);
