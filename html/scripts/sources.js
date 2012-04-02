@@ -496,6 +496,41 @@ Timeline.DefaultEventSource.Event.prototype = {
     },
     
     fillTime: function(elmt, labeller) {
+/* new code! adds some variables and removes TimeStamp from Timeline pop-up bubble. see old code below */
+var startLabPrec=labeller.labelPrecise(this._start);
+var endLabPrec=labeller.labelPrecise(this._end);
+var fStart = new Date(startLabPrec);
+var fEnd = new Date(endLabPrec);
+var fStartString =  fStart.getDate() + "." + (fStart.getMonth()+1) + "." + fStart.getFullYear();
+var fEndString = fEnd.getDate() + "." + (fEnd.getMonth()+1) + "." + fEnd.getFullYear();
+
+if(this._instant)
+{
+if(this.isImprecise())
+{
+elmt.appendChild(elmt.ownerDocument.createTextNode(fStartString+" - "+fEndString));
+elmt.appendChild(elmt.ownerDocument.createElement("br"));
+}
+else
+{
+elmt.appendChild(elmt.ownerDocument.createTextNode(fStartString));
+}
+}
+else
+{
+if(this.isImprecise())
+{
+elmt.appendChild(elmt.ownerDocument.createTextNode(labeller.labelPrecise(this._earliestStart)+" ~ "+labeller.labelPrecise(this._latestStart)));
+elmt.appendChild(elmt.ownerDocument.createElement("br"));
+elmt.appendChild(elmt.ownerDocument.createTextNode(labeller.labelPrecise(this._earliestEnd)+" ~ "+labeller.labelPrecise(this._latestEnd)));
+}
+else{elmt.appendChild(elmt.ownerDocument.createTextNode(fStartString +" - "+fEndString));
+elmt.appendChild(elmt.ownerDocument.createElement("br"));
+/* end new code, see old code below */
+
+
+/* old code, see new code above */
+/* all of this code is commented out (it's the original code in case you need to go back to normal view with Times showing)
         if (this._instant) {
             if (this.isImprecise()) {
                 elmt.appendChild(elmt.ownerDocument.createTextNode(labeller.labelPrecise(this._start)));
@@ -515,6 +550,8 @@ Timeline.DefaultEventSource.Event.prototype = {
                 elmt.appendChild(elmt.ownerDocument.createTextNode(labeller.labelPrecise(this._start)));
                 elmt.appendChild(elmt.ownerDocument.createElement("br"));
                 elmt.appendChild(elmt.ownerDocument.createTextNode(labeller.labelPrecise(this._end)));
+*/
+/* old code, see new code above */
             }
         }
     },
