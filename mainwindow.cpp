@@ -142,10 +142,10 @@ void MainWindow::update_data(QList <int> indexes){
         out << "\t{'start': '"<<f->date.toString("yyyy-MM-dd")<<"',\n"
                "\t'title': '"<<f->topic<<"',\n"
                "\t'description': '"<<f->description<<"',\n";
-        if (f->name.endsWith(".jpg")) out << "\t'icon': 'images/dark-green-circle.png',\n";
-        else if (f->name.endsWith(".mpg")) out << "\t'icon': 'images/dark-blue-circle.png',\n";
-        else if (f->name.endsWith(".pdf")) out << "\t'icon': 'images/dull-red-circle.png',\n";
-        else if (f->name.endsWith(".mp3")) out << "\t'icon': 'images/gray-circle.png',\n";
+        if (f->name.endsWith(".jpg",Qt::CaseInsensitive)) out << "\t'icon': 'images/dark-green-circle.png',\n";
+        else if (f->name.endsWith(".mpg",Qt::CaseInsensitive)) out << "\t'icon': 'images/dark-blue-circle.png',\n";
+        else if (f->name.endsWith(".pdf",Qt::CaseInsensitive)) out << "\t'icon': 'images/dull-red-circle.png',\n";
+        else if (f->name.endsWith(".mp3",Qt::CaseInsensitive)) out << "\t'icon': 'images/gray-circle.png',\n";
 
 /*
             out << "\t'image': '"<<f_name<<"',\n";
