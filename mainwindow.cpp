@@ -127,6 +127,28 @@ void MainWindow::update_data(QList <int> indexes, SearchCriteria crit){
 
     for (int i = 0; i < _files.count(); i++)
     {
+        Files *f = _files.at(i);
+        if (f->name.endsWith(".jpg"))
+        {
+if(!crit.showKuva)
+    continue;
+        }
+
+        else if (f->name.endsWith(".mpg"))
+        {
+if(!crit.showVideo)
+    continue;
+        }
+        else if (f->name.endsWith(".pdf"))
+        {
+if(!crit.showArtikkeli)
+    continue;
+        }
+        else if (f->name.endsWith(".mp3"))
+        {
+if(!crit.showAani)
+    continue;
+        }
         if(i != 0 && i%mod != 0) continue;
 
         if (!indexes.contains(i) && !indexes.contains(-1)) continue;
@@ -172,7 +194,7 @@ void MainWindow::update_data(QList <int> indexes, SearchCriteria crit){
 
 void MainWindow::addButtons(QList <int> indexes)
 {
-    this->update_data(indexes);
+    this->update_data(indexes, this->GetSearchCriteria());
     return;
 
 
@@ -423,7 +445,7 @@ void MainWindow::selectCategory(QTreeWidgetItem* item,int n)
     if (p) // parent found
         parentname = p->text(n);
     QList <int> list = this->cats->getIndexes(parentname,catname);
-    this->addButtons(list, this->GetSearchCriteria());
+    this->addButtons(list);
     tempFlag = true;
     this->ui->searchLineEdit->setText("Kirjoita hakusana");
     this->ui->searchLineEdit->setCursorPosition(0);

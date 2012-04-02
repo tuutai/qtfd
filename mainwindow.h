@@ -55,7 +55,7 @@ private:
     void addCategoryButtons();
     Categories *cats;
     Buttonarea *backgroundwidget;
-    void update_data(QList <int> indexes);
+    void update_data(QList <int> indexes, SearchCriteria crit);
     //QWebView *webView;
     GSuggestCompletion *completer;
     SearchCriteria GetSearchCriteria();

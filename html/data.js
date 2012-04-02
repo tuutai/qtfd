@@ -1,278 +1,38 @@
 var timeline_data = {
 'dateTimeFormat': 'iso8601',
 'events' : [
-	{'start': '1925-06-01',
-	'title': 'Seuraväkeä Vaajakosken Salmisella vuonna 1925',
-	'description': 'Seuraväkeä Vaajakosken Salmisella vuonna 1925.Tapahtuma ajankohta arvioitu.',
-	'link': '../files/19930401pmse26s51SeuravakeaVaajakoskella1925.pdf'
+	{'start': '1870',
+	 'end': '1911',
+	 'title': 'Lestadiolaisuuden tulo ja alkuvaiheet',
+	 'color': 'green'
 	},
-	{'start': '1931-07-15',
-	'title': 'Seurat Salmisella Vaajakoskella 1931',
-	'description': 'Seurat Salmisella Vaajakoskella 1931',
-	'link': '../files/1931seu0605.jpg'
+	{'start': '1911',
+	 'end': '1945',
+	 'title': 'Rauhanyhdistyksen perustaminen tuo jäntevyyttä',
+	 'color': 'blue'
 	},
-	{'start': '1935-06-25',
-	'title': 'Seuravieraita Jyväskylän juhannusseuroissa 1935',
-	'description': 'Ryhmäkuva Jyväskylän juhannusseuroista 1935',
-	'link': '../files/1935seury162.jpg'
+	{'start': '1945',
+	 'end': '1974',
+	 'title': 'Aktiivista toimintaa ja jälleenrakennustyötä',
+	 'color': 'gray'
 	},
-	{'start': '1950-06-25',
-	'title': 'Seuraväkeä juhannusseuroissa opistokuja 4',
-	'description': 'Seuraväkeä juhannusseuroissa opistokuja 4',
-	'link': '../files/1950seu0806.jpg'
+	{'start': '1974',
+	 'end': '2011',
+	 'title': 'Vilkas yhdistys Taulumäellä',
+	 'color': 'red'
 	},
-	{'start': '1953-06-01',
-	'title': 'Jaakko ja Toini Linjaman tupaantuliaiset  1.8.1953 Kauppakatu 9',
-	'description': 'Jaakko ja Toini Linjaman tupaantuliaiset, oik. edessä Toini ja Jaakko Linjama, keskellä eturivissä mm. Aaro Hirvinen, takana vas. nurkassa Sirkka, Erkki ja Leena Turpeinen',
-	'link': '../files/1953muutryh0805.jpg'
+	{'start': '2011-10-23',
+	'title': 'Juhlaviikko - Alueseurat Petäjäveden seurakuntatalolla',
+	'description': 'Jyväskylän Rauhanyhdistyksen 100 vuotisjuhlan juhlaviikolla oli alueseurat Petäjäveden seurakuntatalolla 23.10.2011',
+	'link': '../files/20111023 100valuseu00001.JPG'
 	},
-	{'start': '1961-04-09',
-	'title': 'Saarnapäiväkirja 1961',
-	'description': 'Otteita vuoden 1961 seurojen saarnapäiväkirjasta',
-	'link': '../files/19610409asiakirjaf19s1saarnat.pdf'
-	},
-	{'start': '1972-06-25',
-	'title': 'Maestro Jaakko Linjama soittaa',
-	'description': 'Jaakko Linjama soittaa yhdistyksen 60-vuotisjuhlaseuroissa Opistokujalla 1972',
-	'link': '../files/1972juh3009.jpg'
-	},
-	{'start': '1975-02-15',
-	'title': 'Vuosikokous 1975',
-	'description': 'Jyväskylän rauhanyhdistyksen vuosikokous 1975',
-	'link': '../files/1975vuosikok0818.jpg'
-	},
-	{'start': '1975-10-18',
-	'title': 'Syysseurat Jyväskylässä 18.-19.10.1975',
-	'description': 'Syysseurat Jyväskylässä 18.-19.10.1975',
-	'link': '../files/Pms19751019 Syysseurat1975.pdf'
-	},
-	{'start': '1977-05-15',
-	'title': 'Jyväskylän rauhanyhdistyksen toimitalon urut',
-	'description': 'Jaakko Linjama soittaa Jyväskylän rauhanyhdistyksen toimitalon urkuja',
-	'link': '../files/1977muutsaest0822.jpg'
-	},
-	{'start': '1979-02-03',
-	'title': 'Jyväskylän Rauhanyhdistyksen talviseurat',
-	'description': 'Jyväskylän Rauhanyhdistyksen talviseurat',
-	'link': '../files/Pms1979nro07 Talviseurat1979.pdf'
-	},
-	{'start': '1979-05-16',
-	'title': 'Jaakko Linjama 70 vuotta',
-	'description': 'Jaakko Linjaman 70- vuotispäiväkirjoitus',
-	'link': '../files/Pms19791605JaakkoLinjama70v.pdf'
-	},
-	{'start': '1980-10-01',
-	'title': 'Viittomapiirissä vuonna 1980',
-	'description': 'Viittomapiirissä vuonna 1980. Kuvassa mm. Yrjö Vasama',
-	'link': '../files/1980muutviitp000210.jpg'
-	},
-	{'start': '1980-10-15',
-	'title': 'Urut',
-	'description': 'Urut',
-	'link': '../files/1980henk00326.jpg'
-	},
-	{'start': '1981-04-02',
-	'title': '1981 Myllyjärven piirin pyhäkoululaisia harjoittelemassa laulua äidille',
-	'description': '1981 Myllyjärven piirin pyhäkoululaisia harjoittelemassa laulua äidille, eturivissä  vasemmalta',
-	'link': '../files/1981seunso00603.jpg'
-	},
-	{'start': '1982-02-07',
-	'title': 'Talviseurat keskuseurakuntatalolla v. 1982',
-	'description': 'Eine ja Veikko Pääkkönen, Risto Saulio, Reijo Rantanen',
-	'link': '../files/1982seutalvi00606.jpg'
-	},
-	{'start': '1982-11-21',
-	'title': 'Keski-Suomen seurakuntapäivät 21.11.1982.',
-	'description': 'Edessä vas. Elina Nissinen, Marjatta Nissinen, toisessa rivissä Anni ja Uuno Kaipainen, taaempana vas. Seppo Nissinen, Pauli Solmula',
-	'link': '../files/1982seu000217.jpg'
-	},
-	{'start': '1985-12-05',
-	'title': 'Pyhäkoulupiirin joulujuhla Tikan seurakuntakodissa 1985, lapset piirissä',
-	'description': 'Tikka-Kuokkala -alueen pyhäkoulupiirin joulujuhlassa tonttupiiri, vas. Pekka Laitinen',
-	'link': '../files/1985nso00234.jpg'
-	},
-	{'start': '1987-08-26',
-	'title': 'kesäseurat Uuraisissa',
-	'description': 'Päivämiehen juttu,',
-	'link': '../files/Pms19872608Uuraisjuhla.pdf'
-	},
-	{'start': '1988-05-11',
-	'title': 'Kuurojen seurakuntapäivillä Jyväskylässä',
-	'description': 'Kertomus kuurojen seurakuntapäivistä sekä viittomakielen tulkaamisesta',
-	'link': '../files/19880511pmse25s6KuurojenSeurakuntapaivat.pdf'
-	},
-	{'start': '1988-06-15',
-	'title': 'Uskovaiset kodit kasvattavat lapsiaan taivasta varten',
-	'description': 'Päivämiehen juttu, keskusteluilta Jyväskylän rauhanyhdistyksellä',
-	'link': '../files/Pms19881506Aitiilta.pdf'
-	},
-	{'start': '1989-01-01',
-	'title': 'Julkaisujen (SRK)) esittelytilaisuus 1980-luvun lopulla.',
-	'description': 'Pirkko Ojala (Ilmanen)',
-	'link': '../files/1987seu00321.jpg'
-	},
-	{'start': '1989-10-07',
-	'title': 'Syyseurat Jyväskylässä',
-	'description': 'Jyväskylän rauhanyhdistyksen syysseurat olivat Jyväskylässä 7.-8. lokakuuta.',
-	'link': '../files/19891015pmse25s37Syysseurat.pdf'
-	},
-	{'start': '1990-06-17',
-	'title': 'Urpo Linjama kertoo Ernst Mikkilästä',
-	'description': 'Urpo Linjama kertoo Ernst Mikkilästä',
-	'link': '../files/1990-06-17 Urpo Linjama kertoo Ernst Mikkilasta.mp3'
-	},
-	{'start': '1992-05-01',
-	'title': 'Vappumyyjäiset 1992',
-	'description': 'Terttu Vilpola esittelee käsitöitä',
-	'link': '../files/1992myy00408.jpg'
-	},
-	{'start': '1992-07-05',
-	'title': 'Kesäkirkkopyhä Muuramessa',
-	'description': 'Kirkkoseurat. Säveltäjä ja opettaja Jaakko Linjaman muistelu päivä.',
-	'link': '../files/Pms19922707KesakirkkopyhaMuuramessa.pdf'
-	},
-	{'start': '1993-09-29',
-	'title': 'Maritta Kaislalahti 60 vuotta.',
-	'description': 'Maritta Kaislalahden syntymäpäiväkirjoitus.',
-	'link': '../files/Pms19932909MarittaKaislalahti60v.pdf'
-	},
-	{'start': '1993-10-13',
-	'title': 'Vappu Heiskan muistolle',
-	'description': 'Uskonsisar, taiteilija Vappu Heiskan muistokirjoitus.',
-	'link': '../files/Pms19941304VappuHeiskanmuistolle.pdf'
-	},
-	{'start': '1996-05-02',
-	'title': 'Laulamisen riemu näkyy ja kuuluu',
-	'description': 'Ensimmäisen Kansanopisto-sarjan (SRK) kasetin , Muista Luojaa nuoruudessa, nauhoitus',
-	'link': '../files/19960502pmse27s38LaulamisenRiemu.pdf'
-	},
-	{'start': '2001-02-10',
-	'title': 'Meidät on kutsuttu vastuuseen toisistamme',
-	'description': 'Kertomus Talvipäivistä, jossa alustuksen aiheena mm. nuoret Jumalan valtakunnan työssä',
-	'link': '../files/20010221pmse29s7talvipaivat.pdf'
-	},
-	{'start': '2001-08-18',
-	'title': 'Sirkka Turpeinen ja Eine Pääkkönen',
-	'description': 'Tiistaikerhon retki Kangasniemelle',
-	'link': '../files/2001seutiistk00328.jpg'
-	},
-	{'start': '2001-10-01',
-	'title': 'Myyjäiset rauhanyhdistyksellä',
-	'description': 'Narutusta vai huiputusta, myyjäisissä on jännittävää ohjelmaa.',
-	'link': '../files/2001myyry3015.jpg'
-	},
-	{'start': '2002-05-04',
-	'title': 'päiväkerholaisten retki',
-	'description': 'Jyväskylän rauhanyhdistyksen päiväkerholaiset retkellä Mehtolan maatilalla Konnevedellä.',
-	'link': '../files/2002nsoret00329.jpg'
-	},
-	{'start': '2003-10-25',
-	'title': 'Julkaisuviikonloppu Jyväskylässä',
-	'description': 'Julkaisujen (SRK) viikonloppu 25.-26.10.2003 Jyväskylän rauhanyhdistyksellä',
-	'link': '../files/Pms20031911JulkaisuviikonloppuJyvaskylassa.pdf'
-	},
-	{'start': '2004-09-04',
-	'title': 'Myyjäiset rauhanyhdistyksellä',
-	'description': 'Myyjäisissä on monenlaista ohjelmaa.',
-	'link': '../files/2004myyry003.jpg'
-	},
-	{'start': '2005-02-25',
-	'title': 'Taivaan riemu läsnä on',
-	'description': '"Taivaan riemu läsnä on" äänitteen äänitystilaisuus Taulumäen kirkossa.',
-	'link': '../files/2005toiry003.jpg'
-	},
-	{'start': '2005-02-25',
-	'title': 'Taivaan riemu läsnä on',
-	'description': '"Taivaan riemu läsnä on" äänitteen äänitystilaisuus Taulumäen kirkossa.',
-	'link': '../files/2005toikko009.jpg'
-	},
-	{'start': '2005-02-25',
-	'title': 'Taivaan riemu läsnä on',
-	'description': '"Taivaan riemu läsnä on" äänitteen äänitystilaisuus Taulumäen kirkossa.',
-	'link': '../files/2005toiry013.jpg'
-	},
-	{'start': '2005-10-25',
-	'title': 'Virsilauluilta Taulumäen kirkossa',
-	'description': '"Taivaan riemu läsnä on" äänitteen äänitystilaisuus Taulumäen kirkossa.',
-	'link': '../files/2005toikko003.jpg'
-	},
-	{'start': '2005-10-25',
-	'title': 'Virsilauluilta Jyväskylän Taulumäen kirkossa',
-	'description': '"Taivaan riemu läsnä on" äänitteen äänitystilaisuus Taulumäen kirkossa. Tilaisuutta juonsi Pentti Saulio.',
-	'link': '../files/2005toikko007.jpg'
-	},
-	{'start': '2006-01-01',
-	'title': 'Urkutalkoot',
-	'description': 'Urut, I-sormion ilmalaatikko kunnostettavana',
-	'link': '../files/2006muuturut2006050408.jpg'
-	},
-	{'start': '2006-01-01',
-	'title': 'Urkutalkoot',
-	'description': 'Pertti Ratinen ja Riku Lahtinen urkutalkoissa',
-	'link': '../files/2006muuturut2006050406.jpg'
-	},
-	{'start': '2006-01-01',
-	'title': 'Urkutalkoot',
-	'description': 'Urkujen alaosan runko',
-	'link': '../files/2006muuturut2006050411.jpg'
-	},
-	{'start': '2006-01-15',
-	'title': 'Keski-Suomen lähetysalueen vuosikokousta sävytti vilkas keskustelu "Tehkäämme työtä niin kauan kuin päivä on"',
-	'description': 'Keski-Suomen lähetysalueen vuosikokous',
-	'link': '../files/Pms20062501Lahetysalueenvuosikokous.pdf'
-	},
-	{'start': '2006-03-15',
-	'title': 'Rauhanyhdistyksen talvimyyjäiset',
-	'description': 'Myyjäisissä oli myynnissä muutakin kuin leivonnaisia.',
-	'link': '../files/Talvimyyjaiset 2006 10.jpg'
-	},
-	{'start': '2006-05-04',
-	'title': 'Urkutalkoot',
-	'description': 'Urut, I-sormion ilmalaatikko kunnostettavana',
-	'link': '../files/2006muuturut2006050409.jpg'
-	},
-	{'start': '2006-05-04',
-	'title': 'Urkutalkoot',
-	'description': 'Pertti Ratinen höylää',
-	'link': '../files/2006muuturut2006050414.jpg'
-	},
-	{'start': '2007-10-02',
-	'title': 'Seurakuntapäivät syksyllä 2007',
-	'description': 'Kuulijoita seurakuntapäivillä',
-	'link': '../files/Keskustelu tai vuosikokous 2007 15.jpg'
-	},
-	{'start': '2007-10-02',
-	'title': 'Seurakuntapäivät syksyllä 2007',
-	'description': 'Kuvassa etualalla Tiina ja Juhani Mikkola lapsensa kanssa',
-	'link': '../files/Keskustelu tai vuosikokous 2007 19.jpg'
-	},
-	{'start': '2008-05-05',
-	'title': 'Kotiseurat Halosella Vaajakoskella',
-	'description': 'Elias Halonen, Paula Halonen, Ritva Halonen',
-	'link': '../files/2008seukoti0027.jpg'
-	},
-	{'start': '2008-05-05',
-	'title': 'Kotiseurat Halosella Vaajakoskella',
-	'description': 'Paavo Korhonen, Aila Virenius oik. ja hänen tyttärensä',
-	'link': '../files/2008seukoti0026.jpg'
-	},
-	{'start': '2008-11-19',
-	'title': 'Tikkakosken Rauhanyhdistys  elää kasvun aikaa',
-	'description': 'Rakkaus yhdistää uskovaiset. Nuoressa rauhanyhdistyksessä on paljon toimintaa.',
-	'link': '../files/Pms20081911TikkakoskenRy.pdf'
-	},
-	{'start': '2009-03-23',
-	'title': 'Jaakko Linjaman sävellykset elävät edelleen.',
-	'description': 'Päivämiehen juttu Jaakko Linjamasta Markku ja Anja Linjaman kodissa. Jaakko Linjama teki toistasataa sävellystä. Siionin laulujen sovitustyö oli Linjamalle hyvin tärkeää ja rakasta.',
-	'link': '../files/Pms20092303Linjamansavellyksetelavat.pdf'
-	},
-	{'start': '2011-02-26',
-	'title': 'Muistikuvia taiteilija Vappu Heiskasta (1921-1993)',
-	'description': 'Maija Korhonen muistelee taiteilija Vappu Heiskaa',
-	'link': '../files/1993VappuHeiskasta.pdf'
+	{'start': '2011-10-29',
+	'title': 'Juhlaviikko - Lasten tapahtuma rauhanyhdistyksellä',
+	'description': 'Jyväskylän Rauhanyhdistyksen 100 vuotisjuhlan juhlaviikolla oli lasten tapahtuma rauhanyhdistyksellä 29.10.2011',
+	'link': '../files/20111029 100vlapsi00002.JPG'
 	}
 
 ]
 }
-var TIMELINE_START = new Date(Date.UTC(1925, 0, 1));
+var TIMELINE_START = new Date(Date.UTC(2011, 0, 1));
 var TIMELINE_STOP = new Date(Date.UTC(2016, 0, 1));
