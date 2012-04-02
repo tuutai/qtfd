@@ -36,9 +36,9 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>0</y>
+      <y>41</y>
       <width>851</width>
-      <height>612</height>
+      <height>571</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -83,7 +83,7 @@
           <x>0</x>
           <y>0</y>
           <width>238</width>
-          <height>598</height>
+          <height>557</height>
          </rect>
         </property>
         <widget class="QProgressBar" name="progressBar">
@@ -123,6 +123,13 @@
            <height>41</height>
           </rect>
          </property>
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <property name="text">
           <string>Kirjoita hakusana</string>
          </property>
@@ -131,9 +138,9 @@
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>50</y>
+           <y>60</y>
            <width>241</width>
-           <height>511</height>
+           <height>501</height>
           </rect>
          </property>
          <column>
@@ -153,7 +160,7 @@
          </property>
          <property name="font">
           <font>
-           <family>MS Shell Dlg 2</family>
+           <family>Segoe UI</family>
            <weight>75</weight>
            <bold>true</bold>
            <kerning>true</kerning>
@@ -163,6 +170,127 @@
           <string>HAE</string>
          </property>
         </widget>
+        <widget class="QCheckBox" name="checkBoxVideo">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>60</y>
+           <width>70</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Video</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QCheckBox" name="checkBoxKuva">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>80</y>
+           <width>70</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Kuva</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QCheckBox" name="checkBoxArtikkeli">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>60</y>
+           <width>70</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Artikkeli</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QCheckBox" name="checkBoxAani">
+         <property name="geometry">
+          <rect>
+           <x>90</x>
+           <y>80</y>
+           <width>70</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Ääni</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>40</y>
+           <width>241</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Tarkenna</string>
+         </property>
+        </widget>
+        <zorder>progressBar</zorder>
+        <zorder>searchLineEdit</zorder>
+        <zorder>commandLinkButton</zorder>
+        <zorder>checkBoxVideo</zorder>
+        <zorder>checkBoxKuva</zorder>
+        <zorder>checkBoxArtikkeli</zorder>
+        <zorder>checkBoxAani</zorder>
+        <zorder>pushButton</zorder>
+        <zorder>searchWidget</zorder>
        </widget>
       </widget>
      </item>
@@ -182,6 +310,26 @@
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QLabel" name="infoLabel">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>10</y>
+      <width>601</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>KAIKKI DOKUMENTIT - NÄYTETÄÄN 50 KERRALLAAN</string>
+    </property>
    </widget>
   </widget>
  </widget>

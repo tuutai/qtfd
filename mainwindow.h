@@ -55,9 +55,10 @@ private:
     void addCategoryButtons();
     Categories *cats;
     Buttonarea *backgroundwidget;
-    void update_data(QList <int> indexes);
+    void update_data(QList <int> indexes, SearchCriteria crit);
     //QWebView *webView;
     GSuggestCompletion *completer;
+    SearchCriteria GetSearchCriteria();
 
 private slots:
     void selectCategory(QTreeWidgetItem* item,int n);
@@ -66,6 +67,9 @@ private slots:
     void on_commandLinkButton_clicked();
     void searchCursorPositionChanged(int i,int i2);
     void on_searchLineEdit_lostFocus();
+    void on_searchWidget_clicked(QModelIndex index);
+    void on_label_linkActivated(QString link);
+    void on_pushButton_clicked();
 };
 
 #endif // MAINWINDOW_H
