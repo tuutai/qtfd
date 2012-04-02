@@ -535,10 +535,6 @@ void MainWindow::on_searchWidget_clicked(QModelIndex index)
 
 }
 
-void MainWindow::on_label_linkActivated(QString link)
-{
-
-}
 
 void MainWindow::on_pushButton_clicked()
 {

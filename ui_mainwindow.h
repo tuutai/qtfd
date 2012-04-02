@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Mon Apr 2 22:35:32 2012
+** Created: Mon Apr 2 22:54:48 2012
 **      by: Qt User Interface Compiler version 4.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -16,6 +16,7 @@
 #include <QtGui/QButtonGroup>
 #include <QtGui/QCheckBox>
 #include <QtGui/QCommandLinkButton>
+#include <QtGui/QGraphicsView>
 #include <QtGui/QGridLayout>
 #include <QtGui/QGroupBox>
 #include <QtGui/QHeaderView>
@@ -49,6 +50,7 @@ public:
     QCheckBox *checkBoxArtikkeli;
     QWebView *webView;
     QLabel *infoLabel;
+    QGraphicsView *logo;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -68,7 +70,7 @@ public:
         centralWidget->setAutoFillBackground(false);
         layoutWidget = new QWidget(centralWidget);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
-        layoutWidget->setGeometry(QRect(0, 30, 851, 591));
+        layoutWidget->setGeometry(QRect(0, 60, 851, 561));
         sizePolicy.setHeightForWidth(layoutWidget->sizePolicy().hasHeightForWidth());
         layoutWidget->setSizePolicy(sizePolicy);
         gridLayout = new QGridLayout(layoutWidget);
@@ -86,7 +88,7 @@ public:
         scrollAreaLeft->setWidgetResizable(true);
         leftContents = new QWidget();
         leftContents->setObjectName(QString::fromUtf8("leftContents"));
-        leftContents->setGeometry(QRect(0, 0, 238, 577));
+        leftContents->setGeometry(QRect(0, 0, 238, 547));
         progressBar = new QProgressBar(leftContents);
         progressBar->setObjectName(QString::fromUtf8("progressBar"));
         progressBar->setGeometry(QRect(0, 520, 230, 23));
@@ -167,8 +169,11 @@ public:
 
         infoLabel = new QLabel(centralWidget);
         infoLabel->setObjectName(QString::fromUtf8("infoLabel"));
-        infoLabel->setGeometry(QRect(250, 10, 601, 21));
+        infoLabel->setGeometry(QRect(250, 20, 601, 21));
         infoLabel->setFont(font);
+        logo = new QGraphicsView(centralWidget);
+        logo->setObjectName(QString::fromUtf8("logo"));
+        logo->setGeometry(QRect(10, 0, 231, 51));
         MainWindow->setCentralWidget(centralWidget);
 
         retranslateUi(MainWindow);
