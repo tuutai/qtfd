@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Mon Apr 2 22:54:48 2012
+** Created: Mon Apr 2 23:11:10 2012
 **      by: Qt User Interface Compiler version 4.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -16,7 +16,6 @@
 #include <QtGui/QButtonGroup>
 #include <QtGui/QCheckBox>
 #include <QtGui/QCommandLinkButton>
-#include <QtGui/QGraphicsView>
 #include <QtGui/QGridLayout>
 #include <QtGui/QGroupBox>
 #include <QtGui/QHeaderView>
@@ -50,7 +49,7 @@ public:
     QCheckBox *checkBoxArtikkeli;
     QWebView *webView;
     QLabel *infoLabel;
-    QGraphicsView *logo;
+    QLabel *label;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -63,6 +62,64 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
         MainWindow->setSizePolicy(sizePolicy);
+        QPalette palette;
+        QBrush brush(QColor(0, 0, 0, 255));
+        brush.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Active, QPalette::WindowText, brush);
+        QBrush brush1(QColor(255, 255, 255, 255));
+        brush1.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Active, QPalette::Button, brush1);
+        palette.setBrush(QPalette::Active, QPalette::Light, brush1);
+        palette.setBrush(QPalette::Active, QPalette::Midlight, brush1);
+        QBrush brush2(QColor(127, 127, 127, 255));
+        brush2.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Active, QPalette::Dark, brush2);
+        QBrush brush3(QColor(170, 170, 170, 255));
+        brush3.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Active, QPalette::Mid, brush3);
+        palette.setBrush(QPalette::Active, QPalette::Text, brush);
+        palette.setBrush(QPalette::Active, QPalette::BrightText, brush1);
+        palette.setBrush(QPalette::Active, QPalette::ButtonText, brush);
+        palette.setBrush(QPalette::Active, QPalette::Base, brush1);
+        palette.setBrush(QPalette::Active, QPalette::Window, brush1);
+        palette.setBrush(QPalette::Active, QPalette::Shadow, brush);
+        palette.setBrush(QPalette::Active, QPalette::AlternateBase, brush1);
+        QBrush brush4(QColor(255, 255, 220, 255));
+        brush4.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Active, QPalette::ToolTipBase, brush4);
+        palette.setBrush(QPalette::Active, QPalette::ToolTipText, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::WindowText, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::Button, brush1);
+        palette.setBrush(QPalette::Inactive, QPalette::Light, brush1);
+        palette.setBrush(QPalette::Inactive, QPalette::Midlight, brush1);
+        palette.setBrush(QPalette::Inactive, QPalette::Dark, brush2);
+        palette.setBrush(QPalette::Inactive, QPalette::Mid, brush3);
+        palette.setBrush(QPalette::Inactive, QPalette::Text, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::BrightText, brush1);
+        palette.setBrush(QPalette::Inactive, QPalette::ButtonText, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::Base, brush1);
+        palette.setBrush(QPalette::Inactive, QPalette::Window, brush1);
+        palette.setBrush(QPalette::Inactive, QPalette::Shadow, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::AlternateBase, brush1);
+        palette.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush4);
+        palette.setBrush(QPalette::Inactive, QPalette::ToolTipText, brush);
+        palette.setBrush(QPalette::Disabled, QPalette::WindowText, brush2);
+        palette.setBrush(QPalette::Disabled, QPalette::Button, brush1);
+        palette.setBrush(QPalette::Disabled, QPalette::Light, brush1);
+        palette.setBrush(QPalette::Disabled, QPalette::Midlight, brush1);
+        palette.setBrush(QPalette::Disabled, QPalette::Dark, brush2);
+        palette.setBrush(QPalette::Disabled, QPalette::Mid, brush3);
+        palette.setBrush(QPalette::Disabled, QPalette::Text, brush2);
+        palette.setBrush(QPalette::Disabled, QPalette::BrightText, brush1);
+        palette.setBrush(QPalette::Disabled, QPalette::ButtonText, brush2);
+        palette.setBrush(QPalette::Disabled, QPalette::Base, brush1);
+        palette.setBrush(QPalette::Disabled, QPalette::Window, brush1);
+        palette.setBrush(QPalette::Disabled, QPalette::Shadow, brush);
+        palette.setBrush(QPalette::Disabled, QPalette::AlternateBase, brush1);
+        palette.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush4);
+        palette.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush);
+        MainWindow->setPalette(palette);
+        MainWindow->setAutoFillBackground(true);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         sizePolicy.setHeightForWidth(centralWidget->sizePolicy().hasHeightForWidth());
@@ -70,7 +127,7 @@ public:
         centralWidget->setAutoFillBackground(false);
         layoutWidget = new QWidget(centralWidget);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
-        layoutWidget->setGeometry(QRect(0, 60, 851, 561));
+        layoutWidget->setGeometry(QRect(0, 70, 851, 551));
         sizePolicy.setHeightForWidth(layoutWidget->sizePolicy().hasHeightForWidth());
         layoutWidget->setSizePolicy(sizePolicy);
         gridLayout = new QGridLayout(layoutWidget);
@@ -88,7 +145,7 @@ public:
         scrollAreaLeft->setWidgetResizable(true);
         leftContents = new QWidget();
         leftContents->setObjectName(QString::fromUtf8("leftContents"));
-        leftContents->setGeometry(QRect(0, 0, 238, 547));
+        leftContents->setGeometry(QRect(0, 0, 238, 537));
         progressBar = new QProgressBar(leftContents);
         progressBar->setObjectName(QString::fromUtf8("progressBar"));
         progressBar->setGeometry(QRect(0, 520, 230, 23));
@@ -171,9 +228,11 @@ public:
         infoLabel->setObjectName(QString::fromUtf8("infoLabel"));
         infoLabel->setGeometry(QRect(250, 20, 601, 21));
         infoLabel->setFont(font);
-        logo = new QGraphicsView(centralWidget);
-        logo->setObjectName(QString::fromUtf8("logo"));
-        logo->setGeometry(QRect(10, 0, 231, 51));
+        label = new QLabel(centralWidget);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(10, 10, 231, 51));
+        label->setPixmap(QPixmap(QString::fromUtf8("rauhanyh.png")));
+        label->setScaledContents(true);
         MainWindow->setCentralWidget(centralWidget);
 
         retranslateUi(MainWindow);
@@ -192,6 +251,7 @@ public:
         checkBoxKuva->setText(QApplication::translate("MainWindow", "Kuva", 0, QApplication::UnicodeUTF8));
         checkBoxArtikkeli->setText(QApplication::translate("MainWindow", "Artikkeli", 0, QApplication::UnicodeUTF8));
         infoLabel->setText(QApplication::translate("MainWindow", "KAIKKI DOKUMENTIT - N\303\204YTET\303\204\303\204N 50 KERRALLAAN", 0, QApplication::UnicodeUTF8));
+        label->setText(QString());
     } // retranslateUi
 
 };

@@ -24,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
 
+
     //this->setWindowTitle("Tässä voidaan asettaa title");
     //this->window_width = 1100;
     //this->window_height = 500;
