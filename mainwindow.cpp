@@ -168,7 +168,7 @@ void MainWindow::update_data(QList <int> indexes, SearchCriteria crit){
                "\t'title': '"<<f->topic<<"',\n"
                "\t'description': '"<<f->description<<"',\n";
         if (f->name.endsWith(".jpg",Qt::CaseInsensitive)){
-            out << "\t'image': 'thumbnails/thumb."<<f_name<<"',\n";
+            out << "\t'image': '../thumbnails/thumb."<<f->name<<"',\n";
             out << "\t'icon': 'images/dark-green-circle.png',\n";
         }
         else if (f->name.endsWith(".mpg",Qt::CaseInsensitive)) out << "\t'icon': 'images/dark-blue-circle.png',\n";
