@@ -96,21 +96,29 @@ void MainWindow::update_data(QList <int> indexes, SearchCriteria crit){
     out << "\t{'start': '1870',\n"
            "\t 'end': '1911',\n"
            "\t 'title': 'Lestadiolaisuuden tulo ja alkuvaiheet',\n"
+           "\t 'description' : '',\n"
+           "\t 'isInstant' : true,\n"
            "\t 'color': 'green'\n"
            "\t},\n"
            "\t{'start': '1911',\n"
            "\t 'end': '1945',\n"
            "\t 'title': 'Rauhanyhdistyksen perustaminen tuo jäntevyyttä',\n"
+           "\t 'description' : '',\n"
+           "\t 'isInstant' : true,\n"
            "\t 'color': 'blue'\n"
            "\t},\n"
            "\t{'start': '1945',\n"
            "\t 'end': '1974',\n"
            "\t 'title': 'Aktiivista toimintaa ja jälleenrakennustyötä',\n"
+           "\t 'description' : '',\n"
+           "\t 'isInstant' : true,\n"
            "\t 'color': 'gray'\n"
            "\t},\n"
            "\t{'start': '1974',\n"
            "\t 'end': '2011',\n"
            "\t 'title': 'Vilkas yhdistys Taulumäellä',\n"
+           "\t 'description' : '',\n"
+           "\t 'isInstant' : true,\n"
            "\t 'color': 'red'\n"
            "\t},\n";
 
@@ -163,7 +171,7 @@ void MainWindow::update_data(QList <int> indexes, SearchCriteria crit){
         if (comma) out << ",\n";
         QString path = "../files/";
         QString f_name = path.append(f->name);
-        qDebug() << f->date <<" --- " <<f->date.toString("yyyy-MM-dd");
+        //qDebug() << f->date <<" --- " <<f->date.toString("yyyy-MM-dd");
         out << "\t{'start': '"<<f->date.toString("yyyy-MM-dd")<<"',\n"
                "\t'title': '"<<f->topic<<"',\n"
                "\t'description': '"<<f->description<<"',\n";
