@@ -59,6 +59,8 @@ private:
     //QWebView *webView;
     GSuggestCompletion *completer;
     SearchCriteria GetSearchCriteria();
+    QString GetCriteriaText();
+    int dataCount;
 
 private slots:
     void selectCategory(QTreeWidgetItem* item,int n);
@@ -70,6 +72,10 @@ private slots:
     void on_searchWidget_clicked(QModelIndex index);
     void on_label_linkActivated(QString link);
     void on_pushButton_clicked();
+    void on_checkBoxVideo_clicked();
+    void on_checkBoxArtikkeli_clicked();
+    void on_checkBoxKuva_clicked();
+    void on_checkBoxAani_clicked();
 };
 
 #endif // MAINWINDOW_H

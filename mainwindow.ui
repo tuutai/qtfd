@@ -36,9 +36,9 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>41</y>
+      <y>30</y>
       <width>851</width>
-      <height>571</height>
+      <height>591</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -83,14 +83,14 @@
           <x>0</x>
           <y>0</y>
           <width>238</width>
-          <height>557</height>
+          <height>577</height>
          </rect>
         </property>
         <widget class="QProgressBar" name="progressBar">
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>570</y>
+           <y>520</y>
            <width>230</width>
            <height>23</height>
           </rect>
@@ -138,9 +138,9 @@
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>60</y>
+           <y>130</y>
            <width>241</width>
-           <height>501</height>
+           <height>391</height>
           </rect>
          </property>
          <column>
@@ -170,105 +170,13 @@
           <string>HAE</string>
          </property>
         </widget>
-        <widget class="QCheckBox" name="checkBoxVideo">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>60</y>
-           <width>70</width>
-           <height>17</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Segoe UI</family>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Video</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBoxKuva">
-         <property name="geometry">
-          <rect>
-           <x>10</x>
-           <y>80</y>
-           <width>70</width>
-           <height>17</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Segoe UI</family>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Kuva</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBoxArtikkeli">
-         <property name="geometry">
-          <rect>
-           <x>90</x>
-           <y>60</y>
-           <width>70</width>
-           <height>17</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Segoe UI</family>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Artikkeli</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QCheckBox" name="checkBoxAani">
-         <property name="geometry">
-          <rect>
-           <x>90</x>
-           <y>80</y>
-           <width>70</width>
-           <height>17</height>
-          </rect>
-         </property>
-         <property name="font">
-          <font>
-           <family>Segoe UI</family>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
-         <property name="text">
-          <string>Ääni</string>
-         </property>
-         <property name="checked">
-          <bool>true</bool>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QGroupBox" name="groupBox">
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>40</y>
-           <width>241</width>
-           <height>20</height>
+           <y>50</y>
+           <width>231</width>
+           <height>71</height>
           </rect>
          </property>
          <property name="font">
@@ -278,19 +186,118 @@
            <bold>true</bold>
           </font>
          </property>
-         <property name="text">
-          <string>Tarkenna</string>
+         <property name="title">
+          <string>Lisärajaukset</string>
          </property>
+         <widget class="QCheckBox" name="checkBoxVideo">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>20</y>
+            <width>101</width>
+            <height>17</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Segoe UI</family>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Video</string>
+          </property>
+          <property name="icon">
+           <iconset resource="resources.qrc">
+            <normaloff>:/ikonit/html/images/dark-blue-circle.png</normaloff>:/ikonit/html/images/dark-blue-circle.png</iconset>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QCheckBox" name="checkBoxAani">
+          <property name="geometry">
+           <rect>
+            <x>120</x>
+            <y>40</y>
+            <width>141</width>
+            <height>17</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Segoe UI</family>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Ääni</string>
+          </property>
+          <property name="icon">
+           <iconset resource="resources.qrc">
+            <normaloff>:/ikonit/html/images/gray-circle.png</normaloff>:/ikonit/html/images/gray-circle.png</iconset>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QCheckBox" name="checkBoxKuva">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>40</y>
+            <width>101</width>
+            <height>17</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Segoe UI</family>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Kuva</string>
+          </property>
+          <property name="icon">
+           <iconset resource="resources.qrc">
+            <normaloff>:/ikonit/html/images/dark-green-circle.png</normaloff>:/ikonit/html/images/dark-green-circle.png</iconset>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+         <widget class="QCheckBox" name="checkBoxArtikkeli">
+          <property name="geometry">
+           <rect>
+            <x>120</x>
+            <y>20</y>
+            <width>131</width>
+            <height>17</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Segoe UI</family>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Artikkeli</string>
+          </property>
+          <property name="icon">
+           <iconset resource="resources.qrc">
+            <normaloff>:/ikonit/html/images/dull-red-circle.png</normaloff>:/ikonit/html/images/dull-red-circle.png</iconset>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
         </widget>
-        <zorder>progressBar</zorder>
-        <zorder>searchLineEdit</zorder>
-        <zorder>commandLinkButton</zorder>
-        <zorder>checkBoxVideo</zorder>
-        <zorder>checkBoxKuva</zorder>
-        <zorder>checkBoxArtikkeli</zorder>
-        <zorder>checkBoxAani</zorder>
-        <zorder>pushButton</zorder>
-        <zorder>searchWidget</zorder>
        </widget>
       </widget>
      </item>
@@ -341,6 +348,8 @@
    <header>QtWebKit/QWebView</header>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

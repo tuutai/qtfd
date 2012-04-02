@@ -35,7 +35,8 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui
 
-RESOURCES +=
+RESOURCES += \
+    resources.qrc
 
 RC_FILE = jklry-dvd.rc
 
