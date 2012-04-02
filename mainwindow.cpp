@@ -89,15 +89,41 @@ void MainWindow::update_data(QList <int> indexes, SearchCriteria crit){
 //        "'wikiURL': \"http://simile.mit.edu/shelf/\",\n"
 //        "'wikiSection': \"Simile Cubism Timeline\",\n\n"
         "'events' : [\n";
+
+    // Aikajanan jaksot = kirjan luvut
+    out << "\t{'start': '1870',\n"
+           "\t 'end': '1911',\n"
+           "\t 'title': 'Lestadiolaisuuden tulo ja alkuvaiheet',\n"
+           "\t 'color': 'green'\n"
+           "\t},\n"
+           "\t{'start': '1911',\n"
+           "\t 'end': '1945',\n"
+           "\t 'title': 'Rauhanyhdistyksen perustaminen tuo jäntevyyttä',\n"
+           "\t 'color': 'blue'\n"
+           "\t},\n"
+           "\t{'start': '1945',\n"
+           "\t 'end': '1974',\n"
+           "\t 'title': 'Aktiivista toimintaa ja jälleenrakennustyötä',\n"
+           "\t 'color': 'gray'\n"
+           "\t},\n"
+           "\t{'start': '1974',\n"
+           "\t 'end': '2011',\n"
+           "\t 'title': 'Vilkas yhdistys Taulumäellä',\n"
+           "\t 'color': 'red'\n"
+           "\t},\n";
+
     // tulostetaan linkit
     QList<Files *> _files = this->xmlRead->files;
     bool comma = false;
     QString alkuStr = "";
     QString loppuStr = "";
 
-int mod = indexes.count() / 50;
-if(mod == 0 )
-    mod = 1;
+    int mod = indexes.count() / 50;
+    if(mod == 0 )
+        mod = 1;
+
+    if (indexes.at(0) == -1)
+        mod = _files.count() / 50;
 
     for (int i = 0; i < _files.count(); i++)
     {
@@ -117,8 +143,12 @@ if(mod == 0 )
         out << "\t{'start': '"<<f->date.toString("yyyy-MM-dd")<<"',\n"
                "\t'title': '"<<f->topic<<"',\n"
                "\t'description': '"<<f->description<<"',\n";
+        if (f->name.endsWith(".jpg")) out << "\t'icon': 'images/dark-green-circle.png',\n";
+        else if (f->name.endsWith(".mpg")) out << "\t'icon': 'images/dark-blue-circle.png',\n";
+        else if (f->name.endsWith(".pdf")) out << "\t'icon': 'images/dull-red-circle.png',\n";
+        else if (f->name.endsWith(".mp3")) out << "\t'icon': 'images/gray-circle.png',\n";
+
 /*
-        if (f->name.endsWith(".jpg"))
             out << "\t'image': '"<<f_name<<"',\n";
 //               "\t'image': 'http://images.allposters.com/images/AWI/NR096_b.jpg',\n"
 */
