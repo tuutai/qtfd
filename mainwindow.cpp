@@ -20,23 +20,8 @@ MainWindow::MainWindow(QWidget *parent) :
     tempFlag(false),
     dataCount(0)
 {
-
     ui->setupUi(this);
 
-
-
-    //this->setWindowTitle("T‰ss‰ voidaan asettaa title");
-    //this->window_width = 1100;
-    //this->window_height = 500;
-    //this->resize(1084, 560);
-
-    // ScrollArea sis‰lt‰‰ kaikki napit/dokumentit
-    //QScrollArea *scrollArea = ui->scrollArea;
-
-    //scrollArea->setGeometry(QRect(240, 40, this->window_width-265, this->window_height-30));
-    // Timeline sis‰lt‰‰ piirretyn aikajanan
-    //this->webView = new QWebView(ui->scrollArea_2);
-    //this->webView->setGeometry(QRect(0, -1, 801, 551));
     QString f = QDir::toNativeSeparators("html/timelineview.html");
     this->ui->webView->page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
     this->ui->webView->load(QUrl(f));
@@ -63,13 +48,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(this->ui->searchLineEdit, SIGNAL(returnPressed()),this, SLOT(doSearch()));
 
-    // Luodaan hakuboxi
-    //SearchBox *searchEdit = new SearchBox(this->search, this);
-    //this->ui->scrollAreaLeft->setWidget(s);
-    //this->ui->scrollAreaWidgetContents = searchEdit;
-    //searchEdit->setGeometry(QRect(10, 12, 240, 25));
-    //searchEdit->show();
-
     // Luodaan kategoriarakenne
     addCategoryButtons();
 }
@@ -88,8 +66,8 @@ void MainWindow::update_data(QList <int> indexes, SearchCriteria crit){
     // Tulostetaan header
 
     out << "var timeline_data = {\n'dateTimeFormat': 'iso8601',\n"
-//        "'wikiURL': \"http://simile.mit.edu/shelf/\",\n"
-//        "'wikiSection': \"Simile Cubism Timeline\",\n\n"
+    //  "'wikiURL': \"http://simile.mit.edu/shelf/\",\n"
+    //  "'wikiSection': \"Simile Cubism Timeline\",\n\n"
         "'events' : [\n";
 
     // Aikajanan jaksot = kirjan luvut
@@ -183,10 +161,10 @@ void MainWindow::update_data(QList <int> indexes, SearchCriteria crit){
         else if (f->name.endsWith(".pdf",Qt::CaseInsensitive)) out << "\t'icon': 'images/dull-red-circle.png',\n";
         else if (f->name.endsWith(".mp3",Qt::CaseInsensitive)) out << "\t'icon': 'images/gray-circle.png',\n";
 
-/*
+        /*
             out << "\t'image': '"<<f_name<<"',\n";
-//               "\t'image': 'http://images.allposters.com/images/AWI/NR096_b.jpg',\n"
-*/
+        //         "\t'image': 'http://images.allposters.com/images/AWI/NR096_b.jpg',\n"
+        */
         out << "\t'link': '"<<f_name<<"'\n"
                "\t}";
         comma = true;
@@ -206,121 +184,9 @@ void MainWindow::update_data(QList <int> indexes, SearchCriteria crit){
     return;
 }
 
-
 void MainWindow::addButtons(QList <int> indexes)
 {
     this->update_data(indexes, this->GetSearchCriteria());
-    return;
-
-
-    QList<Files *> _files = this->xmlRead->files;
-    //if (this->widget->layout()) delete this->widget->layout();
-    //if (this->flowLayout->isEmpty())
-    //{
-    //        qDebug() << "layout is empty";
-    //        delete this->flowLayout;
-    //}
-
-    buttonlist.clear();
-
-    QLayoutItem *wItem;
-    while ((wItem = this->backgroundwidget->layout()->takeAt(0)) != 0)
-         delete wItem->widget();
-
-    FlowLayout *f = reinterpret_cast<FlowLayout*>(this->backgroundwidget->layout());
-
-    f->resetYearInfo();
-
-    int x_offset = 0;
-    int newest = 0;
-    int oldest = 0;
-
-    for (int i = 0; i < _files.count(); i++)
-    {
-        if (!indexes.contains(i) && !indexes.contains(-1)) continue;
-        //qDebug() << _files.at(i)->date;
-        Files *f = _files.at(i);
-        QString iconpath = "";
-        if (f->name.endsWith(".pdf")) iconpath = "images/File.png";
-        else if (f->name.endsWith(".avi")) iconpath = "images/Blue.png";
-        else iconpath = "images/Green.png";
-        QIcon *icon = new QIcon(iconpath);
-        QPushButton *p;
-        if (icon->isNull())
-            qDebug() << "icon is null";
-        QString buttonText = "";
-        if (f->topic.length()> 35)
-        {
-            buttonText = f->topic.left(32);
-            buttonText.append("...");
-        }
-        else buttonText = f->topic;
-        //qDebug()<<buttonText;
-        p= new QPushButton(*icon, buttonText,this->backgroundwidget);
-        //p = new QDocumentButton(*icon, buttonText,this->widget);
-        //qDebug()<<p->width();
-        bool ok;
-        //p->documentYear =  f->year.toInt(&ok, 10);
-        //p = new QPushButton(*icon, f->topic,this->widget);
-        p->setObjectName(f->name);
-        //qDebug() << f->name;
-        p->setToolTip(f->date.toString("dd.MM.yyyy").append("\n").append(f->description));
-
-        flowLayout->addWidget(p );
-        flowLayout->addYearInfo(f->year.toInt(&ok, 10));
-        //p->setGeometry(QRect(190+x_offset, 30, 40, 40));
-        buttonlist.append(p);
-
-        //this->signalMapper->setMapping(p, f->name);
-        this->signalMapper->setMapping(p, i);
-        QObject::connect(p, SIGNAL(clicked()), this->signalMapper, SLOT (map()));
-
-        x_offset += 50;
-
-        // Take first and last year for timeline
-       if (oldest == 0 || f->year.toInt() < oldest) { oldest = f->year.toInt(); }
-       if (newest == 0 || f->year.toInt() > newest) { newest = f->year.toInt(); }
-    }
-
-    //qDebug()<<"oldest % 5 = "<< oldest % 5;
-    //qDebug()<<"oldest % 10 = "<< oldest % 10;
-
-    // Aloitetaan aikajanan piirt‰minen ensimm‰ist‰ dokumenttia edelt‰v‰st‰ 0 tai 5 vuodesta
-    if (oldest % 5 != 0) {
-     oldest = oldest - (oldest % 5);
-    } else if (oldest % 10 != 0) {
-    oldest = oldest - (oldest % 10);
-    }
-
-    int width = this->widget->width()-235; // otetaan pois leveydest‰, ett‰ napit j‰‰v‰t kokonaan n‰kyviin
-
-    //Piirret‰‰n v‰h‰n yli, ett‰ "tuoreimmat" napit mahtuvat n‰kyviin
-    //Napit piirret‰‰n aina ko. vuodesta oikealle.
-
-    //qDebug()<<"Aikajanan aito pituus"<<newest-oldest;
-    //qDebug()<<"Aikajanan kasvatettu pituus"<<int((newest-oldest) * 1.2);
-    //newest = oldest + int((newest-oldest) * 1.2);
-    //qDebug()<<"Uusi newest"<<newest;
-
-    flowLayout->setLayotInformation(oldest, newest, width);
-
-    if (oldest != 0) { this->years.append(oldest); }
-    if (newest != 0) { this->years.append(newest); }
-
-    Timeline *t =   reinterpret_cast<Timeline*> (this->widget);
-    t->updateYears(oldest, newest);
-
-    Buttonarea *b =   reinterpret_cast<Buttonarea*> (this->backgroundwidget);
-    b->updateYears(oldest, newest);
-
-    this->widget->repaint();
-    this->backgroundwidget->repaint();
-    this->backgroundwidget->setLayout(flowLayout);
-    flowLayout->update();
-    //    QObject::connect(this->signalMapper, SIGNAL(mapped(const QString &)),
-    //                     this, SLOT(openfile(const QString &)));
-    QObject::connect(this->signalMapper, SIGNAL(mapped(const int &)),
-                     this, SLOT(showFileData(const int &)));
 }
 
 void MainWindow::createTags()
@@ -467,10 +333,11 @@ void MainWindow::selectCategory(QTreeWidgetItem* item,int n)
     tempFlag = false;
 
     if(this->dataCount > 50)
-        this->ui->infoLabel->setText("KATEGORIA " + catname.toUpper() + ", NƒYTETƒƒN 50 KERRALLAAN"+ GetCriteriaText());
+        this->ui->infoLabel->setText("KATEGORIA: " + catname + ", n‰ytet‰‰n 50 kerrallaan"+ GetCriteriaText());
+    else if (this->dataCount == 1)
+        this->ui->infoLabel->setText("KATEGORIA: " + catname + ", " + QString::number(this->dataCount) +" hakutulos"+ GetCriteriaText());
     else
-        this->ui->infoLabel->setText("KATEGORIA " + catname.toUpper() + ", " + QString::number(this->dataCount) +" HAKUTULOSTA"+ GetCriteriaText());
-
+        this->ui->infoLabel->setText("KATEGORIA: " + catname + ", " + QString::number(this->dataCount) +" hakutulosta"+ GetCriteriaText());
 
 }
 
@@ -486,16 +353,27 @@ void MainWindow::webViewProgress(int progress)
 
 void MainWindow::doSearch()
 {
-        completer->preventSuggest();
-        // update buttons in the main view
-        QList <int> indexes = this->search->getIndexes(this->ui->searchLineEdit->text());
-        //MainWindow *m = reinterpret_cast<MainWindow*> (this->parent());
-        //qDebug() << "doSearch";
+    completer->preventSuggest();
+    // update buttons in the main view
+    QList <int> indexes = this->search->getIndexes(this->ui->searchLineEdit->text());
+    //MainWindow *m = reinterpret_cast<MainWindow*> (this->parent());
+    //qDebug() << "doSearch";
+    if (indexes.count() == 1)
+    {
         this->addButtons(indexes);
         //QString url = QString(GSEARCH_URL).arg(text());
         //QDesktopServices::openUrl(QUrl(url));
-        this->ui->infoLabel->setText("HAKUSANA " + this->ui->searchLineEdit->text().toUpper() + ", " + QString::number(this->dataCount) + " HAKUTULOSTA"+ GetCriteriaText());
-
+        this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount) + " hakutulos"+ GetCriteriaText());
+    }
+    else if (indexes.count() > 1)
+    {
+        this->addButtons(indexes);
+        this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount) + " hakutulosta"+ GetCriteriaText());
+    }
+    else
+    {
+        this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", ei yht‰‰n hakutulosta"+ GetCriteriaText());
+    }
 }
 
 void MainWindow::resizeEvent(QResizeEvent *e)
@@ -505,7 +383,7 @@ void MainWindow::resizeEvent(QResizeEvent *e)
         qDebug()<<"Tultiin resizeen hiiri alhaalla";
 
         return;
-}
+    }
     qDebug()<<"Tultiin resizeen";
     if( e->oldSize() == e->size())
         return;
@@ -518,7 +396,7 @@ void MainWindow::resizeEvent(QResizeEvent *e)
 
 void MainWindow::on_commandLinkButton_clicked()
 {
-   searchCursorPositionChanged(0,0);
+    searchCursorPositionChanged(0,0);
     doSearch();
 }
 
@@ -546,7 +424,6 @@ void MainWindow::on_searchWidget_clicked(QModelIndex index)
 {
 
 }
-
 
 void MainWindow::on_pushButton_clicked()
 {
@@ -648,6 +525,5 @@ QString MainWindow::GetCriteriaText()
             if(!comma)
                 return "";
 return retVal;
-
 
 }

@@ -535,8 +535,8 @@
         <widget class="QLineEdit" name="searchLineEdit">
          <property name="geometry">
           <rect>
-           <x>0</x>
-           <y>0</y>
+           <x>2</x>
+           <y>66</y>
            <width>171</width>
            <height>41</height>
           </rect>
@@ -571,7 +571,7 @@
          <property name="geometry">
           <rect>
            <x>170</x>
-           <y>0</y>
+           <y>66</y>
            <width>71</width>
            <height>41</height>
           </rect>
@@ -591,8 +591,8 @@
         <widget class="QGroupBox" name="groupBox">
          <property name="geometry">
           <rect>
-           <x>0</x>
-           <y>50</y>
+           <x>2</x>
+           <y>1</y>
            <width>231</width>
            <height>71</height>
           </rect>
@@ -605,7 +605,7 @@
           </font>
          </property>
          <property name="title">
-          <string>Lisärajaukset</string>
+          <string>Mediatyyppi</string>
          </property>
          <widget class="QCheckBox" name="checkBoxVideo">
           <property name="geometry">
@@ -753,7 +753,7 @@
      </font>
     </property>
     <property name="text">
-     <string>KAIKKI DOKUMENTIT - NÄYTETÄÄN 50 KERRALLAAN</string>
+     <string>Kaikki dokumentit - näytetään 50 kerrallaan</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
