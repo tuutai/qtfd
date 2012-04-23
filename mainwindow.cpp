@@ -521,7 +521,10 @@ void MainWindow::refreshInfoLabel(bool comingFromSearchButton)
                else if (this->dataCount <= 50)
                    this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount) + " hakutulosta " + GetCriteriaText() );
                else
-                   this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount) + " hakutulosta (näytetään "+QString::number(offset)+"-"+QString::number(offset+50) +")" + GetCriteriaText() );
+                    if (offset+50 > this->dataCount)
+                        this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount) + " hakutulosta (näytetään "+QString::number(offset)+"-"+QString::number(this->dataCount) + ")" + GetCriteriaText() );
+                    else
+                        this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount) + " hakutulosta (näytetään "+QString::number(offset)+"-"+QString::number(offset+50) + ")" + GetCriteriaText() );
         }
         else
         {
@@ -538,7 +541,10 @@ void MainWindow::refreshInfoLabel(bool comingFromSearchButton)
         else if (this->dataCount <= 50)
                this->ui->infoLabel->setText("KATEGORIA: " + catname + ", " + QString::number(this->dataCount) + " hakutulosta"+ GetCriteriaText());
         else
-               this->ui->infoLabel->setText("KATEGORIA: " + catname + ", " + QString::number(this->dataCount) + " hakutulosta (näytetään " + QString::number(offset) + "-" + QString::number(offset+50) + ")" + GetCriteriaText());
+            if (offset+50 > this->dataCount)
+                this->ui->infoLabel->setText("KATEGORIA: " + catname + ", " + QString::number(this->dataCount) + " hakutulosta (näytetään " + QString::number(offset) + "-" + QString::number(this->dataCount) + ")" + GetCriteriaText());
+            else
+                this->ui->infoLabel->setText("KATEGORIA: " + catname + ", " + QString::number(this->dataCount) + " hakutulosta (näytetään " + QString::number(offset) + "-" + QString::number(offset+50) + ")" + GetCriteriaText());
     }
     else
     {
