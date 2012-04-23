@@ -589,7 +589,7 @@
          </property>
          <property name="icon">
           <iconset resource="resources.qrc">
-           <normaloff>:/ikonit/Z:/Documents/Glyphish Pro/symbols/01-arrow-east.png</normaloff>:/ikonit/Z:/Documents/Glyphish Pro/symbols/01-arrow-east.png</iconset>
+           <normaloff>:/ikonit/html/images/01-arrow-east.png</normaloff>:/ikonit/html/images/01-arrow-east.png</iconset>
          </property>
         </widget>
         <widget class="QGroupBox" name="groupBox">
@@ -801,7 +801,7 @@
     </property>
     <property name="icon">
      <iconset resource="resources.qrc">
-      <normaloff>:/ikonit/Z:/Documents/Glyphish Pro/symbols/01-arrow-east.png</normaloff>:/ikonit/Z:/Documents/Glyphish Pro/symbols/01-arrow-east.png</iconset>
+      <normaloff>:/ikonit/html/images/01-arrow-east.png</normaloff>:/ikonit/html/images/01-arrow-east.png</iconset>
     </property>
    </widget>
    <widget class="QCommandLinkButton" name="buttonPrevious">
@@ -826,7 +826,7 @@
     </property>
     <property name="icon">
      <iconset resource="resources.qrc">
-      <normaloff>:/ikonit/Z:/Documents/Glyphish Pro/symbols/05-arrow-west.png</normaloff>:/ikonit/Z:/Documents/Glyphish Pro/symbols/05-arrow-west.png</iconset>
+      <normaloff>:/ikonit/html/images/05-arrow-west.png</normaloff>:/ikonit/html/images/05-arrow-west.png</iconset>
     </property>
    </widget>
   </widget>
