@@ -141,9 +141,18 @@ void MainWindow::update_data( QList<Files *> _files){
             out << "\t'image': '../thumbnails/thumb."<<f->name<<"',\n";
             out << "\t'icon': 'images/dark-green-circle.png',\n";
         }
-        else if (f->name.endsWith(".mpg",Qt::CaseInsensitive)) out << "\t'icon': 'images/dark-blue-circle.png',\n";
-        else if (f->name.endsWith(".pdf",Qt::CaseInsensitive)) out << "\t'icon': 'images/dull-red-circle.png',\n";
-        else if (f->name.endsWith(".mp3",Qt::CaseInsensitive)) out << "\t'icon': 'images/gray-circle.png',\n";
+        else if (f->name.endsWith(".mpg",Qt::CaseInsensitive)){
+            out << "\t'image': 'images/video.png',\n";
+            out << "\t'icon': 'images/dark-blue-circle.png',\n";
+        }
+        else if (f->name.endsWith(".pdf",Qt::CaseInsensitive)){
+            out << "\t'image': 'images/pdf.png',\n";
+            out << "\t'icon': 'images/dull-red-circle.png',\n";
+        }
+        else if (f->name.endsWith(".mp3",Qt::CaseInsensitive)){
+            out << "\t'image': 'images/audio.png',\n";
+            out << "\t'icon': 'images/gray-circle.png',\n";
+        }
 
         /*
             out << "\t'image': '"<<f_name<<"',\n";
