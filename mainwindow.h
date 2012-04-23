@@ -28,7 +28,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void addButtons(QList <int> indexes);
+    void loadAndShowData(QList <int> indexes);
     QList<QPushButton *> buttonlist;
     XMLRead *xmlRead;
     Search *search;
@@ -55,14 +55,14 @@ private:
     void addCategoryButtons();
     Categories *cats;
     Buttonarea *backgroundwidget;
-    void update_data(QList <int> indexes, SearchCriteria crit);
+    void update_data(QList<Files *> _files);
     //QWebView *webView;
     GSuggestCompletion *completer;
     SearchCriteria GetSearchCriteria();
     QString GetCriteriaText();
     int dataCount;
     int offset;
-    void refreshInfoLabel();
+    void refreshInfoLabel(bool comingFromSearchButton);
 
 private slots:
     void selectCategory(QTreeWidgetItem* item,int n);

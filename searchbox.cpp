@@ -65,7 +65,7 @@ void SearchBox::doSearch()
     QList <int> indexes = this->search->getIndexes(text());
     MainWindow *m = reinterpret_cast<MainWindow*> (this->parent());
     //qDebug() << "doSearch";
-    m->addButtons(indexes);
+    m->loadAndShowData(indexes);
     //QString url = QString(GSEARCH_URL).arg(text());
     //QDesktopServices::openUrl(QUrl(url));
 }
