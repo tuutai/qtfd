@@ -40,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
     createTags();
     QList <int> intlist;
     intlist.append(-1);
-    addButtons(intlist);
+    loadAndShowData(intlist);
 
     this->ui->searchLineEdit->setCursorPosition(0);
     connect(this->ui->searchLineEdit,SIGNAL(cursorPositionChanged(int,int)), this, SLOT(searchCursorPositionChanged(int,int)));
@@ -51,8 +51,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Luodaan kategoriarakenne
     addCategoryButtons();
-    this->ui->buttonPrevious->setVisible(offset > 0);
-    refreshInfoLabel();
+    this->ui->buttonPrevious->setEnabled(offset > 0);
+    this->ui->buttonNext->setEnabled(dataCount > 50);
+    refreshInfoLabel(true);
 
 }
 
@@ -61,7 +62,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::update_data(QList <int> indexes, SearchCriteria crit){
+void MainWindow::update_data( QList<Files *> _files){
     qDebug()<<"update_data alku";
     this->setCursor(Qt::WaitCursor);
     QFile datafile(QDir::toNativeSeparators("html/data.js"));
@@ -105,7 +106,7 @@ void MainWindow::update_data(QList <int> indexes, SearchCriteria crit){
            "\t},\n";
 
     // tulostetaan linkit
-    QList<Files *> _files = this->xmlRead->files;
+    //QList<Files *> _files = this->xmlRead->files;
     bool comma = false;
     QString alkuStr = "";
     QString loppuStr = "";
@@ -117,38 +118,13 @@ void MainWindow::update_data(QList <int> indexes, SearchCriteria crit){
 //    if (indexes.at(0) == -1)
 //        mod = _files.count() / 50;
     dataCount = _files.count();
+    this->ui->buttonNext->setEnabled(offset + 50 <= dataCount);
     int shownFiles = 0;
     for (int i = offset; i < _files.count(); i++)
     {
-        if(shownFiles >= 50)
+        if(i - offset > 50)
             break;
-
         Files *f = _files.at(i);
-        if (f->name.endsWith(".jpg"))
-        {
-            if(!crit.showKuva)
-                continue;
-        }
-
-        else if (f->name.endsWith(".mpg"))
-        {
-            if(!crit.showVideo)
-                continue;
-        }
-        else if (f->name.endsWith(".pdf"))
-        {
-            if(!crit.showArtikkeli)
-                continue;
-        }
-        else if (f->name.endsWith(".mp3"))
-        {
-            if(!crit.showAani)
-                continue;
-        }
-        //if(i != 0 && i%mod != 0) continue;
-
-        if (!indexes.contains(i) && !indexes.contains(-1)) continue;
-        //qDebug() << _files.at(i)->date;
 
         if(alkuStr == "")
             alkuStr = f->date.toString("yyyy");
@@ -192,9 +168,40 @@ void MainWindow::update_data(QList <int> indexes, SearchCriteria crit){
     return;
 }
 
-void MainWindow::addButtons(QList <int> indexes)
+void MainWindow::loadAndShowData(QList <int> indexes)
 {
-    this->update_data(indexes, this->GetSearchCriteria());
+    SearchCriteria crit = this->GetSearchCriteria();
+    QList<Files *> _files = this->xmlRead->files;
+    QList<Files *> retFiles;
+    for (int i = 0; i < _files.count(); i++)
+    {
+        Files *f = _files.at(i);
+        if (f->name.endsWith(".jpg"))
+        {
+            if(!crit.showKuva)
+                continue;
+        }
+
+        else if (f->name.endsWith(".mpg"))
+        {
+            if(!crit.showVideo)
+                continue;
+        }
+        else if (f->name.endsWith(".pdf"))
+        {
+            if(!crit.showArtikkeli)
+                continue;
+        }
+        else if (f->name.endsWith(".mp3"))
+        {
+            if(!crit.showAani)
+                continue;
+        }
+        if (!indexes.contains(i) && !indexes.contains(-1)) continue;
+        retFiles.append(_files.at(i));
+
+    }
+    this->update_data(retFiles);
 }
 
 void MainWindow::createTags()
@@ -334,13 +341,13 @@ void MainWindow::selectCategory(QTreeWidgetItem* item,int n)
     if (p) // parent found
         parentname = p->text(n);
     QList <int> list = this->cats->getIndexes(parentname,catname);
-    this->addButtons(list);
+    this->loadAndShowData(list);
     tempFlag = true;
     this->ui->searchLineEdit->setText("Kirjoita hakusana");
     this->ui->searchLineEdit->setCursorPosition(0);
     tempFlag = false;
 
-    refreshInfoLabel();
+    refreshInfoLabel(false);
     return;
 
 //    if(this->dataCount > 50)
@@ -366,26 +373,28 @@ void MainWindow::doSearch()
 {
     offset = 0;
     completer->preventSuggest();
+    this->ui->searchWidget->clearSelection();
     // update buttons in the main view
     QList <int> indexes = this->search->getIndexes(this->ui->searchLineEdit->text());
     //MainWindow *m = reinterpret_cast<MainWindow*> (this->parent());
     //qDebug() << "doSearch";
     if (indexes.count() == 1)
     {
-        this->addButtons(indexes);
+        this->loadAndShowData(indexes);
         //QString url = QString(GSEARCH_URL).arg(text());
         //QDesktopServices::openUrl(QUrl(url));
-        this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount) + " hakutulos"+ GetCriteriaText());
+        //this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount) + " hakutulos"+ GetCriteriaText());
     }
     else if (indexes.count() > 1)
     {
-        this->addButtons(indexes);
-        this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount) + " hakutulosta (n‰ytet‰‰n "+QString::number(offset)+"-"+QString::number(offset+50) +")"+ GetCriteriaText() );
+        this->loadAndShowData(indexes);
+        //this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount) + " hakutulosta (n‰ytet‰‰n "+QString::number(offset)+"-"+QString::number(offset+50) +")"+ GetCriteriaText() );
     }
     else
     {
-        this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", ei yht‰‰n hakutulosta"+ GetCriteriaText());
+        //this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", ei yht‰‰n hakutulosta"+ GetCriteriaText());
     }
+        refreshInfoLabel(true);
 }
 
 void MainWindow::resizeEvent(QResizeEvent *e)
@@ -481,10 +490,10 @@ void MainWindow::on_checkBoxVideo_clicked()
     {
         QList <int> intlist;
         intlist.append(-1);
-        addButtons(intlist);
+        loadAndShowData(intlist);
     }
 
-    refreshInfoLabel();
+    refreshInfoLabel(false);
 
 }
 
@@ -545,8 +554,8 @@ return retVal;
 void MainWindow::on_buttonNext_clicked()
 {
     offset += 50;
-    this->ui->buttonNext->setVisible(offset < dataCount);
-    this->ui->buttonPrevious->setVisible(offset > 0);
+    this->ui->buttonNext->setEnabled(offset < dataCount);
+    this->ui->buttonPrevious->setEnabled(offset > 0);
     on_checkBoxVideo_clicked();
 
 }
@@ -556,14 +565,25 @@ void MainWindow::on_buttonPrevious_clicked()
     if(offset > 0)
         offset -= 50;
 
-    this->ui->buttonNext->setVisible(offset < dataCount);
-    this->ui->buttonPrevious->setVisible(offset > 0);
+    this->ui->buttonNext->setEnabled(offset < dataCount);
+    this->ui->buttonPrevious->setEnabled(offset > 0);
     on_checkBoxVideo_clicked();
 }
 
-void MainWindow::refreshInfoLabel()
+void MainWindow::refreshInfoLabel(bool comingFromSearchButton)
 {
-    if(this->ui->searchWidget->selectedItems().count() > 0)
+    if(comingFromSearchButton)
+    {
+        if(this->ui->searchLineEdit->text() != "" && this->ui->searchLineEdit->text() != "Kirjoita hakusana")
+        {
+                this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount) + " hakutulosta (n‰ytet‰‰n "+QString::number(offset)+"-"+QString::number(offset+50) +")"+ GetCriteriaText() );
+        }
+        else
+        {
+            this->ui->infoLabel->setText("Yhteens‰ " + QString::number(dataCount) + ", n‰ytet‰‰n "+ QString::number(offset) + "-" +QString::number(offset+50) +" "+ GetCriteriaText());
+        }
+     }
+    else if(this->ui->searchWidget->selectedItems().count() > 0)
     {
         QTreeWidgetItem *t = this->ui->searchWidget->selectedItems().first();
         QString catname = t->text(0);
@@ -574,7 +594,8 @@ void MainWindow::refreshInfoLabel()
             this->ui->infoLabel->setText("KATEGORIA: " + catname + ", " + QString::number(this->dataCount) +" hakutulos"+ GetCriteriaText());
         else
             this->ui->infoLabel->setText("KATEGORIA: " + catname + ", " + QString::number(this->dataCount) +" hakutulosta"+ GetCriteriaText());
-    } else
+    }
+    else
     {
         this->ui->infoLabel->setText("Yhteens‰ " + QString::number(dataCount) + ", n‰ytet‰‰n "+ QString::number(offset) + "-" +QString::number(offset+50) +" "+ GetCriteriaText());
     }
