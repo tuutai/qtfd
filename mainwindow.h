@@ -61,6 +61,8 @@ private:
     SearchCriteria GetSearchCriteria();
     QString GetCriteriaText();
     int dataCount;
+    int offset;
+    void refreshInfoLabel();
 
 private slots:
     void selectCategory(QTreeWidgetItem* item,int n);
@@ -75,6 +77,8 @@ private slots:
     void on_checkBoxArtikkeli_clicked();
     void on_checkBoxKuva_clicked();
     void on_checkBoxAani_clicked();
+    void on_buttonNext_clicked();
+    void on_buttonPrevious_clicked();
 };
 
 #endif // MAINWINDOW_H
