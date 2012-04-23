@@ -55,7 +55,6 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->buttonPrevious->setEnabled(offset > 0);
     this->ui->buttonNext->setEnabled(dataCount > 50);
     refreshInfoLabel(true);
-
 }
 
 MainWindow::~MainWindow()
@@ -115,12 +114,13 @@ void MainWindow::update_data( QList<Files *> _files){
     if (this->clearoffset) this->offset = 0;
     this->clearoffset = true;
 
-//    int mod = indexes.count() / 50;
-//    if(mod == 0 )
-//        mod = 1;
+    //    int mod = indexes.count() / 50;
+    //    if(mod == 0 )
+    //        mod = 1;
 
-//    if (indexes.at(0) == -1)
-//        mod = _files.count() / 50;
+    //    if (indexes.at(0) == -1)
+    //        mod = _files.count() / 50;
+
     dataCount = _files.count();
     this->ui->buttonNext->setEnabled(offset + 50 < dataCount);
     int shownFiles = 0;
@@ -212,7 +212,6 @@ void MainWindow::loadAndShowData(QList <int> indexes)
         }
         if (!indexes.contains(i) && !indexes.contains(-1)) continue;
         retFiles.append(_files.at(i));
-
     }
     this->update_data(retFiles);
 }
@@ -242,64 +241,12 @@ bool MainWindow::openUrl(const QUrl url){
     return QDesktopServices::openUrl(url);
 }
 
-bool MainWindow::showFileData(const int index){
-//    // Here we show popup window that has file metadata information
-//    QFrame* popup1 = new QFrame(this, Qt::Popup | Qt::Window );
-//    popup1->resize(600,280);
-//    popup1->setGeometry(QRect(this->window_width/2-300, this->window_height/2 -140,600,280));
-
-//    Files *_f = this->xmlRead->files.at(index);
-
-//    QLabel *topic = new QLabel(_f->topic, popup1);
-//    topic->setGeometry(QRect(20,20,560,20));
-
-//    // Collect all metadata to description text
-//    QString *description = new QString();
-//    description->append("Otsikko: "+_f->topic+"\n");
-//    description->append("Kategoria: "+_f->cat.at(0).catname+"\n");
-//    description->append("Alakategoria(t): ");
-//    for (int w=0;w<_f->cat.at(0).subcats.size();w++)
-//        description->append(_f->cat.at(0).subcats.at(w));
-//    description->append("\n");
-//    description->append("P‰iv‰ys: "+_f->date.toString("dd.MM.yyyy")+"\n");
-//    description->append("Kuvaus: "+_f->description+"\n");
-//    description->append("Kirjoittaja: "+_f->writer+"\n");
-//    description->append("Kirjoitettu: "+_f->writedate.toString("dd.MM.yyyy")+"\n");
-
-//    QLabel *information = new QLabel(*description, popup1);
-//    information->setGeometry(QRect(20,50,289,200));
-//    information->setWordWrap(1);
-
-//    //QPixmap *image = new QPixmap("images/File.png");
-//    QPixmap *image = new QPixmap("files/"+_f->name);
-//    QLabel *imageLabel = new QLabel(popup1);
-//    imageLabel->setPixmap(*image);
-//    imageLabel->setGeometry(QRect(320, 40, 270, 200));
-
-//    QPushButton *p= new QPushButton("Avaa",popup1);
-//    p->setGeometry(QRect(200,250,90,30));
-//    this->signalMapper->setMapping(p, _f->name);
-//    connect(p, SIGNAL(clicked()), this->signalMapper, SLOT (map()));
-//    connect(this->signalMapper, SIGNAL(mapped(const QString &)),
-//                         this, SLOT(openfile(const QString &)));
-
-//    QPushButton *pc= new QPushButton("Sulje",popup1);
-//    pc->setGeometry(QRect(310,250,90,30));
-//    connect(pc,SIGNAL(clicked()),popup1,SLOT(close()));
-
-//    popup1->show();
-
-//    return false;
-}
-
 void MainWindow::addCategoryButtons()
 {
     QTreeWidgetItem *q, *qi;
     //searchWidget = new QTreeWidget(ui->centralWidget);
     q = this->ui->searchWidget->headerItem();
     q->setText(0,"Kategoriat");
-
-    //this->ui->searchWidget->setGeometry(QRect(10, 40, 240, this->window_height-30));
 
     // Initialize category structure
 
@@ -362,14 +309,6 @@ void MainWindow::selectCategory(QTreeWidgetItem* item,int n)
 
     refreshInfoLabel(false);
     return;
-
-//    if(this->dataCount > 50)
-//        this->ui->infoLabel->setText("KATEGORIA: " + catname + ", n‰ytet‰‰n " + QString::number(offset) + "-" + QString::number(offset+50) + GetCriteriaText());
-//    else if (this->dataCount == 1)
-//        this->ui->infoLabel->setText("KATEGORIA: " + catname + ", " + QString::number(this->dataCount) +" hakutulos"+ GetCriteriaText());
-//    else
-//        this->ui->infoLabel->setText("KATEGORIA: " + catname + ", " + QString::number(this->dataCount) +" hakutulosta"+ GetCriteriaText());
-
 }
 
 void MainWindow::webViewProgress(int progress)
@@ -424,7 +363,6 @@ void MainWindow::resizeEvent(QResizeEvent *e)
     qDebug()<<"Tultiin resizeen - muuttui:"<<e->size().width()<<","<<e->size().height();
     this->ui->layoutWidget->resize(this->ui->centralWidget->size());
     qDebug()<<"Tultiin resizeen - pois";
-
 }
 
 
@@ -452,13 +390,11 @@ void MainWindow::on_searchLineEdit_lostFocus()
         this->ui->searchLineEdit->setCursorPosition(0);
         tempFlag = false;
     }
-
 }
 
 void MainWindow::on_searchWidget_clicked(QModelIndex index)
 {
     this->offset = 0;
-
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -510,7 +446,6 @@ void MainWindow::on_checkBoxVideo_clicked()
     }
 
     refreshInfoLabel(false);
-
 }
 
 void MainWindow::on_checkBoxArtikkeli_clicked()
@@ -594,29 +529,32 @@ void MainWindow::refreshInfoLabel(bool comingFromSearchButton)
     {
         if(this->ui->searchLineEdit->text() != "" && this->ui->searchLineEdit->text() != "Kirjoita hakusana")
         {
-                this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount) + " hakutulosta (n‰ytet‰‰n "+QString::number(offset)+"-"+QString::number(offset+50) +")"+ GetCriteriaText() );
+            if (this->dataCount == 1)
+                   this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount) + " hakutulos" + GetCriteriaText() );
+               else if (this->dataCount <= 50)
+                   this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount) + " hakutulosta " + GetCriteriaText() );
+               else
+                   this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount) + " hakutulosta (n‰ytet‰‰n "+QString::number(offset)+"-"+QString::number(offset+50) +")" + GetCriteriaText() );
         }
         else
         {
             this->ui->infoLabel->setText("Yhteens‰ " + QString::number(dataCount) + ", n‰ytet‰‰n "+ QString::number(offset) + "-" +QString::number(offset+50) +" "+ GetCriteriaText());
         }
-     }
+    }
     else if(this->ui->searchWidget->selectedItems().count() > 0)
     {
         QTreeWidgetItem *t = this->ui->searchWidget->selectedItems().first();
         QString catname = t->text(0);
 
-        if(this->dataCount > 50)
-            this->ui->infoLabel->setText("KATEGORIA: " + catname + ", n‰ytet‰‰n " + QString::number(offset) + "-" + QString::number(offset+50) + GetCriteriaText());
-        else if (this->dataCount == 1)
-            this->ui->infoLabel->setText("KATEGORIA: " + catname + ", " + QString::number(this->dataCount) +" hakutulos"+ GetCriteriaText());
+        if(this->dataCount == 1)
+               this->ui->infoLabel->setText("KATEGORIA: " + catname + ", " + QString::number(this->dataCount) + " hakutulos"+ GetCriteriaText());
+        else if (this->dataCount <= 50)
+               this->ui->infoLabel->setText("KATEGORIA: " + catname + ", " + QString::number(this->dataCount) + " hakutulosta"+ GetCriteriaText());
         else
-            this->ui->infoLabel->setText("KATEGORIA: " + catname + ", " + QString::number(this->dataCount) +" hakutulosta"+ GetCriteriaText());
+               this->ui->infoLabel->setText("KATEGORIA: " + catname + ", " + QString::number(this->dataCount) + " hakutulosta (n‰ytet‰‰n " + QString::number(offset) + "-" + QString::number(offset+50) + ")" + GetCriteriaText());
     }
     else
     {
         this->ui->infoLabel->setText("Yhteens‰ " + QString::number(dataCount) + ", n‰ytet‰‰n "+ QString::number(offset) + "-" +QString::number(offset+50) +" "+ GetCriteriaText());
     }
 }
-
-

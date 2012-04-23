@@ -36,7 +36,6 @@ public:
 public slots:
     bool openfile(const QString filename);
     bool openUrl(const QUrl url);
-    bool showFileData(const int index);
 
 protected:
     void resizeEvent ( QResizeEvent * e);

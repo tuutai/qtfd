@@ -78,5 +78,3 @@ QList <int> Search::getIndexes(QString str)
     this->find(str);
     return this->searchIndexes;
 }
-
-
