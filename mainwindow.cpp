@@ -330,23 +330,10 @@ void MainWindow::doSearch()
     QList <int> indexes = this->search->getIndexes(this->ui->searchLineEdit->text());
     //MainWindow *m = reinterpret_cast<MainWindow*> (this->parent());
     //qDebug() << "doSearch";
-    if (indexes.count() == 1)
-    {
+    if (indexes.count() >= 1)
         this->loadAndShowData(indexes);
-        //QString url = QString(GSEARCH_URL).arg(text());
-        //QDesktopServices::openUrl(QUrl(url));
-        //this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount) + " hakutulos"+ GetCriteriaText());
-    }
-    else if (indexes.count() > 1)
-    {
-        this->loadAndShowData(indexes);
-        //this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount) + " hakutulosta (n‰ytet‰‰n "+QString::number(offset)+"-"+QString::number(offset+50) +")"+ GetCriteriaText() );
-    }
-    else
-    {
-        //this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", ei yht‰‰n hakutulosta"+ GetCriteriaText());
-    }
-        refreshInfoLabel(true);
+
+    refreshInfoLabel(true);
 }
 
 void MainWindow::resizeEvent(QResizeEvent *e)
