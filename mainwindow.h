@@ -42,6 +42,7 @@ protected:
     void resizeEvent ( QResizeEvent * e);
 private:
     bool tempFlag;
+    bool clearoffset;
     void timeLine();
     void createTags();
     QSignalMapper* signalMapper;

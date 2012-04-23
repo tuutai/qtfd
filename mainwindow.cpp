@@ -19,7 +19,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow),
     tempFlag(false),
     dataCount(0),
-    offset(0)
+    offset(0),
+    clearoffset(false)
 {
     ui->setupUi(this);
 
@@ -111,6 +112,9 @@ void MainWindow::update_data( QList<Files *> _files){
     QString alkuStr = "";
     QString loppuStr = "";
 
+    if (this->clearoffset) this->offset = 0;
+    this->clearoffset = true;
+
 //    int mod = indexes.count() / 50;
 //    if(mod == 0 )
 //        mod = 1;
@@ -118,7 +122,7 @@ void MainWindow::update_data( QList<Files *> _files){
 //    if (indexes.at(0) == -1)
 //        mod = _files.count() / 50;
     dataCount = _files.count();
-    this->ui->buttonNext->setEnabled(offset + 50 <= dataCount);
+    this->ui->buttonNext->setEnabled(offset + 50 < dataCount);
     int shownFiles = 0;
     for (int i = offset; i < _files.count(); i++)
     {
@@ -380,7 +384,7 @@ void MainWindow::webViewProgress(int progress)
 
 void MainWindow::doSearch()
 {
-    offset = 0;
+    //offset = 0;
     completer->preventSuggest();
     this->ui->searchWidget->clearSelection();
     // update buttons in the main view
@@ -427,6 +431,7 @@ void MainWindow::resizeEvent(QResizeEvent *e)
 void MainWindow::on_commandLinkButton_clicked()
 {
     searchCursorPositionChanged(0,0);
+    this->offset = 0;
     doSearch();
 }
 
@@ -452,6 +457,7 @@ void MainWindow::on_searchLineEdit_lostFocus()
 
 void MainWindow::on_searchWidget_clicked(QModelIndex index)
 {
+    this->offset = 0;
 
 }
 
@@ -491,8 +497,9 @@ SearchCriteria MainWindow::GetSearchCriteria()
 
 void MainWindow::on_checkBoxVideo_clicked()
 {
-    if(this->ui->searchLineEdit->text() != "" && this->ui->searchLineEdit->text() != "Kirjoita hakusana")
+    if(this->ui->searchLineEdit->text() != "" && this->ui->searchLineEdit->text() != "Kirjoita hakusana") {
         doSearch();
+    }
     else if(this->ui->searchWidget->selectedItems().count() > 0)
         selectCategory(this->ui->searchWidget->selectedItems().first(),0 );
     else
@@ -562,8 +569,9 @@ return retVal;
 
 void MainWindow::on_buttonNext_clicked()
 {
+    this->clearoffset = false;
     offset += 50;
-    this->ui->buttonNext->setEnabled(offset < dataCount);
+    this->ui->buttonNext->setEnabled(offset + 50 < dataCount);
     this->ui->buttonPrevious->setEnabled(offset > 0);
     on_checkBoxVideo_clicked();
 
@@ -571,10 +579,11 @@ void MainWindow::on_buttonNext_clicked()
 
 void MainWindow::on_buttonPrevious_clicked()
 {
+    this->clearoffset = false;
     if(offset > 0)
         offset -= 50;
 
-    this->ui->buttonNext->setEnabled(offset < dataCount);
+    this->ui->buttonNext->setEnabled(offset + 50 < dataCount);
     this->ui->buttonPrevious->setEnabled(offset > 0);
     on_checkBoxVideo_clicked();
 }
