@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Mon Apr 23 22:20:11 2012
+** Created: Mon Apr 23 23:51:29 2012
 **      by: Qt User Interface Compiler version 4.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -179,7 +179,7 @@ public:
         font1.setKerning(true);
         commandLinkButton->setFont(font1);
         QIcon icon;
-        icon.addFile(QString::fromUtf8(":/ikonit/Z:/Documents/Glyphish Pro/symbols/01-arrow-east.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon.addFile(QString::fromUtf8(":/ikonit/html/images/01-arrow-east.png"), QSize(), QIcon::Normal, QIcon::Off);
         commandLinkButton->setIcon(icon);
         groupBox = new QGroupBox(leftContents);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
@@ -248,7 +248,7 @@ public:
         buttonPrevious->setGeometry(QRect(250, 30, 151, 41));
         buttonPrevious->setFont(font1);
         QIcon icon5;
-        icon5.addFile(QString::fromUtf8(":/ikonit/Z:/Documents/Glyphish Pro/symbols/05-arrow-west.png"), QSize(), QIcon::Normal, QIcon::Off);
+        icon5.addFile(QString::fromUtf8(":/ikonit/html/images/05-arrow-west.png"), QSize(), QIcon::Normal, QIcon::Off);
         buttonPrevious->setIcon(icon5);
         MainWindow->setCentralWidget(centralWidget);
 
