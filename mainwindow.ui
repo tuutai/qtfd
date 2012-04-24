@@ -561,6 +561,12 @@
            <height>401</height>
           </rect>
          </property>
+         <property name="font">
+          <font>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
          <column>
           <property name="text">
            <string notr="true">1</string>
@@ -763,7 +769,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Kaikki dokumentit - näytetään 0-50</string>
+     <string>Kaikki dokumentit - näytetään 0-25</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -803,7 +809,7 @@
      </font>
     </property>
     <property name="text">
-     <string> Seuraavat 50</string>
+     <string> Seuraavat 25</string>
     </property>
     <property name="icon">
      <iconset resource="resources.qrc">
@@ -828,7 +834,7 @@
      </font>
     </property>
     <property name="text">
-     <string> Edelliset 50</string>
+     <string> Edelliset 25</string>
     </property>
     <property name="icon">
      <iconset resource="resources.qrc">

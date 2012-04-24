@@ -53,7 +53,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // Luodaan kategoriarakenne
     addCategoryButtons();
     this->ui->buttonPrevious->setEnabled(offset > 0);
-    this->ui->buttonNext->setEnabled(dataCount > 50);
+    this->ui->buttonNext->setEnabled(dataCount > 25);
     refreshInfoLabel(true);
 }
 
@@ -114,19 +114,12 @@ void MainWindow::update_data( QList<Files *> _files){
     if (this->clearoffset) this->offset = 0;
     this->clearoffset = true;
 
-    //    int mod = indexes.count() / 50;
-    //    if(mod == 0 )
-    //        mod = 1;
-
-    //    if (indexes.at(0) == -1)
-    //        mod = _files.count() / 50;
-
     dataCount = _files.count();
-    this->ui->buttonNext->setEnabled(offset + 50 < dataCount);
+    this->ui->buttonNext->setEnabled(offset + 25 < dataCount);
     int shownFiles = 0;
     for (int i = offset; i < _files.count(); i++)
     {
-        if(i - offset > 50)
+        if(i - offset > 25)
             break;
         Files *f = _files.at(i);
 
@@ -246,7 +239,7 @@ void MainWindow::addCategoryButtons()
     QTreeWidgetItem *q, *qi;
     //searchWidget = new QTreeWidget(ui->centralWidget);
     q = this->ui->searchWidget->headerItem();
-    q->setText(0,"Kategoriat");
+    q->setText(0,"Tai valitse kategoria");
 
     // Initialize category structure
 
@@ -492,8 +485,8 @@ return retVal;
 void MainWindow::on_buttonNext_clicked()
 {
     this->clearoffset = false;
-    offset += 50;
-    this->ui->buttonNext->setEnabled(offset + 50 < dataCount);
+    offset += 25;
+    this->ui->buttonNext->setEnabled(offset + 25 < dataCount);
     this->ui->buttonPrevious->setEnabled(offset > 0);
     on_checkBoxVideo_clicked();
 
@@ -503,9 +496,9 @@ void MainWindow::on_buttonPrevious_clicked()
 {
     this->clearoffset = false;
     if(offset > 0)
-        offset -= 50;
+        offset -= 25;
 
-    this->ui->buttonNext->setEnabled(offset + 50 < dataCount);
+    this->ui->buttonNext->setEnabled(offset + 25 < dataCount);
     this->ui->buttonPrevious->setEnabled(offset > 0);
     on_checkBoxVideo_clicked();
 }
@@ -518,17 +511,17 @@ void MainWindow::refreshInfoLabel(bool comingFromSearchButton)
         {
             if (this->dataCount == 1)
                    this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount) + " hakutulos" + GetCriteriaText() );
-               else if (this->dataCount <= 50)
+               else if (this->dataCount <= 25)
                    this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount) + " hakutulosta " + GetCriteriaText() );
                else
-                    if (offset+50 > this->dataCount)
+                    if (offset+25 > this->dataCount)
                         this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount) + " hakutulosta (n‰ytet‰‰n "+QString::number(offset)+"-"+QString::number(this->dataCount) + ")" + GetCriteriaText() );
                     else
-                        this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount) + " hakutulosta (n‰ytet‰‰n "+QString::number(offset)+"-"+QString::number(offset+50) + ")" + GetCriteriaText() );
+                        this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount) + " hakutulosta (n‰ytet‰‰n "+QString::number(offset)+"-"+QString::number(offset+25) + ")" + GetCriteriaText() );
         }
         else
         {
-            this->ui->infoLabel->setText("Yhteens‰ " + QString::number(dataCount) + ", n‰ytet‰‰n "+ QString::number(offset) + "-" +QString::number(offset+50) +" "+ GetCriteriaText());
+            this->ui->infoLabel->setText("Yhteens‰ " + QString::number(dataCount) + ", n‰ytet‰‰n "+ QString::number(offset) + "-" +QString::number(offset+25) +" "+ GetCriteriaText());
         }
     }
     else if(this->ui->searchWidget->selectedItems().count() > 0)
@@ -538,16 +531,16 @@ void MainWindow::refreshInfoLabel(bool comingFromSearchButton)
 
         if(this->dataCount == 1)
                this->ui->infoLabel->setText("KATEGORIA: " + catname + ", " + QString::number(this->dataCount) + " hakutulos"+ GetCriteriaText());
-        else if (this->dataCount <= 50)
+        else if (this->dataCount <= 25)
                this->ui->infoLabel->setText("KATEGORIA: " + catname + ", " + QString::number(this->dataCount) + " hakutulosta"+ GetCriteriaText());
         else
-            if (offset+50 > this->dataCount)
+            if (offset+25 > this->dataCount)
                 this->ui->infoLabel->setText("KATEGORIA: " + catname + ", " + QString::number(this->dataCount) + " hakutulosta (n‰ytet‰‰n " + QString::number(offset) + "-" + QString::number(this->dataCount) + ")" + GetCriteriaText());
             else
-                this->ui->infoLabel->setText("KATEGORIA: " + catname + ", " + QString::number(this->dataCount) + " hakutulosta (n‰ytet‰‰n " + QString::number(offset) + "-" + QString::number(offset+50) + ")" + GetCriteriaText());
+                this->ui->infoLabel->setText("KATEGORIA: " + catname + ", " + QString::number(this->dataCount) + " hakutulosta (n‰ytet‰‰n " + QString::number(offset) + "-" + QString::number(offset+25) + ")" + GetCriteriaText());
     }
     else
     {
-        this->ui->infoLabel->setText("Yhteens‰ " + QString::number(dataCount) + ", n‰ytet‰‰n "+ QString::number(offset) + "-" +QString::number(offset+50) +" "+ GetCriteriaText());
+        this->ui->infoLabel->setText("Yhteens‰ " + QString::number(dataCount) + ", n‰ytet‰‰n "+ QString::number(offset) + "-" +QString::number(offset+25) +" "+ GetCriteriaText());
     }
 }

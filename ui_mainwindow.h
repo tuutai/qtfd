@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Tue Apr 24 01:59:41 2012
-**      by: Qt User Interface Compiler version 4.7.0
+** Created: Tue Apr 24 20:43:57 2012
+**      by: Qt User Interface Compiler version 4.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -169,15 +169,19 @@ public:
         searchWidget->setHeaderItem(__qtreewidgetitem);
         searchWidget->setObjectName(QString::fromUtf8("searchWidget"));
         searchWidget->setGeometry(QRect(0, 120, 241, 401));
+        QFont font1;
+        font1.setBold(true);
+        font1.setWeight(75);
+        searchWidget->setFont(font1);
         commandLinkButton = new QCommandLinkButton(leftContents);
         commandLinkButton->setObjectName(QString::fromUtf8("commandLinkButton"));
         commandLinkButton->setGeometry(QRect(170, 74, 71, 41));
-        QFont font1;
-        font1.setFamily(QString::fromUtf8("Segoe UI"));
-        font1.setBold(true);
-        font1.setWeight(75);
-        font1.setKerning(true);
-        commandLinkButton->setFont(font1);
+        QFont font2;
+        font2.setFamily(QString::fromUtf8("Segoe UI"));
+        font2.setBold(true);
+        font2.setWeight(75);
+        font2.setKerning(true);
+        commandLinkButton->setFont(font2);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/ikonit/html/images/01-arrow-east.png"), QSize(), QIcon::Normal, QIcon::Off);
         commandLinkButton->setIcon(icon);
@@ -246,12 +250,12 @@ public:
         buttonNext = new QCommandLinkButton(centralWidget);
         buttonNext->setObjectName(QString::fromUtf8("buttonNext"));
         buttonNext->setGeometry(QRect(430, 30, 171, 41));
-        buttonNext->setFont(font1);
+        buttonNext->setFont(font2);
         buttonNext->setIcon(icon);
         buttonPrevious = new QCommandLinkButton(centralWidget);
         buttonPrevious->setObjectName(QString::fromUtf8("buttonPrevious"));
         buttonPrevious->setGeometry(QRect(250, 30, 151, 41));
-        buttonPrevious->setFont(font1);
+        buttonPrevious->setFont(font2);
         QIcon icon5;
         icon5.addFile(QString::fromUtf8(":/ikonit/html/images/05-arrow-west.png"), QSize(), QIcon::Normal, QIcon::Off);
         buttonPrevious->setIcon(icon5);
@@ -272,10 +276,10 @@ public:
         checkBoxAani->setText(QApplication::translate("MainWindow", "\303\204\303\244ni", 0, QApplication::UnicodeUTF8));
         checkBoxKuva->setText(QApplication::translate("MainWindow", "Kuva", 0, QApplication::UnicodeUTF8));
         checkBoxArtikkeli->setText(QApplication::translate("MainWindow", "Artikkeli", 0, QApplication::UnicodeUTF8));
-        infoLabel->setText(QApplication::translate("MainWindow", "Kaikki dokumentit - n\303\244ytet\303\244\303\244n 0-50", 0, QApplication::UnicodeUTF8));
+        infoLabel->setText(QApplication::translate("MainWindow", "Kaikki dokumentit - n\303\244ytet\303\244\303\244n 0-25", 0, QApplication::UnicodeUTF8));
         label->setText(QString());
-        buttonNext->setText(QApplication::translate("MainWindow", " Seuraavat 50", 0, QApplication::UnicodeUTF8));
-        buttonPrevious->setText(QApplication::translate("MainWindow", " Edelliset 50", 0, QApplication::UnicodeUTF8));
+        buttonNext->setText(QApplication::translate("MainWindow", " Seuraavat 25", 0, QApplication::UnicodeUTF8));
+        buttonPrevious->setText(QApplication::translate("MainWindow", " Edelliset 25", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };
