@@ -131,9 +131,14 @@ void MainWindow::update_data( QList<Files *> _files){
         QString path = "../files/";
         QString f_name = path.append(f->name);
         //qDebug() << f->date <<" --- " <<f->date.toString("yyyy-MM-dd");
+
+        //Näissä merkistöongelma
+        QString topic = f->topic.toUtf8();;
+        QString description = f->description.toUtf8();
+
         out << "\t{'start': '"<<f->date.toString("yyyy-MM-dd")<<"',\n"
-               "\t'title': '"<<f->topic<<"',\n"
-               "\t'description': '"<<f->description<<"',\n";
+               "\t'title': '"<<topic<<"',\n"
+               "\t'description': '"<<description<<"',\n";
         if (f->name.endsWith(".jpg",Qt::CaseInsensitive)){
             out << "\t'image': '../thumbnails/thumb."<<f->name<<"',\n";
             out << "\t'icon': 'images/dark-green-circle.png',\n";
