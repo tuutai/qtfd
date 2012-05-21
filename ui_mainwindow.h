@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Mon May 21 20:13:13 2012
-**      by: Qt User Interface Compiler version 4.7.2
+** Created: Tue May 22 00:33:29 2012
+**      by: Qt User Interface Compiler version 4.7.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -49,10 +49,10 @@ public:
     QCheckBox *checkBoxKuva;
     QCheckBox *checkBoxArtikkeli;
     QDateEdit *dateEdit;
-    QLabel *label_2;
+    QLabel *dateLabel;
     QWebView *webView;
     QLabel *infoLabel;
-    QLabel *label;
+    QLabel *logo;
     QCommandLinkButton *buttonNext;
     QCommandLinkButton *buttonPrevious;
 
@@ -153,14 +153,16 @@ public:
         leftContents->setGeometry(QRect(0, 0, 238, 537));
         progressBar = new QProgressBar(leftContents);
         progressBar->setObjectName(QString::fromUtf8("progressBar"));
-        progressBar->setGeometry(QRect(0, 520, 230, 23));
-        progressBar->setMinimumSize(QSize(230, 0));
-        progressBar->setMaximumSize(QSize(230, 16777215));
+        progressBar->setGeometry(QRect(0, 520, 241, 23));
+        sizePolicy.setHeightForWidth(progressBar->sizePolicy().hasHeightForWidth());
+        progressBar->setSizePolicy(sizePolicy);
+        progressBar->setMinimumSize(QSize(241, 0));
+        progressBar->setMaximumSize(QSize(241, 16777215));
         progressBar->setValue(24);
         progressBar->setTextVisible(false);
         searchLineEdit = new QLineEdit(leftContents);
         searchLineEdit->setObjectName(QString::fromUtf8("searchLineEdit"));
-        searchLineEdit->setGeometry(QRect(0, 100, 171, 41));
+        searchLineEdit->setGeometry(QRect(0, 89, 171, 41));
         QFont font;
         font.setFamily(QString::fromUtf8("Segoe UI"));
         font.setBold(true);
@@ -172,7 +174,7 @@ public:
         __qtreewidgetitem->setText(0, QString::fromUtf8("1"));
         searchWidget->setHeaderItem(__qtreewidgetitem);
         searchWidget->setObjectName(QString::fromUtf8("searchWidget"));
-        searchWidget->setGeometry(QRect(0, 150, 241, 371));
+        searchWidget->setGeometry(QRect(0, 135, 241, 381));
         QFont font1;
         font1.setBold(true);
         font1.setItalic(false);
@@ -180,7 +182,7 @@ public:
         searchWidget->setFont(font1);
         commandLinkButton = new QCommandLinkButton(leftContents);
         commandLinkButton->setObjectName(QString::fromUtf8("commandLinkButton"));
-        commandLinkButton->setGeometry(QRect(168, 100, 71, 41));
+        commandLinkButton->setGeometry(QRect(168, 89, 70, 41));
         QFont font2;
         font2.setFamily(QString::fromUtf8("Segoe UI"));
         font2.setBold(true);
@@ -232,13 +234,13 @@ public:
         checkBoxArtikkeli->setChecked(true);
         dateEdit = new QDateEdit(groupBox);
         dateEdit->setObjectName(QString::fromUtf8("dateEdit"));
-        dateEdit->setGeometry(QRect(120, 60, 101, 22));
+        dateEdit->setGeometry(QRect(126, 62, 101, 22));
         dateEdit->setFont(font3);
-        dateEdit->setCurrentSection(QDateTimeEdit::YearSection);
+        dateEdit->setCurrentSection(QDateTimeEdit::DaySection);
         dateEdit->setCalendarPopup(false);
-        label_2 = new QLabel(groupBox);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(10, 60, 61, 16));
+        dateLabel = new QLabel(groupBox);
+        dateLabel->setObjectName(QString::fromUtf8("dateLabel"));
+        dateLabel->setGeometry(QRect(12, 66, 61, 16));
         scrollAreaLeft->setWidget(leftContents);
 
         gridLayout->addWidget(scrollAreaLeft, 0, 0, 1, 1);
@@ -260,11 +262,11 @@ public:
         sizePolicy1.setHeightForWidth(infoLabel->sizePolicy().hasHeightForWidth());
         infoLabel->setSizePolicy(sizePolicy1);
         infoLabel->setFont(font3);
-        label = new QLabel(centralWidget);
-        label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(10, 10, 231, 51));
-        label->setPixmap(QPixmap(QString::fromUtf8(":/ikonit/rauhanyh.png")));
-        label->setScaledContents(true);
+        logo = new QLabel(centralWidget);
+        logo->setObjectName(QString::fromUtf8("logo"));
+        logo->setGeometry(QRect(10, 10, 231, 51));
+        logo->setPixmap(QPixmap(QString::fromUtf8(":/ikonit/rauhanyh.png")));
+        logo->setScaledContents(true);
         buttonNext = new QCommandLinkButton(centralWidget);
         buttonNext->setObjectName(QString::fromUtf8("buttonNext"));
         buttonNext->setGeometry(QRect(430, 30, 171, 41));
@@ -295,9 +297,9 @@ public:
         checkBoxKuva->setText(QApplication::translate("MainWindow", "Kuva", 0, QApplication::UnicodeUTF8));
         checkBoxArtikkeli->setText(QApplication::translate("MainWindow", "Artikkeli", 0, QApplication::UnicodeUTF8));
         dateEdit->setDisplayFormat(QApplication::translate("MainWindow", "d.M.yyyy", 0, QApplication::UnicodeUTF8));
-        label_2->setText(QApplication::translate("MainWindow", "Alkaen", 0, QApplication::UnicodeUTF8));
+        dateLabel->setText(QApplication::translate("MainWindow", "Alkaen", 0, QApplication::UnicodeUTF8));
         infoLabel->setText(QApplication::translate("MainWindow", "Kaikki dokumentit - n\303\244ytet\303\244\303\244n 0-25", 0, QApplication::UnicodeUTF8));
-        label->setText(QString());
+        logo->setText(QString());
         buttonNext->setText(QApplication::translate("MainWindow", " Seuraavat 25", 0, QApplication::UnicodeUTF8));
         buttonPrevious->setText(QApplication::translate("MainWindow", " Edelliset 25", 0, QApplication::UnicodeUTF8));
     } // retranslateUi

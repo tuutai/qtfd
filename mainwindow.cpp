@@ -364,7 +364,6 @@ void MainWindow::resizeEvent(QResizeEvent *e)
     qDebug()<<"Tultiin resizeen - pois";
 }
 
-
 void MainWindow::on_commandLinkButton_clicked()
 {
     searchCursorPositionChanged(0,0);
@@ -467,15 +466,8 @@ QString MainWindow::GetCriteriaText()
     QString retVal = " (";
     bool comma = false;
     SearchCriteria crit = this->GetSearchCriteria();
-    if(crit.showAani)
-    {
-        retVal = retVal + "Ääni";
-        comma = true;
-    }
     if(crit.showArtikkeli)
     {
-        if(comma)
-            retVal = retVal + ", ";
         retVal = retVal + "Artikkeli";
         comma = true;
     }
@@ -491,6 +483,13 @@ QString MainWindow::GetCriteriaText()
         if(comma)
             retVal = retVal + ", ";
         retVal = retVal + "Video";
+        comma = true;
+    }
+    if(crit.showAani)
+    {
+        if(comma)
+            retVal = retVal + ", ";
+        retVal = retVal + "Ääni";
         comma = true;
     }
     retVal = retVal+")";
