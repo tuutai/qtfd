@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Tue Apr 24 21:05:00 2012
+** Created: Mon May 21 20:13:13 2012
 **      by: Qt User Interface Compiler version 4.7.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -16,6 +16,7 @@
 #include <QtGui/QButtonGroup>
 #include <QtGui/QCheckBox>
 #include <QtGui/QCommandLinkButton>
+#include <QtGui/QDateEdit>
 #include <QtGui/QGridLayout>
 #include <QtGui/QGroupBox>
 #include <QtGui/QHeaderView>
@@ -47,6 +48,8 @@ public:
     QCheckBox *checkBoxAani;
     QCheckBox *checkBoxKuva;
     QCheckBox *checkBoxArtikkeli;
+    QDateEdit *dateEdit;
+    QLabel *label_2;
     QWebView *webView;
     QLabel *infoLabel;
     QLabel *label;
@@ -157,10 +160,11 @@ public:
         progressBar->setTextVisible(false);
         searchLineEdit = new QLineEdit(leftContents);
         searchLineEdit->setObjectName(QString::fromUtf8("searchLineEdit"));
-        searchLineEdit->setGeometry(QRect(2, 74, 171, 41));
+        searchLineEdit->setGeometry(QRect(0, 100, 171, 41));
         QFont font;
         font.setFamily(QString::fromUtf8("Segoe UI"));
         font.setBold(true);
+        font.setItalic(false);
         font.setWeight(75);
         searchLineEdit->setFont(font);
         searchWidget = new QTreeWidget(leftContents);
@@ -168,14 +172,15 @@ public:
         __qtreewidgetitem->setText(0, QString::fromUtf8("1"));
         searchWidget->setHeaderItem(__qtreewidgetitem);
         searchWidget->setObjectName(QString::fromUtf8("searchWidget"));
-        searchWidget->setGeometry(QRect(0, 120, 241, 401));
+        searchWidget->setGeometry(QRect(0, 150, 241, 371));
         QFont font1;
         font1.setBold(true);
+        font1.setItalic(false);
         font1.setWeight(75);
         searchWidget->setFont(font1);
         commandLinkButton = new QCommandLinkButton(leftContents);
         commandLinkButton->setObjectName(QString::fromUtf8("commandLinkButton"));
-        commandLinkButton->setGeometry(QRect(170, 74, 71, 41));
+        commandLinkButton->setGeometry(QRect(168, 100, 71, 41));
         QFont font2;
         font2.setFamily(QString::fromUtf8("Segoe UI"));
         font2.setBold(true);
@@ -187,12 +192,16 @@ public:
         commandLinkButton->setIcon(icon);
         groupBox = new QGroupBox(leftContents);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
-        groupBox->setGeometry(QRect(3, 2, 231, 71));
-        groupBox->setFont(font);
+        groupBox->setGeometry(QRect(3, 2, 231, 91));
+        QFont font3;
+        font3.setFamily(QString::fromUtf8("Segoe UI"));
+        font3.setBold(true);
+        font3.setWeight(75);
+        groupBox->setFont(font3);
         checkBoxVideo = new QCheckBox(groupBox);
         checkBoxVideo->setObjectName(QString::fromUtf8("checkBoxVideo"));
         checkBoxVideo->setGeometry(QRect(126, 21, 101, 17));
-        checkBoxVideo->setFont(font);
+        checkBoxVideo->setFont(font3);
         QIcon icon1;
         icon1.addFile(QString::fromUtf8(":/ikonit/html/images/dark-blue-circle.png"), QSize(), QIcon::Normal, QIcon::Off);
         checkBoxVideo->setIcon(icon1);
@@ -200,7 +209,7 @@ public:
         checkBoxAani = new QCheckBox(groupBox);
         checkBoxAani->setObjectName(QString::fromUtf8("checkBoxAani"));
         checkBoxAani->setGeometry(QRect(126, 41, 141, 17));
-        checkBoxAani->setFont(font);
+        checkBoxAani->setFont(font3);
         QIcon icon2;
         icon2.addFile(QString::fromUtf8(":/ikonit/html/images/gray-circle.png"), QSize(), QIcon::Normal, QIcon::Off);
         checkBoxAani->setIcon(icon2);
@@ -208,7 +217,7 @@ public:
         checkBoxKuva = new QCheckBox(groupBox);
         checkBoxKuva->setObjectName(QString::fromUtf8("checkBoxKuva"));
         checkBoxKuva->setGeometry(QRect(9, 41, 101, 17));
-        checkBoxKuva->setFont(font);
+        checkBoxKuva->setFont(font3);
         QIcon icon3;
         icon3.addFile(QString::fromUtf8(":/ikonit/html/images/dark-green-circle.png"), QSize(), QIcon::Normal, QIcon::Off);
         checkBoxKuva->setIcon(icon3);
@@ -216,11 +225,20 @@ public:
         checkBoxArtikkeli = new QCheckBox(groupBox);
         checkBoxArtikkeli->setObjectName(QString::fromUtf8("checkBoxArtikkeli"));
         checkBoxArtikkeli->setGeometry(QRect(9, 21, 131, 17));
-        checkBoxArtikkeli->setFont(font);
+        checkBoxArtikkeli->setFont(font3);
         QIcon icon4;
         icon4.addFile(QString::fromUtf8(":/ikonit/html/images/dull-red-circle.png"), QSize(), QIcon::Normal, QIcon::Off);
         checkBoxArtikkeli->setIcon(icon4);
         checkBoxArtikkeli->setChecked(true);
+        dateEdit = new QDateEdit(groupBox);
+        dateEdit->setObjectName(QString::fromUtf8("dateEdit"));
+        dateEdit->setGeometry(QRect(120, 60, 101, 22));
+        dateEdit->setFont(font3);
+        dateEdit->setCurrentSection(QDateTimeEdit::YearSection);
+        dateEdit->setCalendarPopup(false);
+        label_2 = new QLabel(groupBox);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setGeometry(QRect(10, 60, 61, 16));
         scrollAreaLeft->setWidget(leftContents);
 
         gridLayout->addWidget(scrollAreaLeft, 0, 0, 1, 1);
@@ -241,7 +259,7 @@ public:
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(infoLabel->sizePolicy().hasHeightForWidth());
         infoLabel->setSizePolicy(sizePolicy1);
-        infoLabel->setFont(font);
+        infoLabel->setFont(font3);
         label = new QLabel(centralWidget);
         label->setObjectName(QString::fromUtf8("label"));
         label->setGeometry(QRect(10, 10, 231, 51));
@@ -271,11 +289,13 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Jyv\303\244skyl\303\244n Rauhanyhdistys 100v", 0, QApplication::UnicodeUTF8));
         searchLineEdit->setText(QApplication::translate("MainWindow", "Kirjoita hakusana", 0, QApplication::UnicodeUTF8));
         commandLinkButton->setText(QApplication::translate("MainWindow", "HAE", 0, QApplication::UnicodeUTF8));
-        groupBox->setTitle(QApplication::translate("MainWindow", "Mediatyyppi", 0, QApplication::UnicodeUTF8));
+        groupBox->setTitle(QApplication::translate("MainWindow", "Rajaus", 0, QApplication::UnicodeUTF8));
         checkBoxVideo->setText(QApplication::translate("MainWindow", "Video", 0, QApplication::UnicodeUTF8));
         checkBoxAani->setText(QApplication::translate("MainWindow", "\303\204\303\244ni", 0, QApplication::UnicodeUTF8));
         checkBoxKuva->setText(QApplication::translate("MainWindow", "Kuva", 0, QApplication::UnicodeUTF8));
         checkBoxArtikkeli->setText(QApplication::translate("MainWindow", "Artikkeli", 0, QApplication::UnicodeUTF8));
+        dateEdit->setDisplayFormat(QApplication::translate("MainWindow", "d.M.yyyy", 0, QApplication::UnicodeUTF8));
+        label_2->setText(QApplication::translate("MainWindow", "Alkaen", 0, QApplication::UnicodeUTF8));
         infoLabel->setText(QApplication::translate("MainWindow", "Kaikki dokumentit - n\303\244ytet\303\244\303\244n 0-25", 0, QApplication::UnicodeUTF8));
         label->setText(QString());
         buttonNext->setText(QApplication::translate("MainWindow", " Seuraavat 25", 0, QApplication::UnicodeUTF8));

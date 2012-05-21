@@ -38,10 +38,16 @@ MainWindow::MainWindow(QWidget *parent) :
     this->xmlRead->readXML("meta.xml");
 
     qSort(this->xmlRead->files.begin(), this->xmlRead->files.end(), Files::fileLessThan);
+
+    this->ui->dateEdit->setDate(this->xmlRead->files[0]->date);
+
     createTags();
     QList <int> intlist;
     intlist.append(-1);
+
+
     loadAndShowData(intlist);
+
 
     this->ui->searchLineEdit->setCursorPosition(0);
     connect(this->ui->searchLineEdit,SIGNAL(cursorPositionChanged(int,int)), this, SLOT(searchCursorPositionChanged(int,int)));
@@ -70,13 +76,15 @@ void MainWindow::update_data( QList<Files *> _files){
     QTextStream out(&datafile);
     // Tulostetaan header
 
-    out << "var timeline_data = {\n'dateTimeFormat': 'iso8601',\n"
-    //  "'wikiURL': \"http://simile.mit.edu/shelf/\",\n"
-    //  "'wikiSection': \"Simile Cubism Timeline\",\n\n"
-        "'events' : [\n";
+    QString temp = "var timeline_data = {\n'dateTimeFormat': 'iso8601',\n"
+            //  "'wikiURL': \"http://simile.mit.edu/shelf/\",\n"
+            //  "'wikiSection': \"Simile Cubism Timeline\",\n\n"
+                "'events' : [\n";
+
+    out << temp.toUtf8();
 
     // Aikajanan jaksot = kirjan luvut
-    out << "\t{'start': '1870',\n"
+    temp= "\t{'start': '1870',\n"
            "\t 'end': '1911',\n"
            "\t 'title': 'Lestadiolaisuuden tulo ja alkuvaiheet',\n"
            "\t 'description' : '',\n"
@@ -104,6 +112,9 @@ void MainWindow::update_data( QList<Files *> _files){
            "\t 'isInstant' : true,\n"
            "\t 'color': 'red'\n"
            "\t},\n";
+
+    out << temp.toUtf8();
+
 
     // tulostetaan linkit
     //QList<Files *> _files = this->xmlRead->files;
@@ -187,6 +198,9 @@ void MainWindow::loadAndShowData(QList <int> indexes)
     for (int i = 0; i < _files.count(); i++)
     {
         Files *f = _files.at(i);
+        if(f->date < this->ui->dateEdit->date())
+            continue;
+
         if (f->name.endsWith(".jpg"))
         {
             if(!crit.showKuva)
@@ -510,42 +524,53 @@ void MainWindow::on_buttonPrevious_clicked()
 
 void MainWindow::refreshInfoLabel(bool comingFromSearchButton)
 {
+    QString text = "Alkaen " + this->ui->dateEdit->date().toString("d.M.yyyy") + " ";
     if(comingFromSearchButton)
     {
         if(this->ui->searchLineEdit->text() != "" && this->ui->searchLineEdit->text() != "Kirjoita hakusana")
         {
+            text+="HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount);
             if (this->dataCount == 1)
-                   this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount) + " hakutulos" + GetCriteriaText() );
+                   text+= " hakutulos" ;
                else if (this->dataCount <= 25)
-                   this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount) + " hakutulosta " + GetCriteriaText() );
+                   text+=" hakutulosta ";
                else
                     if (offset+25 > this->dataCount)
-                        this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount) + " hakutulosta (näytetään "+QString::number(offset)+"-"+QString::number(this->dataCount) + ")" + GetCriteriaText() );
+                        text+= " hakutulosta (näytetään "+QString::number(offset)+"-"+QString::number(this->dataCount) + ")";
                     else
-                        this->ui->infoLabel->setText("HAKUSANA: " + this->ui->searchLineEdit->text() + ", " + QString::number(this->dataCount) + " hakutulosta (näytetään "+QString::number(offset)+"-"+QString::number(offset+25) + ")" + GetCriteriaText() );
+                        text+=" hakutulosta (näytetään "+QString::number(offset)+"-"+QString::number(offset+25) + ")";
         }
         else
         {
-            this->ui->infoLabel->setText("Yhteensä " + QString::number(dataCount) + ", näytetään "+ QString::number(offset) + "-" +QString::number(offset+25) +" "+ GetCriteriaText());
+            text+= "Yhteensä " + QString::number(dataCount) + ", näytetään "+ QString::number(offset) + "-" +QString::number(offset+25);
         }
     }
     else if(this->ui->searchWidget->selectedItems().count() > 0)
     {
         QTreeWidgetItem *t = this->ui->searchWidget->selectedItems().first();
         QString catname = t->text(0);
-
+        text+="KATEGORIA: " + catname + ", " + QString::number(this->dataCount);
         if(this->dataCount == 1)
-               this->ui->infoLabel->setText("KATEGORIA: " + catname + ", " + QString::number(this->dataCount) + " hakutulos"+ GetCriteriaText());
+               text+=" hakutulos";
         else if (this->dataCount <= 25)
-               this->ui->infoLabel->setText("KATEGORIA: " + catname + ", " + QString::number(this->dataCount) + " hakutulosta"+ GetCriteriaText());
+              text+=" hakutulosta";
         else
             if (offset+25 > this->dataCount)
-                this->ui->infoLabel->setText("KATEGORIA: " + catname + ", " + QString::number(this->dataCount) + " hakutulosta (näytetään " + QString::number(offset) + "-" + QString::number(this->dataCount) + ")" + GetCriteriaText());
+               text+=" hakutulosta (näytetään " + QString::number(offset) + "-" + QString::number(this->dataCount) + ")";
             else
-                this->ui->infoLabel->setText("KATEGORIA: " + catname + ", " + QString::number(this->dataCount) + " hakutulosta (näytetään " + QString::number(offset) + "-" + QString::number(offset+25) + ")" + GetCriteriaText());
+                text+=" hakutulosta (näytetään " + QString::number(offset) + "-" + QString::number(offset+25) + ")";
     }
     else
     {
-        this->ui->infoLabel->setText("Yhteensä " + QString::number(dataCount) + ", näytetään "+ QString::number(offset) + "-" +QString::number(offset+25) +" "+ GetCriteriaText());
+        text+="Yhteensä " + QString::number(dataCount) + ", näytetään "+ QString::number(offset) + "-" +QString::number(offset+25);
     }
+
+    text+=" " + GetCriteriaText();
+    this->ui->infoLabel->setText(text);
+
+}
+
+void MainWindow::on_dateEdit_dateChanged(QDate date)
+{
+    on_checkBoxVideo_clicked();
 }
