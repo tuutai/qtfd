@@ -147,11 +147,13 @@ void MainWindow::update_data( QList<Files *> _files){
         QString topic = f->topic.toUtf8();;
         QString description = f->description.toUtf8();
 
+        QString thumbpic = "\t'image': 'thumbnails/thumb." + f->name.toUtf8() +"',\n";
+
         out << "\t{'start': '"<<f->date.toString("yyyy-MM-dd")<<"',\n"
                "\t'title': '"<<topic<<"',\n"
                "\t'description': '"<<description<<"',\n";
         if (f->name.endsWith(".jpg",Qt::CaseInsensitive)){
-            out << "\t'image': '../thumbnails/thumb."<<f->name<<"',\n";
+            out <<thumbpic ;
             out << "\t'icon': 'images/dark-green-circle.png',\n";
         }
         else if (f->name.endsWith(".mpg",Qt::CaseInsensitive)){
