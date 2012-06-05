@@ -35,8 +35,8 @@ hakusanat=`/bin/grep Hakusanat $tmpfile| /bin/sed 's/.*: *//' | /bin/sed 's/ /_/
 /bin/rm $tmpfile
 
 echo "         <file>"
-n=`echo $nimi | /bin/sed 's/_/ /g'`
-echo "                <name>$n</name>"
+#n=`echo $nimi | /bin/sed 's/_/ /g'`
+echo "                <name>$nimi</name>"
 echo "                <date>$pvm</date>"
 echo "                <categories>"
 echo "                 <category>"

@@ -3,7 +3,7 @@ files="testimeta.txt"
 outfile="file.xml"
 utf8file="meta.xml"
 #rootdir="Qt/jkl-dvd/jkl-dvd-build-desktop/Demoon/"
-export rootdir="/home/tuutai/gitrepo/qtfd-build/Tallessa20111031yhdistetty"
+export rootdir="/home/tuutai/gitrepo/qtfd-build/tiedostot/store/"
 export targetdir="../../qtfd-build/files/"
 
 mkdir -p $targetdir
@@ -24,5 +24,8 @@ fi
 done
 echo "        </files>" >> $outfile
 echo "</xml>" >> $outfile
+
+cat $outfile | sed s/\:/\./g > korjattu_$outfile
+mv korjattu_$outfile $outfile
 
 cat $outfile |iconv --from-code=ISO-8859-1 > $utf8file
