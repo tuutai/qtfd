@@ -79,6 +79,7 @@ private slots:
     void on_checkBoxAani_clicked();
     void on_buttonNext_clicked();
     void on_buttonPrevious_clicked();
+    void on_dateEdit_dateChanged(QDate date);
 };
 
 #endif // MAINWINDOW_H
