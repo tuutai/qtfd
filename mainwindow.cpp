@@ -81,10 +81,10 @@ void MainWindow::update_data( QList<Files *> _files){
             //  "'wikiSection': \"Simile Cubism Timeline\",\n\n"
                 "'events' : [\n";
 
-    out << temp.toUtf8();
+    out << temp;//.toUtf8();
 
     // Aikajanan jaksot = kirjan luvut
-    temp= "\t{'start': '1870',\n"
+/*    temp= "\t{'start': '1870',\n"
            "\t 'end': '1911',\n"
            "\t 'title': 'Lestadiolaisuuden tulo ja alkuvaiheet',\n"
            "\t 'description' : '',\n"
@@ -114,7 +114,7 @@ void MainWindow::update_data( QList<Files *> _files){
            "\t},\n";
 
     out << temp.toUtf8();
-
+*/
 
     // tulostetaan linkit
     //QList<Files *> _files = this->xmlRead->files;
@@ -144,10 +144,10 @@ void MainWindow::update_data( QList<Files *> _files){
         //qDebug() << f->date <<" --- " <<f->date.toString("yyyy-MM-dd");
 
         //Näissä merkistöongelma
-        QString topic = f->topic.toUtf8();;
-        QString description = f->description.toUtf8();
+        QString topic = f->topic;//.toUtf8();;
+        QString description = f->description;//.toUtf8();
 
-        QString thumbpic = "\t'image': 'thumbnails/thumb." + f->name.toUtf8() +"',\n";
+        QString thumbpic = "\t'image': 'thumbnails/thumb." + f->name/*.toUtf8()*/ +"',\n";
 
         out << "\t{'start': '"<<f->date.toString("yyyy-MM-dd")<<"',\n"
                "\t'title': '"<<topic<<"',\n"
