@@ -52,6 +52,7 @@ bool Search::sortByTagname(TagRefs *t1, TagRefs *t2)
 
 QList <TagRefs> Search::find(QString str)
 {
+    bool found = false;
     // return list of tags that match to str
     QList <TagRefs> tagrefs;
     QList <int> searchIdx;
@@ -65,8 +66,16 @@ QList <TagRefs> Search::find(QString str)
             {
                 tagrefs.append(tr);
                 searchIdx.append(tr.filelist);
+                found = true;
             }
         }
+    }
+    if (!found){
+        TagRefs temp;
+        temp.tagname="";
+        temp.filelist.append(-2);
+        tagrefs.append(temp);
+        searchIdx.append(-2);
     }
 
     this->searchIndexes = searchIdx;
