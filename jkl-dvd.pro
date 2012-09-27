@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     searchbox.cpp \
     categories.cpp \
     timeline.cpp \
-    buttonarea.cpp
+    buttonarea.cpp \
+    popup.cpp
 
 HEADERS  += mainwindow.h \
     xmlread.h \
@@ -31,9 +32,11 @@ HEADERS  += mainwindow.h \
     searchbox.h \
     categories.h \
     timeline.h \
-    buttonarea.h
+    buttonarea.h \
+    popup.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    popup.ui
 
 RESOURCES += \
     resources.qrc

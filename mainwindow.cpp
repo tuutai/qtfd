@@ -12,6 +12,7 @@
 #include "buttonarea.h"
 #include "googlesuggest.h"
 #include "QTimer"
+#include "popup.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -112,7 +113,7 @@ void MainWindow::update_data( QList<Files *> _files){
            "\t 'isInstant' : true,\n"
            "\t 'color': 'red'\n"
            "\t},\n";
-
+new Ui::MainWindow
     out << temp.toUtf8();
 */
 
@@ -251,9 +252,36 @@ bool MainWindow::openfile(const QString filename){
     return QDesktopServices::openUrl(QUrl(f));
 }
 
+
+
 bool MainWindow::openUrl(const QUrl url){
+    if (url.toString().endsWith("jpg")) {
+        int i = getFileIndexByName(url.toString());
+        Files *f = this->xmlRead->files.at(i);
+        QString path = "files/";
+        QString f_name = path.append(f->name);
+        qDebug() << "avataan jpg linkki: " << url.toString();
+        popup *p = new popup(this);
+        p->setTopic(&f->topic);
+        p->setImage(&f_name);
+        p->setDescription(&f->description);
+        p->show();
+        return false;
+    }
+
     return QDesktopServices::openUrl(url);
 }
+
+int MainWindow::getFileIndexByName(QString filename){
+    int count = this->xmlRead->files.count();
+    for (int i=0;i<count;i++) {
+        if (filename.contains(this->xmlRead->files.at(i)->name)){
+            return i;
+        }
+    }
+    return 0;
+}
+
 
 void MainWindow::addCategoryButtons()
 {

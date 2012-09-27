@@ -63,6 +63,7 @@ private:
     int dataCount;
     int offset;
     void refreshInfoLabel(bool comingFromSearchButton);
+    int getFileIndexByName(QString filename);
 
 private slots:
     void selectCategory(QTreeWidgetItem* item,int n);
