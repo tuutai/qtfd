@@ -36,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->search = new Search();
     this->cats = new Categories();
     this->signalMapper = new QSignalMapper();
-    this->xmlRead->readXML("meta.xml");
+    this->xmlRead->readXML(QDir::toNativeSeparators("meta.xml"));
 
     qSort(this->xmlRead->files.begin(), this->xmlRead->files.end(), Files::fileLessThan);
 
@@ -145,10 +145,10 @@ new Ui::MainWindow
         //qDebug() << f->date <<" --- " <<f->date.toString("yyyy-MM-dd");
 
         //Näissä merkistöongelma
-        QString topic = f->topic;//.toUtf8();;
-        QString description = f->description;//.toUtf8();
+        QString topic = f->topic.replace("Ö","&Ouml;").replace("Ä","&Auml;").toUtf8();
+        QString description = f->description.replace("Ö","&Ouml;").replace("Ä","&Auml;").toUtf8();
 
-        QString thumbpic = "\t'image': 'thumbnails/thumb." + f->name/*.toUtf8()*/ +"',\n";
+        QString thumbpic = "\t'image': 'thumbnails/thumb." + f->name.toUtf8() +"',\n";
 
         out << "\t{'start': '"<<f->date.toString("yyyy-MM-dd")<<"',\n"
                "\t'title': '"<<topic<<"',\n"
