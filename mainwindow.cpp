@@ -145,8 +145,8 @@ new Ui::MainWindow
         //qDebug() << f->date <<" --- " <<f->date.toString("yyyy-MM-dd");
 
         //Näissä merkistöongelma
-        QString topic = f->topic.replace("Ö","&Ouml;").replace("Ä","&Auml;").toUtf8();
-        QString description = f->description.replace("Ö","&Ouml;").replace("Ä","&Auml;").toUtf8();
+        QString topic = QString(f->topic).replace("Ö","&Ouml;").replace("Ä","&Auml;").toUtf8();
+        QString description = QString(f->description).replace("Ö","&Ouml;").replace("Ä","&Auml;").toUtf8();
 
         QString thumbpic = "\t'image': 'thumbnails/thumb." + f->name.toUtf8() +"',\n";
 
