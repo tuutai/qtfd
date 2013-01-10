@@ -81,6 +81,8 @@ private slots:
     void on_buttonNext_clicked();
     void on_buttonPrevious_clicked();
     void on_dateEdit_dateChanged(QDate date);
+    void on_aboutButton_clicked();
+    void on_helpButton_clicked();
 };
 
 #endif // MAINWINDOW_H

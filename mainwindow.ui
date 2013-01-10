@@ -541,8 +541,8 @@
         <widget class="QLineEdit" name="searchLineEdit">
          <property name="geometry">
           <rect>
-           <x>0</x>
-           <y>89</y>
+           <x>2</x>
+           <y>100</y>
            <width>171</width>
            <height>41</height>
           </rect>
@@ -563,9 +563,9 @@
          <property name="geometry">
           <rect>
            <x>0</x>
-           <y>135</y>
+           <y>145</y>
            <width>241</width>
-           <height>381</height>
+           <height>371</height>
           </rect>
          </property>
          <property name="font">
@@ -584,8 +584,8 @@
         <widget class="QCommandLinkButton" name="commandLinkButton">
          <property name="geometry">
           <rect>
-           <x>168</x>
-           <y>89</y>
+           <x>170</x>
+           <y>100</y>
            <width>70</width>
            <height>41</height>
           </rect>
@@ -784,6 +784,13 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="font">
+        <font>
+         <family>Tahoma</family>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
        <property name="url">
         <url>
          <string>http://www.google.fi/</string>
@@ -887,6 +894,58 @@
      <iconset resource="resources.qrc">
       <normaloff>:/ikonit/html/images/05-arrow-west.png</normaloff>:/ikonit/html/images/05-arrow-west.png</iconset>
     </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>970</x>
+      <y>10</y>
+      <width>77</width>
+      <height>54</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="aboutButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>INFO</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="helpButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>OHJE</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
  </widget>

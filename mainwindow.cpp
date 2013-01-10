@@ -62,6 +62,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->ui->buttonPrevious->setEnabled(offset > 0);
     this->ui->buttonNext->setEnabled(dataCount > 25);
     refreshInfoLabel(true);
+
 }
 
 MainWindow::~MainWindow()
@@ -602,4 +603,14 @@ void MainWindow::refreshInfoLabel(bool comingFromSearchButton)
 void MainWindow::on_dateEdit_dateChanged(QDate date)
 {
     on_checkBoxVideo_clicked();
+}
+
+void MainWindow::on_aboutButton_clicked()
+{
+    this->openfile(QString("info.pdf"));
+}
+
+void MainWindow::on_helpButton_clicked()
+{
+    this->openfile(QString("ohje.pdf"));
 }
